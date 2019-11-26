@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{AB16BB15-E093-49FD-9BA7-422F18D6171D}</ProjectGuid>
+    <RootNamespace>MonsterRules</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\bugno\Documents\Programming\Libraries\Box2D\Build\include;D:\bugno\Documents\Programming\Libraries\SFML-2.4.2-windows-vc14-32-bit\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>D:\bugno\Documents\Programming\Libraries\Box2D\Build\x86\debug\lib;D:\bugno\Documents\Programming\Libraries\SFML-2.4.2-windows-vc14-32-bit\SFML-2.4.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\bugno\Documents\Programming\Libraries\SFML-2.4.2-windows-vc14-32-bit\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>D:\bugno\Documents\Programming\Libraries\SFML-2.4.2-windows-vc14-32-bit\SFML-2.4.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\Tools\Singleton.cpp" />
+    <ClCompile Include="Src\Game\Game.cpp" />
+    <ClCompile Include="Src\Game\Window\CRenderWindow.cpp" />
+    <ClCompile Include="Src\Game\Window\EventManager.cpp" />
+    <ClCompile Include="Src\Game\Window\Settings.cpp" />
+    <ClCompile Include="src\Level\Builder\Layers\LayerBuilder.cpp" />
+    <ClCompile Include="src\Level\Builder\Layers\Layout.cpp" />
+    <ClCompile Include="src\Level\Builder\Layers\ObjectGroupBuilder.cpp" />
+    <ClCompile Include="src\Level\Builder\Objects\Customizable.cpp" />
+    <ClCompile Include="src\Level\Builder\Objects\Image.cpp" />
+    <ClCompile Include="src\Level\Builder\Objects\Object.cpp" />
+    <ClCompile Include="src\Level\Builder\Objects\Properties.cpp" />
+    <ClCompile Include="src\Level\Builder\Objects\SceneObject.cpp" />
+    <ClCompile Include="src\Level\Builder\Objects\Shapes\Ellipse.cpp" />
+    <ClCompile Include="src\Level\Builder\Objects\Shapes\Point.cpp" />
+    <ClCompile Include="src\Level\Builder\Objects\Shapes\Polygone.cpp" />
+    <ClCompile Include="src\Level\Builder\Objects\Shapes\Polyline.cpp" />
+    <ClCompile Include="src\Level\Builder\Objects\Tile.cpp" />
+    <ClCompile Include="src\Level\Builder\Objects\TilesetTile.cpp" />
+    <ClCompile Include="src\Level\Builder\TiledBuilder.cpp" />
+    <ClCompile Include="src\Level\Builder\TilesetBuilder.cpp" />
+    <ClCompile Include="src\Level\LevelManager.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\datanode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\GridNode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\imagenode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\layernode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\mapnode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\Node.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\objectgroupnode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\objectnode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\propertiesnode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\propertynode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\Shapes\EllipseNode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\Shapes\PointNode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\Shapes\PolygonNode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\Shapes\PolylineNode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\tilenode.cpp" />
+    <ClCompile Include="src\Level\Parser\Nodes\tilesetnode.cpp" />
+    <ClCompile Include="src\Level\Parser\TiledParser.cpp" />
+    <ClCompile Include="src\Level\Parser\tinyxml2.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\Tools\Singleton.h" />
+    <ClInclude Include="Src\Game\Game.h" />
+    <ClInclude Include="Src\Game\Window\CRenderWindow.h" />
+    <ClInclude Include="Src\Game\Window\EventManager.h" />
+    <ClInclude Include="Src\Game\Window\Settings.h" />
+    <ClInclude Include="src\Level\Builder\Layers\LayerBuilder.h" />
+    <ClInclude Include="src\Level\Builder\Layers\Layout.h" />
+    <ClInclude Include="src\Level\Builder\Layers\ObjectGroupBuilder.h" />
+    <ClInclude Include="src\Level\Builder\Objects\Customizable.h" />
+    <ClInclude Include="src\Level\Builder\Objects\Image.h" />
+    <ClInclude Include="src\Level\Builder\Objects\Object.h" />
+    <ClInclude Include="src\Level\Builder\Objects\Properties.h" />
+    <ClInclude Include="src\Level\Builder\Objects\SceneObject.h" />
+    <ClInclude Include="src\Level\Builder\Objects\Shapes\Ellipse.h" />
+    <ClInclude Include="src\Level\Builder\Objects\Shapes\Point.h" />
+    <ClInclude Include="src\Level\Builder\Objects\Shapes\Polygone.h" />
+    <ClInclude Include="src\Level\Builder\Objects\Shapes\Polyline.h" />
+    <ClInclude Include="src\Level\Builder\Objects\Tile.h" />
+    <ClInclude Include="src\Level\Builder\Objects\TilesetTile.h" />
+    <ClInclude Include="src\Level\Builder\TiledBuilder.h" />
+    <ClInclude Include="src\Level\Builder\TilesetBuilder.h" />
+    <ClInclude Include="src\Level\LevelManager.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\datanode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\GridNode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\imagenode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\layernode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\mapnode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\Node.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\objectgroupnode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\objectnode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\propertiesnode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\propertynode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\Shapes\EllipseNode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\Shapes\PointNode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\Shapes\PolygonNode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\Shapes\PolylineNode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\tilenode.h" />
+    <ClInclude Include="src\Level\Parser\Nodes\tilesetnode.h" />
+    <ClInclude Include="src\Level\Parser\TiledParser.h" />
+    <ClInclude Include="src\Level\Parser\tinyxml2.h" />
+    <ClInclude Include="src\Tools\utility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
