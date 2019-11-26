@@ -26,14 +26,14 @@ inline void clearPtr(T*& v)
 	}
 
 }
-inline void Output() {
+inline void Out() {
 	std::cout << std::endl;
 }
 
 template<typename First, typename ... Strings>
-inline void Output(First arg, const Strings&... rest) {
+inline void Out(First arg, const Strings&... rest) {
 	std::cout << arg << " ";
-	Output(rest...);
+	Out(rest...);
 }
 
 template<class T>

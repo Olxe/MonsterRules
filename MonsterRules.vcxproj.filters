@@ -15,256 +15,266 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Level\Builder\Layers\LayerBuilder.cpp">
+    <ClCompile Include="Sources\Game\Window\CRenderWindow.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\Layers\Layout.cpp">
+    <ClCompile Include="Sources\Game\Window\EventManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\Layers\ObjectGroupBuilder.cpp">
+    <ClCompile Include="Sources\Game\Window\Settings.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\Objects\Shapes\Ellipse.cpp">
+    <ClCompile Include="Sources\Game\Game.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\Objects\Shapes\Point.cpp">
+    <ClCompile Include="Sources\Level\Builder\Layers\LayerBuilder.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\Objects\Shapes\Polygone.cpp">
+    <ClCompile Include="Sources\Level\Builder\Layers\Layout.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\Objects\Shapes\Polyline.cpp">
+    <ClCompile Include="Sources\Level\Builder\Layers\ObjectGroupBuilder.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\Objects\Customizable.cpp">
+    <ClCompile Include="Sources\Level\Builder\Objects\Shapes\Ellipse.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\Objects\Image.cpp">
+    <ClCompile Include="Sources\Level\Builder\Objects\Shapes\Point.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\Objects\Object.cpp">
+    <ClCompile Include="Sources\Level\Builder\Objects\Shapes\Polygone.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\Objects\Properties.cpp">
+    <ClCompile Include="Sources\Level\Builder\Objects\Shapes\Polyline.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\Objects\SceneObject.cpp">
+    <ClCompile Include="Sources\Level\Builder\Objects\Customizable.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\Objects\Tile.cpp">
+    <ClCompile Include="Sources\Level\Builder\Objects\Image.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\Objects\TilesetTile.cpp">
+    <ClCompile Include="Sources\Level\Builder\Objects\Object.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\TiledBuilder.cpp">
+    <ClCompile Include="Sources\Level\Builder\Objects\Properties.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Builder\TilesetBuilder.cpp">
+    <ClCompile Include="Sources\Level\Builder\Objects\SceneObject.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\Shapes\EllipseNode.cpp">
+    <ClCompile Include="Sources\Level\Builder\Objects\Tile.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\Shapes\PointNode.cpp">
+    <ClCompile Include="Sources\Level\Builder\Objects\TilesetTile.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\Shapes\PolygonNode.cpp">
+    <ClCompile Include="Sources\Level\Builder\TiledBuilder.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\Shapes\PolylineNode.cpp">
+    <ClCompile Include="Sources\Level\Builder\TilesetBuilder.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\datanode.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\Shapes\EllipseNode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\GridNode.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\Shapes\PointNode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\imagenode.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\Shapes\PolygonNode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\layernode.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\Shapes\PolylineNode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\mapnode.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\datanode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\Node.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\GridNode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\objectgroupnode.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\imagenode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\objectnode.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\layernode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\propertiesnode.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\mapnode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\propertynode.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\Node.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\tilenode.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\objectgroupnode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\Nodes\tilesetnode.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\objectnode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\TiledParser.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\propertiesnode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\Parser\tinyxml2.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\propertynode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Level\LevelManager.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\tilenode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Main.cpp">
+    <ClCompile Include="Sources\Level\Parser\Nodes\tilesetnode.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Game\Game.cpp">
+    <ClCompile Include="Sources\Level\Parser\TiledParser.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Game\Window\CRenderWindow.cpp">
+    <ClCompile Include="Sources\Level\Parser\tinyxml2.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Game\Window\EventManager.cpp">
+    <ClCompile Include="Sources\Level\LevelManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Game\Window\Settings.cpp">
+    <ClCompile Include="Sources\Main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Tools\Singleton.cpp">
+    <ClCompile Include="Sources\Game\Window\Inputmanager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Game\Window\AssetManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Level\Builder\Layers\LayerBuilder.h">
+    <ClInclude Include="Sources\Game\Window\CRenderWindow.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\Layers\Layout.h">
+    <ClInclude Include="Sources\Game\Window\EventManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\Layers\ObjectGroupBuilder.h">
+    <ClInclude Include="Sources\Game\Window\Settings.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\Objects\Shapes\Ellipse.h">
+    <ClInclude Include="Sources\Game\Game.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\Objects\Shapes\Point.h">
+    <ClInclude Include="Sources\Level\Builder\Layers\LayerBuilder.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\Objects\Shapes\Polygone.h">
+    <ClInclude Include="Sources\Level\Builder\Layers\Layout.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\Objects\Shapes\Polyline.h">
+    <ClInclude Include="Sources\Level\Builder\Layers\ObjectGroupBuilder.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\Objects\Customizable.h">
+    <ClInclude Include="Sources\Level\Builder\Objects\Shapes\Ellipse.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\Objects\Image.h">
+    <ClInclude Include="Sources\Level\Builder\Objects\Shapes\Point.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\Objects\Object.h">
+    <ClInclude Include="Sources\Level\Builder\Objects\Shapes\Polygone.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\Objects\Properties.h">
+    <ClInclude Include="Sources\Level\Builder\Objects\Shapes\Polyline.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\Objects\SceneObject.h">
+    <ClInclude Include="Sources\Level\Builder\Objects\Customizable.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\Objects\Tile.h">
+    <ClInclude Include="Sources\Level\Builder\Objects\Image.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\Objects\TilesetTile.h">
+    <ClInclude Include="Sources\Level\Builder\Objects\Object.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\TiledBuilder.h">
+    <ClInclude Include="Sources\Level\Builder\Objects\Properties.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Builder\TilesetBuilder.h">
+    <ClInclude Include="Sources\Level\Builder\Objects\SceneObject.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\Shapes\EllipseNode.h">
+    <ClInclude Include="Sources\Level\Builder\Objects\Tile.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\Shapes\PointNode.h">
+    <ClInclude Include="Sources\Level\Builder\Objects\TilesetTile.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\Shapes\PolygonNode.h">
+    <ClInclude Include="Sources\Level\Builder\TiledBuilder.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\Shapes\PolylineNode.h">
+    <ClInclude Include="Sources\Level\Builder\TilesetBuilder.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\datanode.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\Shapes\EllipseNode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\GridNode.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\Shapes\PointNode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\imagenode.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\Shapes\PolygonNode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\layernode.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\Shapes\PolylineNode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\mapnode.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\datanode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\Node.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\GridNode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\objectgroupnode.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\imagenode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\objectnode.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\layernode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\propertiesnode.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\mapnode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\propertynode.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\Node.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\tilenode.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\objectgroupnode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\Nodes\tilesetnode.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\objectnode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\TiledParser.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\propertiesnode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\Parser\tinyxml2.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\propertynode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level\LevelManager.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\tilenode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Tools\utility.h">
+    <ClInclude Include="Sources\Level\Parser\Nodes\tilesetnode.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Game\Game.h">
+    <ClInclude Include="Sources\Level\Parser\TiledParser.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Game\Window\CRenderWindow.h">
+    <ClInclude Include="Sources\Level\Parser\tinyxml2.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Game\Window\EventManager.h">
+    <ClInclude Include="Sources\Level\LevelManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Game\Window\Settings.h">
+    <ClInclude Include="Sources\Tools\Singleton.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Tools\Singleton.h">
+    <ClInclude Include="Sources\Game\Window\Inputmanager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Tools\ToolsFunction.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Game\Window\AssetManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
+    <None Include=".gitattributes" />
   </ItemGroup>
 </Project>

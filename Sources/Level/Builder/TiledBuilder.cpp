@@ -33,7 +33,7 @@ std::vector< Layout* > Builder::TiledBuilder::Build(Parser::MapNode* map)
 		}
 	}
 	else {
-		display("Nullptr map");
+		//display("Nullptr map");
 	}
 
 	return m_layouts;

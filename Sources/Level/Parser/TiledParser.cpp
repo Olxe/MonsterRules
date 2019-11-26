@@ -19,7 +19,7 @@ MapNode* TiledParser::ParseTMX(std::string directory, std::string fileName)
 	tinyxml2::XMLDocument document;
 	tinyxml2::XMLError result = document.LoadFile((directory + fileName).c_str());
 	if (result != tinyxml2::XML_SUCCESS) {
-		std::cout << "Error loading : " + directory + fileName << std::endl;
+		//std::cout << "Error loading : " + directory + fileName << std::endl;
 		return nullptr;
 	}
 

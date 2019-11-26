@@ -3,6 +3,10 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "../Level/LevelManager.h"
+
+#include "Window/CRenderWindow.h"
+
 class Game
 {
 public:
@@ -15,7 +19,7 @@ private:
 	void init();
 
 private:
-	sf::RenderWindow
+	
 };
 
 #endif
