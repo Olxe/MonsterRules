@@ -7,20 +7,23 @@
 #include <map>
 #include <iostream>
 
-class EventManager
+namespace Window
 {
-private:
-    EventManager();
-    ~EventManager();
+	class EventManager
+	{
+	public:
+		EventManager();
+		~EventManager();
 
-public:
-    static void Update(sf::RenderWindow* window);
-    static sf::Event* GetEvent(sf::Event::EventType eventType);
-    static bool IsEventTriggered(sf::Event::EventType eventType);
+	public:
+		void Update(sf::RenderWindow* window);
+		sf::Event* GetEvent(sf::Event::EventType eventType);
+		bool IsEventTriggered(sf::Event::EventType eventType);
 
-private:
-    static std::map< sf::Event::EventType, sf::Event > m_event;
-    
-};
+	private:
+		std::map< sf::Event::EventType, sf::Event > m_event;
+
+	};
+}
 
 #endif

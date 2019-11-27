@@ -2,18 +2,11 @@
 
 Game::Game()
 {
-	Window::CRenderWindow::Instance();
 }
 
 Game::~Game()
 {  
-	Window::CRenderWindow::DeleteInstance();
-}
-
-void Game::init()
-{
-	//CWindow::GetInstance()->Init();
-    //m_world = new World();
+	Window::WindowManager::DeleteInstance();
 }
 
 void Game::StartGame()
@@ -21,16 +14,21 @@ void Game::StartGame()
 	LevelManager levelManager;
 	levelManager.LoadLevel(Level::LEVEL_1);
 
-	//init();
+	Window::CRenderWindow* window = Window::WindowManager::Instance()->GetWindow();
 
-	//CWindow* window = CWindow::GetInstance();
+	sf::CircleShape shape(100.f);
+	shape.setFillColor(sf::Color::Green);
 
-	//while (window->isOpen())
- //   {
-	//	window->Update();
+	while (window->isOpen())
+	{
+		Window::WindowManager::Instance()->Update();
+		
+		if (window->WindowFocus()) {
+			//update
+		}
 
- //       if(window->GetIsWindowFocus()) m_world->Update(window->GetDeltaTime());
-
- //       m_world->Draw(*window);
- //   }
+		window->clear();
+		window->draw(shape);
+		window->display();
+	}
 }

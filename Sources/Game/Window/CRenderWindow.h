@@ -3,29 +3,20 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
-//#include "Settings.h"
-//#include "EventManager.h"
-#include "../../Tools/Singleton.h"
-#include "../../Tools/ToolsFunction.h"
+#include "Settings.h"
 
 namespace Window
 {
-	class CRenderWindow : public sf::RenderWindow, public Singleton< CRenderWindow >
+	class CRenderWindow: public sf::RenderWindow
 	{
-		friend class Singleton< CRenderWindow >;
-
-	private:
+	public:
 		CRenderWindow();
 		~CRenderWindow();
 
-	public:
-		float DeltaTime();
-		bool WindowFocus();
+		void Create(Settings& settings);
 
-		void Init();
-		void Update();
-		
-		void SetFPS(unsigned int fps);
+		void SetWindowFocus(bool value);
+		bool WindowFocus() const;
 
 	private:
 		bool isWindowFocus;

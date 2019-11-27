@@ -1,44 +1,46 @@
-#include "settings.h"
+#include "Settings.h"
 
-sf::Vector2u Settings::m_windowSize;
-unsigned int Settings::m_fps;
-
-Settings::Settings()
+namespace Window
 {
-}
+	Settings::Settings(const std::string& settingsFile)
+	{
+		this->SetSettings(settingsFile);
+	}
 
-Settings::~Settings()
-{
-}
+	Settings::Settings()
+	{
+	}
 
-void Settings::Init()
-{
-    InputManager::BindKey(InputAction::MOVE_UP, sf::Keyboard::Z);
-    InputManager::BindKey(InputAction::MOVE_DOWN, sf::Keyboard::S);
-    InputManager::BindKey(InputAction::MOVE_LEFT, sf::Keyboard::Q);
-    InputManager::BindKey(InputAction::MOVE_RIGHT, sf::Keyboard::D);
-	InputManager::BindKey(InputAction::INTERACT, sf::Keyboard::E);
+	Settings::~Settings()
+	{
+	}
 
-	InputManager::BindButton(InputAction::ATTACK_LEFT, sf::Mouse::Left);
-	InputManager::BindButton(InputAction::ATTACK_MIDDLE, sf::Mouse::Middle);
-	InputManager::BindButton(InputAction::ATTACK_RIGHT, sf::Mouse::Right);
+	void Settings::SetSettings(const std::string& settingsFile)
+	{
+		this->SetRenderWindowSettings(settingsFile);
+		this->SetInputSettings(settingsFile);
+	}
 
+	void Settings::SetRenderWindowSettings(const std::string& windowFile)
+	{
+		SettingsParser settingsParser;
+		if (settingsParser.loadFromFile(windowFile)) {
+			settingsParser.get("width", m_sRenderWindow.videoMode.width);
+			settingsParser.get("height", m_sRenderWindow.videoMode.height);
+			settingsParser.get("bitsPerPixel", m_sRenderWindow.videoMode.bitsPerPixel);
+			settingsParser.get("title", m_sRenderWindow.title);
+			settingsParser.get("style", m_sRenderWindow.style);
+			settingsParser.get("antialiasingLevel", m_sRenderWindow.contextSettings.antialiasingLevel);
+			settingsParser.get("fps", m_sRenderWindow.fps);
+			settingsParser.get("verticalSync", m_sRenderWindow.verticalSync);
+		}
+		else {
+			Out("Error : ", "Settings file not found.");
+		}
+	}
 
-    m_windowSize = sf::Vector2u(1500, 800);
-    m_fps = 80;
-}
+	void Settings::SetInputSettings(const std::string& inputFile)
+	{
 
-void Settings::SetFPS(unsigned int fps)
-{
-	m_fps = fps;
-}
-
-const sf::Vector2u& Settings::GetWindowSize()
-{
-    return m_windowSize;
-}
-
-const unsigned int& Settings::GetFPS()
-{
-    return m_fps;
+	}
 }

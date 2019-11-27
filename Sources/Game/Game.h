@@ -5,7 +5,7 @@
 
 #include "../Level/LevelManager.h"
 
-#include "Window/CRenderWindow.h"
+#include "Window/WindowManager.h"
 
 class Game
 {
@@ -14,9 +14,6 @@ public:
 	~Game();
 
 	void StartGame();
-
-private:
-	void init();
 
 private:
 	

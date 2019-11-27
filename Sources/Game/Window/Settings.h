@@ -2,23 +2,41 @@
 #define __SETTINGS__
 
 #include <SFML/System/Vector2.hpp>
-#include "inputmanager.h"
+#include <SFML/Graphics/RenderWindow.hpp>
 
-class Settings
+#include "../../Tools/ToolsFunction.h"
+#include "../../Tools/SettingsParser.h"
+
+namespace Window
 {
-private:
-    Settings();
-    ~Settings();
+	struct SRenderWindow
+	{
+		sf::VideoMode videoMode = sf::VideoMode(1920, 1080, 32);
+		std::string title = "MonsterRules";
+		sf::Uint32 style = sf::Style::Close;
+		sf::ContextSettings contextSettings;
+		unsigned int fps = 60;
+		bool verticalSync = false;
+	};
 
-public:
-    static void Init();
-    static const sf::Vector2u& GetWindowSize();
-    static const unsigned int& GetFPS();
-	static void SetFPS(unsigned int fps);
+	class Settings
+	{
+	public:
+		Settings(const std::string& settingsFile);
+		Settings();
+		~Settings();
 
-private:
-    static sf::Vector2u m_windowSize;
-    static unsigned int m_fps;
-};
+	public:
+		void SetSettings(const std::string& settingsFile);
+		void SetRenderWindowSettings(const std::string& windowFile);
+		void SetInputSettings(const std::string& inputFile);
+
+		const SRenderWindow& GetRenderWindowSettings() const { return m_sRenderWindow; }
+
+	private:
+		SRenderWindow m_sRenderWindow;
+
+	};
+}
 
 #endif

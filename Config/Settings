@@ -1,0 +1,31 @@
+# if a line starts with a '#' the line is a comment and will be ignored
+# blank lines will also be ignored
+
+# the syntax is
+key = value
+
+# window video mode
+width = 1500
+height = 900
+bitsPerPixel = 32
+
+# window title
+title = MonsterRulesTest
+
+# window style
+# None => 0
+# Titlebar => 1
+# Resize => 2
+# Close => 4
+# Default => 7
+# Fullscreen => 8
+style = 4
+
+# window contextSettings
+antialiasingLevel = 0
+
+# window fps
+fps = 60
+
+# window verticalSync
+verticalSync = false

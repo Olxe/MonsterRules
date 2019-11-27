@@ -2,7 +2,7 @@
 
 int main(void)
 {
-	int cpt = 50000;
+	int cpt = 1;
 
 	while(cpt > 0){
 
@@ -13,7 +13,11 @@ int main(void)
 		//std::cout << cpt << std::endl;
 	}
 
-	while(true){}
-
 	return 0;
 }
+
+/*todo
+
+- InputManager
+
+*/
