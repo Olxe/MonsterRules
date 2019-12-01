@@ -9,26 +9,17 @@ Game::~Game()
 	Window::WindowManager::DeleteInstance();
 }
 
-void Game::StartGame()
+void Game::Run()
 {
 	LevelManager levelManager;
 	levelManager.LoadLevel(Level::LEVEL_1);
 
-	Window::CRenderWindow* window = Window::WindowManager::Instance()->GetWindow();
+	GameEngine::GameEngine m_gameEngine(*Window::WindowManager::Instance()->GetWindow());
+	m_gameEngine.AddState(GameEngine::GameEngine::BuildState<GameEngine::MainMenuState>(m_gameEngine));
 
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-
-	while (window->isOpen())
-	{
-		Window::WindowManager::Instance()->Update();
-		
-		if (window->WindowFocus()) {
-			//update
-		}
-
-		window->clear();
-		window->draw(shape);
-		window->display();
+	while (m_gameEngine.Running()) {
+		m_gameEngine.NextState();
+		m_gameEngine.Update();
+		m_gameEngine.Draw();
 	}
 }

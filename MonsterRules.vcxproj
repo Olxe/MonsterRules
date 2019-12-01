@@ -22,13 +22,13 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{AB16BB15-E093-49FD-9BA7-422F18D6171D}</ProjectGuid>
     <RootNamespace>MonsterRules</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -76,11 +76,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../../Libraries\SFML\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../Libraries\SFML\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>../../../Libraries\SFML\SFML-2.5.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../Libraries\SFML\SFML-2.4.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-main-d.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -129,6 +129,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Game\GameEngine\GameEngine.cpp" />
+    <ClCompile Include="Sources\Game\GameEngine\GameState.cpp" />
+    <ClCompile Include="Sources\Game\GameEngine\MainMenuState.cpp" />
+    <ClCompile Include="Sources\Game\GameEngine\State.cpp" />
     <ClCompile Include="Sources\Game\Window\AssetManager.cpp" />
     <ClCompile Include="Sources\Game\Window\Inputmanager.cpp" />
     <ClCompile Include="Sources\Game\Game.cpp" />
@@ -175,6 +179,10 @@
     <ClCompile Include="Sources\Tools\SettingsParser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Game\GameEngine\GameEngine.hpp" />
+    <ClInclude Include="Sources\Game\GameEngine\GameState.hpp" />
+    <ClInclude Include="Sources\Game\GameEngine\MainMenuState.hpp" />
+    <ClInclude Include="Sources\Game\GameEngine\State.hpp" />
     <ClInclude Include="Sources\Game\Window\AssetManager.h" />
     <ClInclude Include="Sources\Game\Window\Inputmanager.h" />
     <ClInclude Include="Sources\Game\Window\WindowManager.h" />

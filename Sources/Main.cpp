@@ -7,17 +7,20 @@ int main(void)
 	while(cpt > 0){
 
 		Game game;
-		game.StartGame();
+		game.Run();
 		
 		cpt--;
 		//std::cout << cpt << std::endl;
 	}
+
+	//while(1){}
 
 	return 0;
 }
 
 /*todo
 
-- InputManager
+- InputManager -> bindings by settings
+- isReplacing -> keep instance if true, delete if false
 
 */
