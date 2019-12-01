@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Game\GameEngine\GameEngine.cpp" />
+    <ClCompile Include="Sources\Game\GameEngine\GameMenuState.cpp" />
     <ClCompile Include="Sources\Game\GameEngine\GameState.cpp" />
     <ClCompile Include="Sources\Game\GameEngine\MainMenuState.cpp" />
     <ClCompile Include="Sources\Game\GameEngine\State.cpp" />
@@ -180,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Game\GameEngine\GameEngine.hpp" />
+    <ClInclude Include="Sources\Game\GameEngine\GameMenuState.hpp" />
     <ClInclude Include="Sources\Game\GameEngine\GameState.hpp" />
     <ClInclude Include="Sources\Game\GameEngine\MainMenuState.hpp" />
     <ClInclude Include="Sources\Game\GameEngine\State.hpp" />

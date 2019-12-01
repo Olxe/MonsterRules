@@ -15,9 +15,8 @@ namespace GameEngine
 		GameEngine(sf::RenderWindow& window);
 		~GameEngine();
 
-		void AddState(std::unique_ptr<State> state);
-
-		void NextState();
+		void LastState();
+		void NextState(std::unique_ptr<State> state);
 		void Update();
 		void Draw();
 

@@ -9,10 +9,12 @@ namespace GameEngine
 	{
 		shape.setRadius(100);
 		shape.setFillColor(sf::Color::Green);
+		Out("menu created");
 	}
 
 	MainMenuState::~MainMenuState()
 	{
+		Out("menu destroyed");
 	}
 
 	void MainMenuState::Pause()
@@ -36,7 +38,7 @@ namespace GameEngine
 				break;
 				
 			case sf::Keyboard::Return:
-				m_next = GameEngine::BuildState<GameState>(m_gameEngine);
+				m_gameEngine.NextState(GameEngine::BuildState<GameState>(m_gameEngine, true));
 				break;
 
 			default:

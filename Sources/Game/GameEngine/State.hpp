@@ -21,13 +21,11 @@ namespace GameEngine
 		virtual void Update() = 0;
 		virtual void Draw(sf::RenderWindow& window) = 0;
 
-		std::unique_ptr<State> Next();
 		bool IsReplacing();
 
 	protected:
 		GameEngine& m_gameEngine;
 		bool m_replacing;
-		std::unique_ptr<State> m_next;
 
 	};
 }

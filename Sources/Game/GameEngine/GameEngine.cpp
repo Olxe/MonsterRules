@@ -13,25 +13,31 @@ namespace GameEngine
 	{
 	}
 
-	void GameEngine::AddState(std::unique_ptr<State> state)
+	void GameEngine::LastState()
 	{
-		m_running = true;
-		m_states.push(std::move(state));
+		if (!m_states.empty())
+		{
+			m_states.pop();
+		}
+		if (!m_states.empty())
+		{
+			m_states.top()->Resume();
+		}
 	}
-
-	void GameEngine::NextState()
+	
+	void GameEngine::NextState(std::unique_ptr<State> state)
 	{
-		if (!m_states.empty()) {
-			if (std::unique_ptr<State> temp = m_states.top()->Next()) {
-				if (temp->IsReplacing()) {
+		if (state) {
+			if (!m_states.empty()) {
+				if (state->IsReplacing()) {
 					m_states.pop();
 				}
 				else {
 					m_states.top()->Pause();
 				}
-
-				m_states.push(std::move(temp));
 			}
+			m_running = true;
+			m_states.push(std::move(state));
 		}
 		else {
 			this->Quit();

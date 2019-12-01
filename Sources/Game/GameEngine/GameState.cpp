@@ -1,6 +1,8 @@
 #include "GameState.hpp"
 #include "GameEngine.hpp"
-#include "MainMenuState.hpp"
+#include "GameMenuState.hpp"
+
+//#include "MainMenuState.hpp"
 
 namespace GameEngine
 {
@@ -9,10 +11,12 @@ namespace GameEngine
 	{
 		rect.setSize(sf::Vector2f(100, 100));
 		rect.setFillColor(sf::Color::Red);
+		Out("game created");
 	}
 
 	GameState::~GameState()
 	{
+		Out("game destroyed");
 	}
 	void GameState::Pause()
 	{
@@ -29,7 +33,7 @@ namespace GameEngine
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Escape:
-				m_next = GameEngine::BuildState<MainMenuState>(m_gameEngine);
+				m_gameEngine.NextState(GameEngine::BuildState<GameMenuState>(m_gameEngine, false));
 				break;
 
 			default:

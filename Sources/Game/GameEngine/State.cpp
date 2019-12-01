@@ -12,11 +12,6 @@ namespace GameEngine
 	{
 	}
 
-	std::unique_ptr<State> State::Next()
-	{
-		return std::move(m_next);
-	}
-
 	bool State::IsReplacing()
 	{
 		return m_replacing;
