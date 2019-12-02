@@ -1,7 +1,6 @@
 #pragma once
 
 #include "State.hpp"
-#include "../../Gui/Button.hpp"
 
 namespace gameEngine
 {
@@ -18,6 +17,6 @@ namespace gameEngine
 		void onDraw() override;
 
 	private:
-		std::vector<std::unique_ptr<gui::Widget>> m_widgets;
+
 	};
 }

@@ -3,7 +3,9 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 
+#include "../../Gui/GuiLayout.hpp"
 #include "../../Tools/ToolsFunction.h"
+#include "../Window/WindowManager.hpp"
 
 namespace gameEngine
 {
@@ -30,6 +32,7 @@ namespace gameEngine
 
 	protected:
 		GameEngine& m_gameEngine;
+		gui::GuiLayout m_layout;
 		std::pair<std::string, std::unique_ptr<State>> m_next;
 		bool m_replacing;
 

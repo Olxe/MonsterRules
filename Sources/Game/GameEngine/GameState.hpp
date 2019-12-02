@@ -17,6 +17,6 @@ namespace gameEngine
 		void onDraw() override;
 
 	private:
-		sf::RectangleShape rect;
+		gui::GuiLayout m_layout;
 	};
 }

@@ -5,6 +5,7 @@ namespace gameEngine
 {
 	State::State(GameEngine& gameEngine, bool replace)
 		: m_gameEngine(gameEngine)
+		, m_layout(gameEngine.Window(), sf::Vector2f(1000, 500))
 		, m_replacing(replace)
 	{
 	}

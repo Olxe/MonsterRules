@@ -8,37 +8,34 @@
 
 namespace gui
 {
-	enum class State
-	{
-		StateDefault,
-		StateHovered,
-		StatePressed,
-		StateFocused
-	};
-
-	class Widget: public sf::Drawable, public sf::Transformable
+	class Widget: public sf::Drawable
 	{
 	public:
 		Widget();
 		virtual ~Widget();
 
-		void TriggerCallback() const;
-		void setCallback(std::function<void(void)> callback) { m_callback = callback; }
-		void setPosition(const sf::Vector2f& position) { m_position = position; }
-
+		void setMouseButtonReleasedCallback(std::function<void(void)> callback) { MouseButtonReleasedCallback = callback; }
+		
+		virtual void setPosition(const sf::Vector2f& position);
 		sf::Vector2f getPosition() const { return m_position; }
 		
-		virtual void onStateChanged(State state) {}
+		virtual void onEvent(sf::Event& event) {}
 		virtual void onMouseMoved(float x, float y) {}
-		virtual void onMouseButtonPressed(int x, int y) {}
-		virtual void onMouseButtonReleased(int x, int y) {}
+		virtual void onMouseButtonPressed(float x, float y) {}
+		virtual void onMouseButtonReleased(float x, float y) {}
 		virtual void onMouseWheelMoved(int delta) {}
 		virtual void onKeyPressed(const sf::Event::KeyEvent& key) {}
 		virtual void onKeyReleased(const sf::Event::KeyEvent& key) {}
 		virtual void onTextEntered(sf::Uint32 unicode) {}
 
+		sf::FloatRect GlobalBounds() const { return m_body.getGlobalBounds(); }
+
+	protected:
+		sf::RectangleShape m_body;
+		std::function<void(void)> MouseButtonReleasedCallback;
+
 	private:
-		std::function<void(void)> m_callback;
 		sf::Vector2f m_position;
+
 	};
 }

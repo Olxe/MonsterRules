@@ -142,6 +142,8 @@
     <ClCompile Include="Sources\Game\Window\Settings.cpp" />
     <ClCompile Include="Sources\Game\Window\WindowManager.cpp" />
     <ClCompile Include="Sources\Gui\Button.cpp" />
+    <ClCompile Include="Sources\Gui\GuiLayout.cpp" />
+    <ClCompile Include="Sources\Gui\Label.cpp" />
     <ClCompile Include="Sources\Gui\Widget.cpp" />
     <ClCompile Include="Sources\Level\Builder\Layers\LayerBuilder.cpp" />
     <ClCompile Include="Sources\Level\Builder\Layers\Layout.cpp" />
@@ -193,6 +195,8 @@
     <ClInclude Include="Sources\Game\Window\WindowManager.h" />
     <ClInclude Include="Sources\Game\Window\WindowManager.hpp" />
     <ClInclude Include="Sources\Gui\Button.hpp" />
+    <ClInclude Include="Sources\Gui\GuiLayout.hpp" />
+    <ClInclude Include="Sources\Gui\Label.hpp" />
     <ClInclude Include="Sources\Gui\Widget.hpp" />
     <ClInclude Include="Sources\Tools\SettingsParser.h" />
     <ClInclude Include="Sources\Tools\Signal.h" />

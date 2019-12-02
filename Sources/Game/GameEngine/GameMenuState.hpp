@@ -16,7 +16,7 @@ namespace gameEngine
 		void onUpdate() override;
 		void onDraw() override;
 
-	private:
-		sf::CircleShape shape;
+		void toMainMenu();
+		void toGame();
 	};
 }

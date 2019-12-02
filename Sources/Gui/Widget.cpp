@@ -3,17 +3,16 @@
 namespace gui
 {
 	Widget::Widget()
-		: m_callback(nullptr)
+		: MouseButtonReleasedCallback( [&]() { void(); } )
 	{
 	}
 
 	Widget::~Widget()
 	{
 	}
-	void Widget::TriggerCallback() const
+	void Widget::setPosition(const sf::Vector2f& position)
 	{
-		if (m_callback) {
-			m_callback();
-		}
+		m_body.setPosition(position);
+		m_position = position;
 	}
 }

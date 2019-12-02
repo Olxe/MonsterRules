@@ -8,10 +8,24 @@ namespace gameEngine
 		: State(gameEngine, replace)
 	{
 		Out("menu created");
-		m_widgets.push_back(std::make_unique<gui::Button>( AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(500, 100), "Play",
-			[&]() { this->setNext(std::pair<std::string, std::unique_ptr<State>>("GAME", GameEngine::BuildState<GameState>(m_gameEngine, true))); }) );
-		m_widgets.push_back(std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(500, 200), "Option"));
-		m_widgets.push_back(std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(500, 300), "Quit"));
+
+		m_layout.setPosition(sf::Vector2f(Window::WindowManager::Instance()->GetSettings()->GetRenderWindowSettings().videoMode.width / 2.f, Window::WindowManager::Instance()->GetSettings()->GetRenderWindowSettings().videoMode.height / 2.f));
+
+		std::unique_ptr<gui::Label> l1 = std::make_unique<gui::Label>("Main menu", *AssetManager::Instance()->GetFont("Resources/Fonts/EnchantedLand-jnX9.ttf"), 96, sf::Text::Bold, sf::Color::White, sf::Vector2f(0, -400));
+
+		std::unique_ptr<gui::Button> b1 = std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(0, -100), "Play");
+		b1->setMouseButtonReleasedCallback([&]() { this->setNext(std::pair<std::string, std::unique_ptr<State>>("GAME", GameEngine::BuildState<GameState>(m_gameEngine, true))); });
+
+		std::unique_ptr<gui::Button> b2 = std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(0, 0), "Option");
+
+		std::unique_ptr<gui::Button> b3 = std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(0, 100), "Quit");
+		b3->setMouseButtonReleasedCallback([&]() { m_gameEngine.Quit(); });
+
+		
+		m_layout.AddWidget(std::move(b1));
+		m_layout.AddWidget(std::move(b2));
+		m_layout.AddWidget(std::move(b3));
+		m_layout.AddWidget(std::move(l1));
 	}
 
 	MainMenuState::~MainMenuState()
@@ -29,35 +43,7 @@ namespace gameEngine
 
 	void MainMenuState::onEvent(sf::Event& event)
 	{
-		switch (event.type)
-		{
-		case sf::Event::KeyReleased:
-		{
-			switch (event.key.code)
-			{
-			case sf::Keyboard::Escape:
-				m_gameEngine.Quit();
-				break;
-				
-			case sf::Keyboard::Return:
-				m_next = std::pair<std::string, std::unique_ptr<State>>("GAME", GameEngine::BuildState<GameState>(m_gameEngine, true));
-				break;
-
-			default:
-				break;
-			}
-
-			break;
-		}
-		case sf::Event::MouseButtonReleased:
-			for (auto& it : m_widgets) {
-				it->onMouseButtonReleased(event.mouseButton.x, event.mouseButton.y);
-			}
-			break;
-
-		default:
-			break;
-		}
+		m_layout.onEvent(event);
 	}
 
 	void MainMenuState::onUpdate()
@@ -68,9 +54,7 @@ namespace gameEngine
 	{
 		m_gameEngine.Window().clear();
 		
-		for (auto& it : m_widgets) {
-			m_gameEngine.Window().draw(*it);
-		}
+		m_gameEngine.Window().draw(m_layout);
 
 		m_gameEngine.Window().display();
 	}
