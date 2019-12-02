@@ -1,8 +1,9 @@
 #pragma once
 
 #include "State.hpp"
+#include "../../Gui/Button.hpp"
 
-namespace GameEngine
+namespace gameEngine
 {
 	class MainMenuState: public State
 	{
@@ -10,13 +11,13 @@ namespace GameEngine
 		MainMenuState(GameEngine& gameEngine, bool replace = true);
 		~MainMenuState();
 
-		void Pause() override;
-		void Resume() override;
-		void Event(sf::Event& event) override;
-		void Update() override;
-		void Draw(sf::RenderWindow& window) override;
+		void onPause() override;
+		void onResume() override;
+		void onEvent(sf::Event& event) override;
+		void onUpdate() override;
+		void onDraw() override;
 
 	private:
-		sf::CircleShape shape;
+		std::vector<std::unique_ptr<gui::Widget>> m_widgets;
 	};
 }

@@ -141,6 +141,8 @@
     <ClCompile Include="Sources\Game\Window\EventManager.cpp" />
     <ClCompile Include="Sources\Game\Window\Settings.cpp" />
     <ClCompile Include="Sources\Game\Window\WindowManager.cpp" />
+    <ClCompile Include="Sources\Gui\Button.cpp" />
+    <ClCompile Include="Sources\Gui\Widget.cpp" />
     <ClCompile Include="Sources\Level\Builder\Layers\LayerBuilder.cpp" />
     <ClCompile Include="Sources\Level\Builder\Layers\Layout.cpp" />
     <ClCompile Include="Sources\Level\Builder\Layers\ObjectGroupBuilder.cpp" />
@@ -186,9 +188,14 @@
     <ClInclude Include="Sources\Game\GameEngine\MainMenuState.hpp" />
     <ClInclude Include="Sources\Game\GameEngine\State.hpp" />
     <ClInclude Include="Sources\Game\Window\AssetManager.h" />
+    <ClInclude Include="Sources\Game\Window\AssetManager.hpp" />
     <ClInclude Include="Sources\Game\Window\Inputmanager.h" />
     <ClInclude Include="Sources\Game\Window\WindowManager.h" />
+    <ClInclude Include="Sources\Game\Window\WindowManager.hpp" />
+    <ClInclude Include="Sources\Gui\Button.hpp" />
+    <ClInclude Include="Sources\Gui\Widget.hpp" />
     <ClInclude Include="Sources\Tools\SettingsParser.h" />
+    <ClInclude Include="Sources\Tools\Signal.h" />
     <ClInclude Include="Sources\Tools\Singleton.h" />
     <ClInclude Include="Sources\Game\Game.h" />
     <ClInclude Include="Sources\Game\Window\CRenderWindow.h" />
@@ -229,6 +236,7 @@
     <ClInclude Include="Sources\Level\Parser\Nodes\tilesetnode.h" />
     <ClInclude Include="Sources\Level\Parser\TiledParser.h" />
     <ClInclude Include="Sources\Level\Parser\tinyxml2.h" />
+    <ClInclude Include="Sources\Tools\Singleton.hpp" />
     <ClInclude Include="Sources\Tools\ToolsFunction.h" />
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@
 
 #include "../../Tools/ToolsFunction.h"
 
-namespace GameEngine
+namespace gameEngine
 {
 	class GameEngine;
 
@@ -15,16 +15,22 @@ namespace GameEngine
 		State(GameEngine& gameEngine, bool replace = true);
 		virtual ~State();
 
-		virtual void Pause() = 0;
-		virtual void Resume() = 0;
-		virtual void Event(sf::Event& event) = 0;
-		virtual void Update() = 0;
-		virtual void Draw(sf::RenderWindow& window) = 0;
+		void setNext(std::pair<std::string, std::unique_ptr<State>> state) { m_next = std::move(state); }
+
+		sf::Vector2f ConvertMousePosition(sf::Vector2i position) const;
+		std::pair<std::string, std::unique_ptr<State>> Next();
+
+		virtual void onPause() = 0;
+		virtual void onResume() = 0;
+		virtual void onEvent(sf::Event& event) = 0;
+		virtual void onUpdate() = 0;
+		virtual void onDraw() = 0;
 
 		bool IsReplacing();
 
 	protected:
 		GameEngine& m_gameEngine;
+		std::pair<std::string, std::unique_ptr<State>> m_next;
 		bool m_replacing;
 
 	};

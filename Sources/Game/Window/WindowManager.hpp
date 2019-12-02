@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Tools/Singleton.h"
+#include "../../Tools/Singleton.hpp"
 #include "Settings.h"
 #include "CRenderWindow.h"
 #include "EventManager.h"

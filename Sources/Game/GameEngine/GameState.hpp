@@ -2,7 +2,7 @@
 
 #include "State.hpp"
 
-namespace GameEngine
+namespace gameEngine
 {
 	class GameState: public State
 	{
@@ -10,11 +10,11 @@ namespace GameEngine
 		GameState(GameEngine& gameEngine, bool replace = true);
 		~GameState();
 
-		void Pause() override;
-		void Resume() override;
-		void Event(sf::Event& event) override;
-		void Update() override;
-		void Draw(sf::RenderWindow& window) override;
+		void onPause() override;
+		void onResume() override;
+		void onEvent(sf::Event& event) override;
+		void onUpdate() override;
+		void onDraw() override;
 
 	private:
 		sf::RectangleShape rect;

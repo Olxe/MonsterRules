@@ -2,7 +2,7 @@
 #define __GAME__
 
 #include "../Level/LevelManager.h"
-#include "Window/WindowManager.h"
+#include "Window/WindowManager.hpp"
 
 #include "GameEngine/GameEngine.hpp"
 #include "GameEngine/MainMenuState.hpp"
@@ -15,6 +15,8 @@ public:
 
 	void Run();
 
+	void Slot_f();
+	void Signal_f(const std::string& test);
 };
 
 #endif

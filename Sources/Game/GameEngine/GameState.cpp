@@ -2,9 +2,7 @@
 #include "GameEngine.hpp"
 #include "GameMenuState.hpp"
 
-//#include "MainMenuState.hpp"
-
-namespace GameEngine
+namespace gameEngine
 {
 	GameState::GameState(GameEngine& gameEngine, bool replace)
 		: State(gameEngine, replace)
@@ -18,13 +16,13 @@ namespace GameEngine
 	{
 		Out("game destroyed");
 	}
-	void GameState::Pause()
+	void GameState::onPause()
 	{
 	}
-	void GameState::Resume()
+	void GameState::onResume()
 	{
 	}
-	void GameState::Event(sf::Event& event)
+	void GameState::onEvent(sf::Event& event)
 	{
 		switch (event.type)
 		{
@@ -33,7 +31,7 @@ namespace GameEngine
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Escape:
-				m_gameEngine.NextState(GameEngine::BuildState<GameMenuState>(m_gameEngine, false));
+				m_next = std::pair<std::string, std::unique_ptr<State>>("GAME_MENU", GameEngine::BuildState<GameMenuState>(m_gameEngine, false));
 				break;
 
 			default:
@@ -46,13 +44,13 @@ namespace GameEngine
 			break;
 		}
 	}
-	void GameState::Update()
+	void GameState::onUpdate()
 	{
 	}
-	void GameState::Draw(sf::RenderWindow& window)
+	void GameState::onDraw()
 	{
-		window.clear();
-		window.draw(rect);
-		window.display();
+		m_gameEngine.Window().clear();
+		m_gameEngine.Window().draw(rect);
+		m_gameEngine.Window().display();
 	}
 }

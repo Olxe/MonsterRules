@@ -1,9 +1,16 @@
 #include "Game/Game.h"
-
+#include "Tools/Signal.h"
+void DisplayString(std::string const& str)
+{
+	std::cout << "Displayed: " << str << std::endl;
+}
 int main(void)
 {
 	int cpt = 1;
+	//Signal<void(std::string const&)> Out;
 
+	//Out.Connect(DisplayString);
+	//Out("Bonjour tout le monde !");
 	while(cpt > 0){
 
 		Game game;
@@ -21,6 +28,6 @@ int main(void)
 /*todo
 
 - InputManager -> bindings by settings
-- isReplacing -> keep instance if true, delete if false
+- NextState test before update (idem for lastState ?)
 
 */

@@ -5,7 +5,7 @@
 #include <memory>
 #include <stack>
 
-namespace GameEngine
+namespace gameEngine
 {
  	class State;
 
@@ -15,21 +15,26 @@ namespace GameEngine
 		GameEngine(sf::RenderWindow& window);
 		~GameEngine();
 
-		void LastState();
-		void NextState(std::unique_ptr<State> state);
+		void Run(std::string name, std::unique_ptr<State> state);
+		void DeleteState(std::string name);
+		void ResumeLastState();
+		void NextState();
 		void Update();
 		void Draw();
 
-		bool Running() { return m_running; }
+		bool Running() const { return m_running; }
 		void Quit() { m_running = false; }
+		sf::RenderWindow& Window() const { return m_window; }
 
 		template <typename T>
 		static std::unique_ptr<T> BuildState(GameEngine& gameEngine, bool replace = true);
 
+		bool m_resume = false;
 	private:
-		std::stack<std::unique_ptr<State>> m_states;
+		std::vector < std::pair<std::string, std::unique_ptr<State>>> m_states;
 		sf::RenderWindow& m_window;
 		bool m_running;
+
 	};
 
 	template <typename T>

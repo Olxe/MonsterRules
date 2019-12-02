@@ -3,7 +3,7 @@
 #include "MainMenuState.hpp"
 #include "GameState.hpp"
 
-namespace GameEngine
+namespace gameEngine
 {
 	GameMenuState::GameMenuState(GameEngine& gameEngine, bool replace)
 		: State(gameEngine, replace)
@@ -18,13 +18,13 @@ namespace GameEngine
 	{
 		Out("game menu destroyed");
 	}
-	void GameMenuState::Pause()
+	void GameMenuState::onPause()
 	{
 	}
-	void GameMenuState::Resume()
+	void GameMenuState::onResume()
 	{
 	}
-	void GameMenuState::Event(sf::Event& event)
+	void GameMenuState::onEvent(sf::Event& event)
 	{
 		switch (event.type)
 		{
@@ -33,11 +33,12 @@ namespace GameEngine
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Escape:
-				m_gameEngine.NextState(GameEngine::BuildState<MainMenuState>(m_gameEngine, true));
+				m_next = std::pair<std::string, std::unique_ptr<State>>("MAIN_MENU", GameEngine::BuildState<MainMenuState>(m_gameEngine, true));
+				m_gameEngine.DeleteState("GAME");
 				break;
 
 			case sf::Keyboard::Return:
-				m_gameEngine.LastState();
+				m_gameEngine.ResumeLastState();
 				break;
 
 			default:
@@ -50,13 +51,13 @@ namespace GameEngine
 			break;
 		}
 	}
-	void GameMenuState::Update()
+	void GameMenuState::onUpdate()
 	{
 	}
-	void GameMenuState::Draw(sf::RenderWindow& window)
+	void GameMenuState::onDraw()
 	{
-		window.clear();
-		window.draw(shape);
-		window.display();
+		m_gameEngine.Window().clear();
+		m_gameEngine.Window().draw(shape);
+		m_gameEngine.Window().display();
 	}
 }

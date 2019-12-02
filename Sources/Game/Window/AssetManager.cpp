@@ -1,6 +1,4 @@
-#include "assetmanager.h"
-
-AssetManager* AssetManager::instance = nullptr;
+#include "AssetManager.hpp"
 
 AssetManager::AssetManager()
 {
@@ -8,28 +6,6 @@ AssetManager::AssetManager()
 
 AssetManager::~AssetManager()
 {
-}
-
-AssetManager* AssetManager::GetInstance()
-{
-    if(!instance){
-        instance = new AssetManager();
-        return instance;
-    }
-
-    return instance;
-}
-
-bool AssetManager::KillInstance()
-{
-    if(instance){
-        delete instance;
-        instance = nullptr;
-        return true;
-    }
-    else{
-        return false;
-    } 
 }
 
 sf::Texture* AssetManager::GetTexture(const std::string& filename)
