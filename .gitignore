@@ -3,6 +3,7 @@
 [Dd]ebug*/
 [Rr]elease*/
 ipch/
+.vs/
 *.ipch
 *.obj
 *.tlog
@@ -15,9 +16,9 @@ ipch/
 *.sdf
 *.sln
 *.suo
-*.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
+*.vcxproj
 *.exe
 *.ilk
 *.pdb
