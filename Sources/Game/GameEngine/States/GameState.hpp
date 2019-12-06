@@ -1,6 +1,7 @@
 #pragma once
 
 #include "State.hpp"
+#include "../../World.hpp"
 
 namespace gameEngine
 {
@@ -15,6 +16,13 @@ namespace gameEngine
 		void onEvent(sf::Event& event) override;
 		void onUpdate() override;
 		void onDraw() override;
+
+	private:
+		World m_world;
+		sf::Clock m_clock;
+
+		gui::Label* m_la_fps;
+		float m_timeToUpdateGui;
 
 	};
 }

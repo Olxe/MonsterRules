@@ -13,7 +13,8 @@ namespace Window
 	{
 		sf::VideoMode videoMode = sf::VideoMode(1920, 1080, 32);
 		std::string title = "MonsterRules";
-		sf::Uint32 style = sf::Style::Close;
+		//sf::Uint32 style = sf::Style::Close;
+		bool fullscreen = false;
 		sf::ContextSettings contextSettings;
 		unsigned int fps = 60;
 		bool verticalSync = false;
@@ -31,7 +32,7 @@ namespace Window
 		void SetRenderWindowSettings(const std::string& windowFile);
 		void SetInputSettings(const std::string& inputFile);
 
-		const SRenderWindow& GetRenderWindowSettings() const { return m_sRenderWindow; }
+		SRenderWindow& GetRenderWindowSettings() { return m_sRenderWindow; }
 
 	private:
 		SRenderWindow m_sRenderWindow;

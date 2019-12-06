@@ -1,5 +1,5 @@
 #include "State.hpp"
-#include "GameEngine.hpp"
+#include "../GameEngine.hpp"
 
 namespace gameEngine
 {
@@ -8,7 +8,7 @@ namespace gameEngine
 		, m_layout(gameEngine.Window(), sf::Vector2f(1000, 500))
 		, m_replacing(replace)
 	{
-		m_layout.setPosition(sf::Vector2f(Window::WindowManager::Instance()->GetSettings()->GetRenderWindowSettings().videoMode.width / 2.f, Window::WindowManager::Instance()->GetSettings()->GetRenderWindowSettings().videoMode.height / 2.f));
+		m_layout.setPosition(sf::Vector2f(Window::WindowManager::Instance()->GetWindow()->getSize().x / 2.f, Window::WindowManager::Instance()->GetWindow()->getSize().y / 2.f));
 	}
 
 	State::~State()
@@ -20,7 +20,7 @@ namespace gameEngine
 		return m_gameEngine.Window().mapPixelToCoords(position);
 	}
 
-	std::pair<std::string, std::unique_ptr<State>> State::Next()
+	std::unique_ptr<State> State::Next()
 	{
 		return std::move(m_next);
 	}

@@ -21,13 +21,13 @@ namespace Window
 
 	class InputManager
 	{
-		struct Key
+		struct sKey
 		{
 			bool isPressed;
 			sf::Keyboard::Key key;
 		};
 
-		struct Button
+		struct sButton
 		{
 			bool isPressed;
 			sf::Mouse::Button button;
@@ -43,11 +43,11 @@ namespace Window
 
 	private:
 		bool bindKey(InputAction action, sf::Keyboard::Key key);
-		bool bindButton(InputAction action, const sf::Mouse::Button& button);
+		bool bindButton(InputAction action, sf::Mouse::Button button);
 
 	private:
-		std::map<InputAction, Key> m_keyboardBinds;
-		std::map<InputAction, Button> m_mouseBinds;
+		std::map<InputAction, sKey> m_keyboardBinds;
+		std::map<InputAction, sButton> m_mouseBinds;
 
 	};
 }

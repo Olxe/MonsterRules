@@ -5,12 +5,12 @@
 key = value
 
 # window video mode
-width = 1500
-height = 900
+width = 1920
+height = 1080
 bitsPerPixel = 32
 
 # window title
-title = MonsterRulesTest
+title = MonsterRules
 
 # window style
 # None => 0
@@ -19,7 +19,9 @@ title = MonsterRulesTest
 # Close => 4
 # Default => 7
 # Fullscreen => 8
-style = 8
+style = 4
+
+fullscreen = FALSE
 
 # window contextSettings
 antialiasingLevel = 0
@@ -28,4 +30,4 @@ antialiasingLevel = 0
 fps = 60
 
 # window verticalSync
-verticalSync = false
+verticalSync = FALSE

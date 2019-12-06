@@ -135,12 +135,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Game\GameEngine\OptionState.cpp" />
+    <ClCompile Include="Sources\Game\GameEngine\States\OptionState.cpp" />
     <ClCompile Include="Sources\Game\GameEngine\GameEngine.cpp" />
-    <ClCompile Include="Sources\Game\GameEngine\GameMenuState.cpp" />
-    <ClCompile Include="Sources\Game\GameEngine\GameState.cpp" />
-    <ClCompile Include="Sources\Game\GameEngine\MainMenuState.cpp" />
-    <ClCompile Include="Sources\Game\GameEngine\State.cpp" />
+    <ClCompile Include="Sources\Game\GameEngine\States\GameMenuState.cpp" />
+    <ClCompile Include="Sources\Game\GameEngine\States\GameState.cpp" />
+    <ClCompile Include="Sources\Game\GameEngine\States\MainMenuState.cpp" />
+    <ClCompile Include="Sources\Game\GameEngine\States\State.cpp" />
     <ClCompile Include="Sources\Game\Window\AssetManager.cpp" />
     <ClCompile Include="Sources\Game\Window\Inputmanager.cpp" />
     <ClCompile Include="Sources\Game\Game.cpp" />
@@ -189,14 +189,15 @@
     <ClCompile Include="Sources\Level\Parser\tinyxml2.cpp" />
     <ClCompile Include="Sources\Main.cpp" />
     <ClCompile Include="Sources\Tools\SettingsParser.cpp" />
+    <ClCompile Include="Sources\Game\World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\Game\GameEngine\OptionState.hpp" />
+    <ClInclude Include="Sources\Game\GameEngine\States\OptionState.hpp" />
     <ClInclude Include="Sources\Game\GameEngine\GameEngine.hpp" />
-    <ClInclude Include="Sources\Game\GameEngine\GameMenuState.hpp" />
-    <ClInclude Include="Sources\Game\GameEngine\GameState.hpp" />
-    <ClInclude Include="Sources\Game\GameEngine\MainMenuState.hpp" />
-    <ClInclude Include="Sources\Game\GameEngine\State.hpp" />
+    <ClInclude Include="Sources\Game\GameEngine\States\GameMenuState.hpp" />
+    <ClInclude Include="Sources\Game\GameEngine\States\GameState.hpp" />
+    <ClInclude Include="Sources\Game\GameEngine\States\MainMenuState.hpp" />
+    <ClInclude Include="Sources\Game\GameEngine\States\State.hpp" />
     <ClInclude Include="Sources\Game\Window\AssetManager.h" />
     <ClInclude Include="Sources\Game\Window\AssetManager.hpp" />
     <ClInclude Include="Sources\Game\Window\Inputmanager.h" />
@@ -250,6 +251,7 @@
     <ClInclude Include="Sources\Level\Parser\tinyxml2.h" />
     <ClInclude Include="Sources\Tools\Singleton.hpp" />
     <ClInclude Include="Sources\Tools\ToolsFunction.h" />
+    <ClInclude Include="Sources\Game\World.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />

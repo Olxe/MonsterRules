@@ -27,6 +27,11 @@ namespace gui
 		m_label.setPosition(position);
 	}
 
+	void Label::setText(const std::string& text)
+	{
+		m_label.setString(text);
+	}
+
 	void Label::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
 		target.draw(m_label, states);

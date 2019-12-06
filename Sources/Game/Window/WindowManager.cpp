@@ -15,10 +15,6 @@ namespace Window
 
 	void WindowManager::Update()
 	{
-		m_events.Update(&m_window);
 		m_inputs.Update();
-
-		if(m_events.IsEventTriggered(sf::Event::GainedFocus)) m_window.SetWindowFocus(true);
-		if(m_events.IsEventTriggered(sf::Event::LostFocus)) m_window.SetWindowFocus(false);
 	}
 }

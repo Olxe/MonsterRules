@@ -29,7 +29,7 @@ namespace Window
 			settingsParser.get("height", m_sRenderWindow.videoMode.height);
 			settingsParser.get("bitsPerPixel", m_sRenderWindow.videoMode.bitsPerPixel);
 			settingsParser.get("title", m_sRenderWindow.title);
-			settingsParser.get("style", m_sRenderWindow.style);
+			settingsParser.get("fullscreen", m_sRenderWindow.fullscreen);
 			settingsParser.get("antialiasingLevel", m_sRenderWindow.contextSettings.antialiasingLevel);
 			settingsParser.get("fps", m_sRenderWindow.fps);
 			settingsParser.get("verticalSync", m_sRenderWindow.verticalSync);

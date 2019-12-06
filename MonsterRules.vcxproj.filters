@@ -150,18 +150,6 @@
     <ClCompile Include="Sources\Game\GameEngine\GameEngine.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Game\GameEngine\MainMenuState.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Game\GameEngine\State.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Game\GameEngine\GameState.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Game\GameEngine\GameMenuState.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Gui\Button.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -174,7 +162,22 @@
     <ClCompile Include="Sources\Gui\Label.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Game\GameEngine\OptionState.cpp">
+    <ClCompile Include="Sources\Game\GameEngine\States\GameMenuState.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Game\GameEngine\States\GameState.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Game\GameEngine\States\MainMenuState.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Game\GameEngine\States\OptionState.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Game\GameEngine\States\State.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Game\World.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -317,18 +320,6 @@
     <ClInclude Include="Sources\Game\GameEngine\GameEngine.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Game\GameEngine\MainMenuState.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Game\GameEngine\State.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Game\GameEngine\GameState.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Game\GameEngine\GameMenuState.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Gui\Button.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -353,7 +344,22 @@
     <ClInclude Include="Sources\Gui\Label.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Game\GameEngine\OptionState.hpp">
+    <ClInclude Include="Sources\Game\GameEngine\States\State.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Game\GameEngine\States\GameMenuState.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Game\GameEngine\States\GameState.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Game\GameEngine\States\MainMenuState.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Game\GameEngine\States\OptionState.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Game\World.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

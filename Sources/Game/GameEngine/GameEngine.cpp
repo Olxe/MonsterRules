@@ -1,11 +1,11 @@
 #include "GameEngine.hpp"
-#include "State.hpp"
+#include "States/State.hpp"
 
 namespace gameEngine
 {
-	GameEngine::GameEngine(sf::RenderWindow& window)
+	GameEngine::GameEngine(Window::CRenderWindow& window)
 		: m_window(window)
-		, m_running(false)
+		, m_resume(false)
 	{
 	}
 
@@ -13,20 +13,16 @@ namespace gameEngine
 	{
 	}
 
-	void GameEngine::Run(std::string name, std::unique_ptr<State> state)
+	void GameEngine::Run(std::unique_ptr<State> state)
 	{
-		m_running = true;
-		m_states.push_back(std::pair<std::string, std::unique_ptr<State>>(name, std::move(state)));
+		m_states.push_back(std::move(state));
 	}
 
-	void GameEngine::DeleteState(std::string name)
+	void GameEngine::ClearPreviousState()
 	{
-		for (auto it = m_states.begin(); it != m_states.end();) {
-			if (it->first == name) {
-				it = m_states.erase(it);
-			}
-			else {
-				++it;
+		for (unsigned int i = 0; i < m_states.size(); ++i) {
+			if (i != m_states.size() - 1) {
+				m_states.erase(m_states.begin() + i);
 			}
 		}
 	}
@@ -47,7 +43,7 @@ namespace gameEngine
 
 			if (!m_states.empty())
 			{
-				this->m_states.back().second->onResume();
+				this->m_states.back()->onResume();
 			}
 
 			m_resume = false;
@@ -55,14 +51,14 @@ namespace gameEngine
 
 		if (!m_states.empty())
 		{
-			std::pair<std::string, std::unique_ptr<State>> temp = m_states.back().second->Next();
+			std::unique_ptr<State> temp = m_states.back()->Next();
 
-			if (temp.second != nullptr)
+			if (temp != nullptr)
 			{
-				if (temp.second->IsReplacing())
+				if (temp->IsReplacing())
 					m_states.pop_back();
 				else {
-					this->m_states.back().second->onPause();
+					this->m_states.back()->onPause();
 				}
 
 				m_states.push_back(std::move(temp));
@@ -81,18 +77,26 @@ namespace gameEngine
 			case sf::Event::Closed:
 				this->Quit();
 				break;
+			case sf::Event::GainedFocus:
+				m_window.SetWindowFocus(true);
+				break;
+			case sf::Event::LostFocus:
+				m_window.SetWindowFocus(false);
+				break;
 
 			default:
-				this->m_states.back().second->onEvent(event);
+				this->m_states.back()->onEvent(event);
 				break;
 			}
 		}
 
-		this->m_states.back().second->onUpdate();
+		if (m_window.IsFocus()) {
+			this->m_states.back()->onUpdate();
+		}
 	}
 
 	void GameEngine::Draw()
 	{
-		this->m_states.back().second->onDraw();
+		this->m_states.back()->onDraw();
 	}
 }

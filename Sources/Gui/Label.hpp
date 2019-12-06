@@ -11,6 +11,7 @@ namespace gui
 		~Label();
 
 		void setPosition(const sf::Vector2f& position) override;
+		void setText(const std::string& text);
 
 	private:
 		void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

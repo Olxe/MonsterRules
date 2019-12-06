@@ -1,5 +1,5 @@
 #include "GameMenuState.hpp"
-#include "GameEngine.hpp"
+#include "../GameEngine.hpp"
 #include "MainMenuState.hpp"
 #include "GameState.hpp"
 #include "OptionState.hpp"
@@ -11,7 +11,7 @@ namespace gameEngine
 	{
 		Out("game menu created");
 
-		std::unique_ptr<gui::Label> l1 = std::make_unique<gui::Label>("Game menu", *AssetManager::Instance()->GetFont("Resources/Fonts/EnchantedLand-jnX9.ttf"), 96, sf::Text::Bold, sf::Color::White, sf::Vector2f(0, -400));
+		std::unique_ptr<gui::Label> l1 = std::make_unique<gui::Label>("Game menu", *AssetManager::Instance()->GetFont("Resources/Fonts/EnchantedLand-jnX9.ttf"), 96, sf::Text::Regular, sf::Color::White, sf::Vector2f(0, -400));
 
 		std::unique_ptr<gui::Button> b1 = std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(0, -200), "Resume");
 		b1->setMouseButtonReleasedCallback(std::bind(&GameMenuState::toGame, this));
@@ -85,8 +85,7 @@ namespace gameEngine
 
 	void GameMenuState::toMainMenu()
 	{
-		m_next = std::pair<std::string, std::unique_ptr<State>>("MAIN_MENU", GameEngine::BuildState<MainMenuState>(m_gameEngine, true));
-		//m_gameEngine.DeleteState("GAME");
+		this->setNext(GameEngine::BuildState<MainMenuState>(m_gameEngine, true));
 	}
 
 	void GameMenuState::toGame()
@@ -96,6 +95,6 @@ namespace gameEngine
 
 	void GameMenuState::toOption()
 	{
-		this->setNext(std::pair<std::string, std::unique_ptr<State>>("OPTION", GameEngine::BuildState<OptionState>(m_gameEngine, false)));
+		this->setNext(GameEngine::BuildState<OptionState>(m_gameEngine, false));
 	}
 }

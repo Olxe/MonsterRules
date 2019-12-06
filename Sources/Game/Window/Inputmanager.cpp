@@ -25,15 +25,15 @@ namespace Window
 
 	bool InputManager::bindKey(InputAction action, sf::Keyboard::Key key)
 	{
-		Key k = { false, key };
+		sKey k = { false, key };
 		m_keyboardBinds[action] = k;
 
 		return true;
 	}
 
-	bool InputManager::bindButton(InputAction action, const sf::Mouse::Button& button)
+	bool InputManager::bindButton(InputAction action, sf::Mouse::Button button)
 	{
-		Button b = { false, button };
+		sButton b = { false, button };
 		m_mouseBinds[action] = b;
 		return true;
 	}

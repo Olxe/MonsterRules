@@ -11,11 +11,8 @@ Game::~Game()
 
 void Game::Run()
 {
-	LevelManager levelManager;
-	levelManager.LoadLevel(Level::LEVEL_1);
-
 	gameEngine::GameEngine m_gameEngine(*Window::WindowManager::Instance()->GetWindow());
-	m_gameEngine.Run("MAIN_MENU", gameEngine::GameEngine::BuildState<gameEngine::MainMenuState>(m_gameEngine));
+	m_gameEngine.Run(gameEngine::GameEngine::BuildState<gameEngine::MainMenuState>(m_gameEngine));
 
 	while (m_gameEngine.Running()) {
 		m_gameEngine.NextState();

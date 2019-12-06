@@ -14,13 +14,13 @@ namespace Window
 		~CRenderWindow();
 
 		void Create(Settings& settings);
-
 		void SetWindowFocus(bool value);
-		bool WindowFocus() const;
+		bool IsFocus() const;
 
 	private:
-		bool isWindowFocus;
-		sf::Clock m_clockDeltaTime;
+		bool m_focusing;
+		sf::Vector2u m_size;
+
 	};
 }
 
