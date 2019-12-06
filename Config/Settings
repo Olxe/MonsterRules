@@ -19,7 +19,7 @@ title = MonsterRulesTest
 # Close => 4
 # Default => 7
 # Fullscreen => 8
-style = 4
+style = 8
 
 # window contextSettings
 antialiasingLevel = 0

@@ -23,13 +23,3 @@ void Game::Run()
 		m_gameEngine.Draw();
 	}
 }
-
-void Game::Slot_f()
-{
-	Out("Slot");
-}
-
-void Game::Signal_f(const std::string& test)
-{
-	Out("Signal");
-}

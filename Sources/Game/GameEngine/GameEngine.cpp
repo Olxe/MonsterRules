@@ -68,22 +68,6 @@ namespace gameEngine
 				m_states.push_back(std::move(temp));
 			}
 		}
-
-		//if (state) {
-		//	if (!m_states.empty()) {
-		//		if (state->IsReplacing()) {
-		//			m_states.pop_back();
-		//		}
-		//		else {
-		//			this->m_states.back().second->onPause();
-		//		}
-		//	}
-		//	m_running = true;
-		//	m_states.push_back(std::pair<std::string, std::unique_ptr<State>>(name, std::move(state)));
-		//}
-		//else {
-		//	this->Quit();
-		//}
 	}
 
 	void GameEngine::Update()

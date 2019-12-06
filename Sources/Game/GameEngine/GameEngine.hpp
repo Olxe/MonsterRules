@@ -14,7 +14,7 @@ namespace gameEngine
 	public:
 		GameEngine(sf::RenderWindow& window);
 		~GameEngine();
-
+		
 		void Run(std::string name, std::unique_ptr<State> state);
 		void DeleteState(std::string name);
 		void ResumeLastState();

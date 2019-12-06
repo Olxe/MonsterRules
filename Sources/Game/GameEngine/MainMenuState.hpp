@@ -16,7 +16,8 @@ namespace gameEngine
 		void onUpdate() override;
 		void onDraw() override;
 
-	private:
+		void toOption();
+		void toGame();
 
 	};
 }

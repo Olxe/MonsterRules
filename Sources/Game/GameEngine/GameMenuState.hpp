@@ -18,5 +18,6 @@ namespace gameEngine
 
 		void toMainMenu();
 		void toGame();
+		void toOption();
 	};
 }

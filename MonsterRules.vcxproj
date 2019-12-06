@@ -90,9 +90,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>../../Libraries/SFML/SFML-2.4.2-windows-vc14-64-bit/SFML-2.4.2/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>../../Libraries/SFML/SFML-2.4.2-windows-vc14-64-bit/SFML-2.4.2/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-main-d.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -121,14 +124,18 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>../../Libraries/SFML/SFML-2.4.2-windows-vc14-64-bit/SFML-2.4.2/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>../../Libraries/SFML/SFML-2.4.2-windows-vc14-64-bit/SFML-2.4.2/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-main.lib;sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Game\GameEngine\OptionState.cpp" />
     <ClCompile Include="Sources\Game\GameEngine\GameEngine.cpp" />
     <ClCompile Include="Sources\Game\GameEngine\GameMenuState.cpp" />
     <ClCompile Include="Sources\Game\GameEngine\GameState.cpp" />
@@ -184,6 +191,7 @@
     <ClCompile Include="Sources\Tools\SettingsParser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Game\GameEngine\OptionState.hpp" />
     <ClInclude Include="Sources\Game\GameEngine\GameEngine.hpp" />
     <ClInclude Include="Sources\Game\GameEngine\GameMenuState.hpp" />
     <ClInclude Include="Sources\Game\GameEngine\GameState.hpp" />

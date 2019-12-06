@@ -8,6 +8,7 @@ namespace gameEngine
 		, m_layout(gameEngine.Window(), sf::Vector2f(1000, 500))
 		, m_replacing(replace)
 	{
+		m_layout.setPosition(sf::Vector2f(Window::WindowManager::Instance()->GetSettings()->GetRenderWindowSettings().videoMode.width / 2.f, Window::WindowManager::Instance()->GetSettings()->GetRenderWindowSettings().videoMode.height / 2.f));
 	}
 
 	State::~State()

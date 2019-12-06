@@ -15,8 +15,6 @@ public:
 
 	void Run();
 
-	void Slot_f();
-	void Signal_f(const std::string& test);
 };
 
 #endif
