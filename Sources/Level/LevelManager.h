@@ -2,6 +2,7 @@
 
 #include "Parser/TiledParser.h"
 #include "Builder/TiledBuilder.h"
+#include "Loader/TiledLoader.hpp"
 
 enum class Level
 {
@@ -22,10 +23,14 @@ public:
 	void NextLevel();
 	void PreviousLevel();
 
+	void Update(const float& deltaTime);
+	void Draw(sf::RenderWindow& window);
+
 private:
 	std::string m_directory;
 	std::map< Level, std::string > m_levels;
 	int m_currentLevel;
+	std::vector< std::unique_ptr<layer::Layer> > m_layers;
 	
 };
 

@@ -3,7 +3,9 @@
 using namespace Builder;
 
 Tile::Tile(int id, int gid, std::string source, float width, float height)
-	: m_image(source, width, height)
+	: m_source(source)
+	, m_width(width)
+	, m_height(height)
 	, m_id(id)
 	, m_gid(gid)
 {

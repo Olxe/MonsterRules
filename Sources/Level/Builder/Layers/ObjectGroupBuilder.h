@@ -17,6 +17,8 @@ namespace Builder
 		ObjectGroupBuilder(Parser::ObjectGroupNode* objectGroup, std::vector< Tile* >& tiles);
 		~ObjectGroupBuilder();
 
+		std::vector< Object* > getLayout() const { return m_layout; }
+
 	private:
 		std::vector< Object* > m_layout;
 

@@ -1,7 +1,7 @@
 #include "LevelManager.h"
 
 LevelManager::LevelManager()
-	: m_directory("D:/bugno/Documents/Programming/Projects/Finish_it!/Finish_it!/Res/Maps/")
+	: m_directory("Resources/Maps/")
 	, m_currentLevel(-1)
 {
 	m_levels[Level::LEVEL_1] = "level_1.tmx";
@@ -17,11 +17,14 @@ LevelManager::~LevelManager()
 
 void LevelManager::LoadLevel(Level level)
 {
-	Parser::TiledParser parser;
-	Parser::MapNode* map = parser.ParseTMX(m_directory, m_levels[level]);
+	Parser::TiledParser t_parser;
+	Parser::MapNode* map = t_parser.ParseTMX(m_directory, m_levels[level]);
 
-	Builder::TiledBuilder builder;
-	std::vector< Builder::Layout* > layouts = builder.Build(map);
+	Builder::TiledBuilder t_builder;
+	std::vector< Builder::Layout* > layouts = t_builder.Build(map);
+
+	loader::TiledLoader t_loader;
+	m_layers = t_loader.Load(layouts);
 
 	m_currentLevel = static_cast<int>(level);
 }
@@ -34,4 +37,18 @@ void LevelManager::NextLevel()
 void LevelManager::PreviousLevel()
 {
 	this->LoadLevel(static_cast<Level>(m_currentLevel - 1));
+}
+
+void LevelManager::Update(const float& deltaTime)
+{
+	for (auto& it : m_layers) {
+		it->Update(deltaTime);
+	}
+}
+
+void LevelManager::Draw(sf::RenderWindow& window)
+{
+	for (auto& it : m_layers) {
+		it->Draw(window);
+	}
 }

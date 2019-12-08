@@ -2,45 +2,49 @@
 
 using namespace Builder;
 
-LayerBuilder::LayerBuilder(Parser::LayerNode* layerNode, std::vector< Tile* >& tiles)
+LayerBuilder::LayerBuilder(Parser::LayerNode* layerNode, std::vector< Tile* >& tiles, float tileWidth, float tileHeight)
+	: m_layerWidth(0)
+	, m_layerHeight(0)
+	, m_tileWidth(tileWidth)
+	, m_tileHeight(tileHeight)
 {
-	if (Parser::DataNode* dataNode = dynamic_cast<Parser::DataNode*>(layerNode->GetFirstSpecificChild(Parser::NodeType::DATA))) {
-		if (dataNode->GetEncoding() == "csv") {
-			std::string strData = dataNode->GetData();
-			const char* data = strData.c_str();
-			if (data) {
-				fillLayoutFromCSV(data, layerNode->GetWidth(), tiles);
+	if (layerNode) {
+		m_layerWidth = layerNode->GetWidth();
+		m_layerHeight = layerNode->GetHeight();
+
+		if (Parser::DataNode* dataNode = dynamic_cast<Parser::DataNode*>(layerNode->GetFirstSpecificChild(Parser::NodeType::DATA))) {
+			if (dataNode->GetEncoding() == "csv") {
+				std::string strData = dataNode->GetData();
+				const char* data = strData.c_str();
+				if (data) {
+					fillLayoutFromCSV(data, tiles);
+				}
+				else Out("Error : ", "LayerBuilder -> No data");
 			}
-			else display("Error -> Data not available");
 		}
+		else Out("Error : ", "LayerBuilder -> No dataNode");
 	}
-	else display("Error -> No data node");
+	else {
+		Out("Error : ", "LayerBuilder -> Nullptr layerNode");
+	}
 }
 
 LayerBuilder::~LayerBuilder()
 {
 }
 
-void LayerBuilder::fillLayoutFromCSV(const char* data, int widthGrid, std::vector<Tile*>& tiles)
+void LayerBuilder::fillLayoutFromCSV(const char* data, std::vector<Tile*>& tiles)
 {
+	m_layout.clear();
 	const char* delim = ",";
 	char* input = (char*)data;
 	char* next_token = nullptr;
 	char* token = strtok_s(input, delim, &next_token);
-	int counter = 0;
-	std::vector< Tile* > line;
 
 	while (token) {
 		int gidTile = atoi(token);
 
-		line.push_back(this->getTileWithGid(gidTile, tiles));
-		
-		counter++;
-		if (counter > widthGrid) {
-			counter = 0;
-			m_layout.push_back(line);
-			line.clear();
-		}
+		m_layout.push_back(this->getTileWithGid(gidTile, tiles));
 
 		token = strtok_s(NULL, delim, &next_token);
 	}

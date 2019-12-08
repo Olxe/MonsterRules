@@ -23,9 +23,15 @@ namespace Window
 		InputManager* GetInputs() { return &m_inputs; }
 
 	private:
+		void updateView();
+
+	private:
 		CRenderWindow m_window;
 		Settings m_settings;
 		InputManager m_inputs;
+		sf::View m_view;
 
+		float m_currentAspectWidth = 1920;
+		float m_currentAspectHeight = 1080;
 	};
 }

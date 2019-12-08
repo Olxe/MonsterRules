@@ -21,8 +21,8 @@ void MapNode::ParseAttribute(const tinyxml2::XMLElement* eAttribute)
 {
 	m_width = eAttribute->IntAttribute("width");
 	m_height = eAttribute->IntAttribute("height");
-	m_tilewidth = eAttribute->IntAttribute("tilewidth");
-	m_tileheight = eAttribute->IntAttribute("tileheight");
+	m_tilewidth = eAttribute->FloatAttribute("tilewidth");
+	m_tileheight = eAttribute->FloatAttribute("tileheight");
 	isInfinite = eAttribute->BoolAttribute("infinite");
 }
 

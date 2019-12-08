@@ -15,26 +15,31 @@ std::vector< Tile* > Builder::TilesetBuilder::Build(Parser::TilesetNode* tileset
 	std::vector< Tile* > tiles;
 
 	if (tileset->HasChild(Parser::NodeType::IMAGE)) {
+
 		if (Parser::ImageNode* imageNode = dynamic_cast<Parser::ImageNode*>(tileset->GetFirstSpecificChild(Parser::NodeType::IMAGE))) {
-			this->createTiles(tileset, directory, imageNode, tiles);
+			this->createTiles(tileset, directory + "Templates/", imageNode, tiles);
 		}
 		for (auto tileset_child_node : tileset->GetChildNodes()) {
 			if (Parser::TileNode* tileNode = dynamic_cast<Parser::TileNode*>(tileset_child_node)) {
 				this->updateTiles(tileNode, tiles);
 			}
 		}
+
 	}
 	else if (tileset->HasChild(Parser::NodeType::GRID)) {
+
 		for (auto tileset_child_node : tileset->GetChildNodes()) {
 			if (Parser::TileNode* tileNode = dynamic_cast<Parser::TileNode*>(tileset_child_node)) {
-				if (Parser::ImageNode* imageNode = dynamic_cast<Parser::ImageNode*>(tileset->GetFirstSpecificChild(Parser::NodeType::IMAGE))) {
+				if (Parser::ImageNode* imageNode = dynamic_cast<Parser::ImageNode*>(tileNode->GetFirstSpecificChild(Parser::NodeType::IMAGE))) {
 					tiles.push_back(new Tile(tileNode->GetId(), tileset->GetFirstgid() + tileNode->GetId(),
-					directory + imageNode->GetSource(), (float)imageNode->GetWidth(), (float)imageNode->GetHeight()));
+					directory + "Templates/" + imageNode->GetSource(), (float)imageNode->GetWidth(), (float)imageNode->GetHeight()));
 
 					this->updateTiles(tileNode, tiles);
 				}
+
 			}
 		}
+
 	}
 
 	return tiles;

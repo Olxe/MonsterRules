@@ -10,6 +10,11 @@ ObjectGroupBuilder::ObjectGroupBuilder(Parser::ObjectGroupNode* objectGroup, std
 				Tile* tile = this->getTileWithGid(objNode->GetGid(), tiles);
 				SceneObject* sceneObject = new SceneObject(objNode->GetName(), objNode->GetType(), objNode->GetX(), objNode->GetY(),
 					objNode->GetWidth(), objNode->GetHeight(), objNode->GetRotation(), tile);
+
+				if (Parser::PropertiesNode* propertiesNode = dynamic_cast<Parser::PropertiesNode*>(objNode->GetFirstSpecificChild(Parser::NodeType::PROPERTIES))){
+					sceneObject->SetProperties(propertiesNode);
+				}
+				
 				m_layout.push_back(sceneObject);
 			}
 			else {
@@ -35,6 +40,11 @@ ObjectGroupBuilder::ObjectGroupBuilder(Parser::ObjectGroupNode* objectGroup, std
 					object = new Object(objNode->GetName(), objNode->GetType(), objNode->GetX(),
 						objNode->GetY(), objNode->GetWidth(), objNode->GetHeight(), objNode->GetRotation());
 				}
+
+				if (Parser::PropertiesNode* propertiesNode = dynamic_cast<Parser::PropertiesNode*>(objNode->GetFirstSpecificChild(Parser::NodeType::PROPERTIES))) {
+					object->SetProperties(propertiesNode);
+				}
+
 				m_layout.push_back(object);
 			}
 		}

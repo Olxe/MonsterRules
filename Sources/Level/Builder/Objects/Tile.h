@@ -22,13 +22,17 @@ namespace Builder
 		int GetId() const { return m_id; }
 		int GetGid() const { return m_gid; }
 		std::string GetType() const { return m_type; }
-		Image GetImage() { return m_image; }
+		std::string GetSource() const { return m_source; }
+		float GetWidth() const { return m_width; }
+		float GetHeight() const { return m_height; }
 
 	private:
 		int m_id;
 		int m_gid;
 		std::string m_type;
-		Image m_image;
+		std::string m_source;
+		float m_width;
+		float m_height;
 		std::vector<Object*> m_objects;
 	};
 

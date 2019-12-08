@@ -169,6 +169,13 @@
     <ClCompile Include="Sources\Level\Builder\TiledBuilder.cpp" />
     <ClCompile Include="Sources\Level\Builder\TilesetBuilder.cpp" />
     <ClCompile Include="Sources\Level\LevelManager.cpp" />
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Entity.cpp" />
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\EntityLayer.cpp" />
+    <ClCompile Include="Sources\Level\Loader\Layers\Layer.cpp" />
+    <ClCompile Include="Sources\Level\Loader\Layers\Tilemaps\CVertexArray.cpp" />
+    <ClCompile Include="Sources\Level\Loader\Layers\Tilemaps\Tilemap.cpp" />
+    <ClCompile Include="Sources\Level\Loader\Layers\Tilemaps\TilemapLayer.cpp" />
+    <ClCompile Include="Sources\Level\Loader\TiledLoader.cpp" />
     <ClCompile Include="Sources\Level\Parser\Nodes\datanode.cpp" />
     <ClCompile Include="Sources\Level\Parser\Nodes\GridNode.cpp" />
     <ClCompile Include="Sources\Level\Parser\Nodes\imagenode.cpp" />
@@ -207,6 +214,13 @@
     <ClInclude Include="Sources\Gui\GuiLayout.hpp" />
     <ClInclude Include="Sources\Gui\Label.hpp" />
     <ClInclude Include="Sources\Gui\Widget.hpp" />
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Entity.hpp" />
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\EntityLayer.hpp" />
+    <ClInclude Include="Sources\Level\Loader\Layers\Layer.hpp" />
+    <ClInclude Include="Sources\Level\Loader\Layers\Tilemaps\CVertexArray.hpp" />
+    <ClInclude Include="Sources\Level\Loader\Layers\Tilemaps\Tilemap.hpp" />
+    <ClInclude Include="Sources\Level\Loader\Layers\Tilemaps\TilemapLayer.hpp" />
+    <ClInclude Include="Sources\Level\Loader\TiledLoader.hpp" />
     <ClInclude Include="Sources\Tools\SettingsParser.h" />
     <ClInclude Include="Sources\Tools\Signal.h" />
     <ClInclude Include="Sources\Tools\Singleton.h" />
