@@ -14,7 +14,7 @@ namespace Window
 	void Window::CRenderWindow::Create(Settings& settings)
 	{
 		SRenderWindow& srw = settings.GetRenderWindowSettings();
-		sf::Uint32 style = sf::Style::Close;
+		sf::Uint32 style = sf::Style::Default;
 		if (srw.fullscreen) {
 			style = sf::Style::Fullscreen;
 			srw.videoMode.width = sf::VideoMode::getDesktopMode().width;

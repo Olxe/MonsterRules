@@ -83,6 +83,9 @@ namespace gameEngine
 			case sf::Event::LostFocus:
 				m_window.SetWindowFocus(false);
 				break;
+			case (sf::Event::Resized):
+				//m_window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
+				break;
 
 			default:
 				this->m_states.back()->onEvent(event);

@@ -75,6 +75,7 @@ namespace gameEngine
 		m_gameEngine.Window().clear();
 
 		m_world.Draw(m_gameEngine.Window());
+
 		m_gameEngine.Window().draw(m_layout);
 
 		m_gameEngine.Window().display();
