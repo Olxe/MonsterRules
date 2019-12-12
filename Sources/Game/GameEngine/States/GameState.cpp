@@ -72,11 +72,15 @@ namespace gameEngine
 
 	void GameState::onDraw()
 	{
-		m_gameEngine.Window().clear();
+		sf::RenderWindow& window = m_gameEngine.Window();
 
-		m_world.Draw(m_gameEngine.Window());
-		m_gameEngine.Window().draw(m_layout);
+		window.clear();
 
-		m_gameEngine.Window().display();
+		m_world.Draw(window);
+
+		window.setView(window.getDefaultView());
+		window.draw(m_layout);
+
+		window.display();
 	}
 }

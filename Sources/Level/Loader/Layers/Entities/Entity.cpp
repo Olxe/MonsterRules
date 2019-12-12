@@ -16,8 +16,6 @@ namespace entities
 			if (Builder::Tile* tile = sceneObj->GetTile()) {
 				this->setTexture(AssetManager::Instance()->GetTexture(tile->GetSource()));
 				m_type = tile->GetType();
-
-				Out(tile->GetProperties().GetProperty("life"));//Property problem
 			}
 		}
 	}
@@ -44,5 +42,4 @@ namespace entities
 		return offsetTransformed;
 	}
 	
-
 }

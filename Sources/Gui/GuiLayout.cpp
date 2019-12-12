@@ -2,10 +2,9 @@
 
 namespace gui
 {
-	GuiLayout::GuiLayout(sf::RenderWindow& window, const sf::Vector2f& position)
+	GuiLayout::GuiLayout(sf::RenderWindow& window)
 		: m_window(window)
 	{
-		this->setPosition(position);
 	}
 
 	GuiLayout::~GuiLayout()
@@ -14,7 +13,6 @@ namespace gui
 
 	void GuiLayout::AddWidget(std::unique_ptr<gui::Widget> widget)
 	{
-		widget->setPosition(this->getPosition() + widget->getPosition());
 		m_widgets.push_back(std::move(widget));
 	}
 

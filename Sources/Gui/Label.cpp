@@ -21,12 +21,6 @@ namespace gui
 	{
 	}
 
-	void Label::setPosition(const sf::Vector2f& position)
-	{
-		Widget::setPosition(position);
-		m_label.setPosition(position);
-	}
-
 	void Label::setText(const std::string& text)
 	{
 		m_label.setString(text);

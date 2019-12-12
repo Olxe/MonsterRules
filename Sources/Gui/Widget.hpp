@@ -8,16 +8,16 @@
 
 namespace gui
 {
-	class Widget: public sf::Drawable
+	class Widget: public sf::Drawable, public sf::Transformable
 	{
 	public:
 		Widget();
 		virtual ~Widget();
 
-		void setMouseButtonReleasedCallback(std::function<void(void)> callback) { MouseButtonReleasedCallback = callback; }
-		
-		virtual void setPosition(const sf::Vector2f& position);
-		sf::Vector2f getPosition() const { return m_position; }
+		void setMouseButtonReleasedCallback(std::function<void()> callback) { MouseButtonReleasedCallback = callback; }
+		void setSize(const sf::Vector2f& size) { m_size = size; }
+		sf::Vector2f getSize() const { return m_size; }
+		sf::FloatRect GlobalBounds() const { return sf::FloatRect(this->getPosition(), m_size); }
 		
 		virtual void onEvent(sf::Event& event) {}
 		virtual void onMouseMoved(float x, float y) {}
@@ -28,14 +28,11 @@ namespace gui
 		virtual void onKeyReleased(const sf::Event::KeyEvent& key) {}
 		virtual void onTextEntered(sf::Uint32 unicode) {}
 
-		sf::FloatRect GlobalBounds() const { return m_body.getGlobalBounds(); }
-
 	protected:
-		sf::RectangleShape m_body;
-		std::function<void(void)> MouseButtonReleasedCallback;
+		std::function<void()> MouseButtonReleasedCallback;
 
 	private:
-		sf::Vector2f m_position;
+		sf::Vector2f m_size;
 
 	};
 }

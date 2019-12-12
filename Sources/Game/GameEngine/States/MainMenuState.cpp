@@ -27,6 +27,8 @@ namespace gameEngine
 		m_layout.AddWidget(std::move(b2));
 		m_layout.AddWidget(std::move(b3));
 		m_layout.AddWidget(std::move(l1));
+
+		this->setNext(GameEngine::BuildState<GameState>(m_gameEngine, true));
 	}
 
 	MainMenuState::~MainMenuState()
