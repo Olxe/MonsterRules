@@ -14,10 +14,8 @@ namespace gui
 		Widget();
 		virtual ~Widget();
 
-		void setMouseButtonReleasedCallback(std::function<void(void)> callback) { MouseButtonReleasedCallback = callback; }
-		
-		virtual void setPosition(const sf::Vector2f& position);
-		sf::Vector2f getPosition() const { return m_position; }
+		void setMouseButtonReleasedCallback(std::function<void()> callback) { MouseButtonReleasedCallback = callback; }
+		virtual sf::FloatRect GlobalBounds() const = 0;
 		
 		virtual void onEvent(sf::Event& event) {}
 		virtual void onMouseMoved(float x, float y) {}
@@ -28,14 +26,8 @@ namespace gui
 		virtual void onKeyReleased(const sf::Event::KeyEvent& key) {}
 		virtual void onTextEntered(sf::Uint32 unicode) {}
 
-		sf::FloatRect GlobalBounds() const { return m_body.getGlobalBounds(); }
-
 	protected:
-		sf::RectangleShape m_body;
-		std::function<void(void)> MouseButtonReleasedCallback;
-
-	private:
-		sf::Vector2f m_position;
+		std::function<void()> MouseButtonReleasedCallback;
 
 	};
 }

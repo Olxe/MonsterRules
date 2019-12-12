@@ -12,10 +12,10 @@ namespace Builder
 		virtual ~Customizable();
 
 		void SetProperties(Parser::PropertiesNode* propertiesNode);
-		Properties GetProperties() { return m_properties; }
+		Properties* GetProperties() { return m_properties; }
 
 	private:
-		Properties m_properties;
+		Properties* m_properties;
 
 	};
 }

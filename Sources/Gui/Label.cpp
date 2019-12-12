@@ -12,18 +12,20 @@ namespace gui
 
 		sf::FloatRect r = m_label.getLocalBounds();
 		m_label.setOrigin(r.left + std::round(r.width / 2.f), r.top + std::round(r.height / 2.f));
-		m_label.setPosition(m_body.getPosition());
-
-		this->setPosition(position);
+		m_label.setPosition(position);
 	}
 
 	Label::~Label()
 	{
 	}
 
+	sf::FloatRect Label::GlobalBounds() const
+	{
+		return m_label.getGlobalBounds();
+	}
+
 	void Label::setPosition(const sf::Vector2f& position)
 	{
-		Widget::setPosition(position);
 		m_label.setPosition(position);
 	}
 

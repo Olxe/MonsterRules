@@ -11,8 +11,9 @@ namespace gameEngine
 	{
 		Out("game created");
 
-		std::unique_ptr<gui::Label> l1 = std::make_unique<gui::Label>("Game", *AssetManager::Instance()->GetFont("Resources/Fonts/EnchantedLand-jnX9.ttf"), 96, sf::Text::Regular, sf::Color::White, sf::Vector2f(0, -400));
-		std::unique_ptr<gui::Label> la_fps = std::make_unique<gui::Label>("FPS", *AssetManager::Instance()->GetFont("Resources/Fonts/Arial.ttf"), 16, sf::Text::Regular, sf::Color::White, sf::Vector2f(-900, -500));
+		sf::Vector2f windowSize = (sf::Vector2f)gameEngine.Window().getSize();
+		std::unique_ptr<gui::Label> l1 = std::make_unique<gui::Label>("Game", *AssetManager::Instance()->GetFont("Resources/Fonts/EnchantedLand-jnX9.ttf"), 96, sf::Text::Regular, sf::Color::White, sf::Vector2f(windowSize.x / 2.f, 50));
+		std::unique_ptr<gui::Label> la_fps = std::make_unique<gui::Label>("FPS", *AssetManager::Instance()->GetFont("Resources/Fonts/Arial.ttf"), 16, sf::Text::Regular, sf::Color::White, sf::Vector2f(30, 20));
 		m_la_fps = la_fps.get();
 
 		m_layout.AddWidget(std::move(l1));
@@ -72,12 +73,19 @@ namespace gameEngine
 
 	void GameState::onDraw()
 	{
-		m_gameEngine.Window().clear();
+		sf::RenderWindow& window = m_gameEngine.Window();
 
 		m_world.Draw(m_gameEngine.Window());
 
 		m_gameEngine.Window().draw(m_layout);
 
-		m_gameEngine.Window().display();
+		window.clear();
+
+		m_world.Draw(window);
+
+		window.setView(window.getDefaultView());
+		window.draw(m_layout);
+
+		window.display();
 	}
 }

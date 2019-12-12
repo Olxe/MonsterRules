@@ -21,7 +21,7 @@ namespace gameEngine
 		void NextState();
 		void Update();
 		void Draw();
-
+		
 		bool Running() const { return m_window.isOpen(); }
 		void Quit() { m_window.close(); }
 		sf::RenderWindow& Window() const { return m_window; }

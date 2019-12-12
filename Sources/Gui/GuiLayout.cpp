@@ -2,10 +2,9 @@
 
 namespace gui
 {
-	GuiLayout::GuiLayout(sf::RenderWindow& window, const sf::Vector2f& position)
+	GuiLayout::GuiLayout(sf::RenderWindow& window)
 		: m_window(window)
 	{
-		this->setPosition(position);
 	}
 
 	GuiLayout::~GuiLayout()
@@ -14,8 +13,12 @@ namespace gui
 
 	void GuiLayout::AddWidget(std::unique_ptr<gui::Widget> widget)
 	{
-		widget->setPosition(this->getPosition() + widget->getPosition());
 		m_widgets.push_back(std::move(widget));
+	}
+
+	sf::FloatRect GuiLayout::GlobalBounds() const
+	{
+		return sf::FloatRect(sf::Vector2f(0, 0), (sf::Vector2f)m_window.getSize());
 	}
 
 	void GuiLayout::onEvent(sf::Event& event)
@@ -59,6 +62,13 @@ namespace gui
 
 		default:
 			break;
+		}
+	}
+
+	void GuiLayout::onMouseMoved(float x, float y)
+	{
+		if (gui::Widget* fw = focus(sf::Vector2f(x, y))) {
+			fw->onMouseMoved(x, y);
 		}
 	}
 

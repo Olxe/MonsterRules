@@ -2,7 +2,6 @@
 
 #include <map>
 #include <string>
-#include <iostream>
 
 namespace Builder
 {
@@ -13,7 +12,7 @@ namespace Builder
 		~Properties();
 
 		void AddProperty(std::string name, std::string value);
-		std::string GetProperty(std::string name);//const
+		std::string GetProperty(std::string name);
 
 	private:
 		std::map< std::string, std::string > m_properties;

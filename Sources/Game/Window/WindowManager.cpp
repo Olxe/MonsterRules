@@ -13,6 +13,7 @@ namespace Window
 		//m_view.reset(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(1920, 1080)));
 
 		m_view.zoom(1920.f / (float)m_window.getSize().x);
+		//m_view.setCenter(0, 0);
 		//updateView();
 	}
 

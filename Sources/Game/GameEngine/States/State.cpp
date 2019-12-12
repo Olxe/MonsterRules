@@ -5,10 +5,10 @@ namespace gameEngine
 {
 	State::State(GameEngine& gameEngine, bool replace)
 		: m_gameEngine(gameEngine)
-		, m_layout(gameEngine.Window(), sf::Vector2f(1000, 500))
+		, m_layout(gameEngine.Window())
 		, m_replacing(replace)
 	{
-		m_layout.setPosition(sf::Vector2f(Window::WindowManager::Instance()->GetWindow()->getSize().x / 2.f, Window::WindowManager::Instance()->GetWindow()->getSize().y / 2.f));
+		//m_layout.setPosition(sf::Vector2f(Window::WindowManager::Instance()->GetWindow()->getSize().x / 2.f, Window::WindowManager::Instance()->GetWindow()->getSize().y / 2.f));
 	}
 
 	State::~State()
