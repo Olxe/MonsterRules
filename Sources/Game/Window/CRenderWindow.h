@@ -17,10 +17,13 @@ namespace Window
 		void SetWindowFocus(bool value);
 		bool IsFocus() const;
 
+		void setDefaultView();
+		void setGameView();
+
 	private:
 		bool m_focusing;
 		sf::Vector2u m_size;
-
+		sf::View m_gameView;
 	};
 }
 

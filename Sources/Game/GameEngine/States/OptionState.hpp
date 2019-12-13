@@ -7,7 +7,7 @@ namespace gameEngine
 	class OptionState: public State
 	{
 	public:
-		OptionState(GameEngine& gameEngine, bool replace = true);
+		OptionState(GameEngine& gameEngine, Window::CRenderWindow& window, bool replace = true);
 		~OptionState();
 
 		void onPause() override;

@@ -23,6 +23,9 @@ namespace Window
 		this->create(srw.videoMode, srw.title, style, srw.contextSettings);
 		this->setFramerateLimit(srw.fps);
 		this->setVerticalSyncEnabled(srw.verticalSync);
+
+		m_gameView.reset(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f((float)this->getSize().x, (float)this->getSize().y)));
+		m_gameView.zoom(1920.f / (float)this->getSize().x);
 	}
 
 	void CRenderWindow::SetWindowFocus(bool value)
@@ -33,5 +36,13 @@ namespace Window
 	bool Window::CRenderWindow::IsFocus() const
 	{
 		return m_focusing;
+	}
+	void CRenderWindow::setDefaultView()
+	{
+		this->setView(this->getDefaultView());
+	}
+	void CRenderWindow::setGameView()
+	{
+		this->setView(m_gameView);
 	}
 }

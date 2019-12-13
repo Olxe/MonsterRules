@@ -7,7 +7,7 @@ namespace gameEngine
 	class MainMenuState: public State
 	{
 	public:
-		MainMenuState(GameEngine& gameEngine, bool replace = true);
+		MainMenuState(GameEngine& gameEngine, Window::CRenderWindow& window, bool replace = true);
 		~MainMenuState();
 
 		void onPause() override;

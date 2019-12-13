@@ -4,7 +4,7 @@ namespace gui
 {
 	Button::Button(const sf::Texture* texture, const sf::Vector2f& position, const std::string& label)
 		: Widget()
-		, m_label(label, *AssetManager::Instance()->GetFont("Resources/Fonts/EnchantedLand-jnX9.ttf"), 48, sf::Text::Bold, sf::Color::White, position)
+		, m_label(label, *AssetManager::Instance()->GetFont("Resources/Fonts/EnchantedLand-jnX9.ttf"), 48, sf::Text::Regular, sf::Color::White, position)
 	{
 		m_body.setSize((sf::Vector2f)texture->getSize());
 		m_body.setTexture(texture);

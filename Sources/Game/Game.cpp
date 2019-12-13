@@ -11,8 +11,9 @@ Game::~Game()
 
 void Game::Run()
 {
-	gameEngine::GameEngine m_gameEngine(*Window::WindowManager::Instance()->GetWindow());
-	m_gameEngine.Run(gameEngine::GameEngine::BuildState<gameEngine::MainMenuState>(m_gameEngine));
+	Window::CRenderWindow& window = *Window::WindowManager::Instance()->GetWindow();
+	gameEngine::GameEngine m_gameEngine(window);
+	m_gameEngine.Run(gameEngine::GameEngine::BuildState<gameEngine::MainMenuState>(m_gameEngine, window, true));
 
 	while (m_gameEngine.Running()) {
 		Window::WindowManager::Instance()->Update();

@@ -34,27 +34,22 @@ namespace gameEngine
 	
 	void GameEngine::NextState()
 	{
-		if (m_resume)
-		{
-			if (!m_states.empty())
-			{
+		if (m_resume){
+			if (!m_states.empty()){
 				m_states.pop_back();
 			}
 
-			if (!m_states.empty())
-			{
+			if (!m_states.empty()){
 				this->m_states.back()->onResume();
 			}
 
 			m_resume = false;
 		}
 
-		if (!m_states.empty())
-		{
+		if (!m_states.empty()){
 			std::unique_ptr<State> temp = m_states.back()->Next();
 
-			if (temp != nullptr)
-			{
+			if (temp != nullptr){
 				if (temp->IsReplacing())
 					m_states.pop_back();
 				else {
@@ -68,6 +63,11 @@ namespace gameEngine
 
 	void GameEngine::Update()
 	{
+		if (m_states.empty()) {
+			this->Quit();
+			return;
+		}
+
 		sf::Event event;
 
 		while (m_window.pollEvent(event))
@@ -83,9 +83,6 @@ namespace gameEngine
 			case sf::Event::LostFocus:
 				m_window.SetWindowFocus(false);
 				break;
-			case (sf::Event::Resized):
-				//m_window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
-				break;
 
 			default:
 				this->m_states.back()->onEvent(event);
@@ -100,6 +97,16 @@ namespace gameEngine
 
 	void GameEngine::Draw()
 	{
+		if (m_states.empty()) {
+			this->Quit();
+			return;
+		}
+
 		this->m_states.back()->onDraw();
+	}
+
+	void GameEngine::Quit()
+	{
+		if (m_window.isOpen()) m_window.close();
 	}
 }

@@ -23,11 +23,11 @@ namespace gameEngine
 		void Draw();
 		
 		bool Running() const { return m_window.isOpen(); }
-		void Quit() { m_window.close(); }
-		sf::RenderWindow& Window() const { return m_window; }
+		void Quit();
+		Window::CRenderWindow& Window() const { return m_window; }
 
 		template <typename T>
-		static std::unique_ptr<T> BuildState(GameEngine& gameEngine, bool replace = true);
+		static std::unique_ptr<T> BuildState(GameEngine& gameEngine, Window::CRenderWindow& window, bool replace = true);
 
 	private:
 		std::vector <std::unique_ptr<State>> m_states;
@@ -37,8 +37,8 @@ namespace gameEngine
 	};
 
 	template <typename T>
-	std::unique_ptr<T> GameEngine::BuildState(GameEngine& machine, bool replace)
+	std::unique_ptr<T> GameEngine::BuildState(GameEngine& machine, Window::CRenderWindow& window, bool replace)
 	{
-		return std::unique_ptr<T>(new T(machine, replace));
+		return std::unique_ptr<T>(new T(machine, window, replace));
 	}
 }

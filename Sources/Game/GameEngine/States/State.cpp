@@ -3,12 +3,12 @@
 
 namespace gameEngine
 {
-	State::State(GameEngine& gameEngine, bool replace)
+	State::State(GameEngine& gameEngine, Window::CRenderWindow& window, bool replace)
 		: m_gameEngine(gameEngine)
-		, m_layout(gameEngine.Window())
+		, m_window(window)
+		, m_layout(window)
 		, m_replacing(replace)
 	{
-		//m_layout.setPosition(sf::Vector2f(Window::WindowManager::Instance()->GetWindow()->getSize().x / 2.f, Window::WindowManager::Instance()->GetWindow()->getSize().y / 2.f));
 	}
 
 	State::~State()
@@ -17,7 +17,7 @@ namespace gameEngine
 
 	sf::Vector2f State::ConvertMousePosition(sf::Vector2i position) const
 	{
-		return m_gameEngine.Window().mapPixelToCoords(position);
+		return m_window.mapPixelToCoords(position);
 	}
 
 	std::unique_ptr<State> State::Next()

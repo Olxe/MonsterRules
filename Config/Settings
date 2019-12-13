@@ -5,8 +5,8 @@
 key = value
 
 # window video mode
-width = 1300
-height = 700
+width = 1920
+height = 1080
 bitsPerPixel = 32
 
 # window title

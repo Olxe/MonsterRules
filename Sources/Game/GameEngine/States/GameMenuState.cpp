@@ -6,23 +6,24 @@
 
 namespace gameEngine
 {
-	GameMenuState::GameMenuState(GameEngine& gameEngine, bool replace)
-		: State(gameEngine, replace)
+	GameMenuState::GameMenuState(GameEngine& gameEngine, Window::CRenderWindow& window, bool replace)
+		: State(gameEngine, window, replace)
 	{
 		Out("game menu created");
+		sf::Vector2f windowSize = (sf::Vector2f)window.getSize();
 
-		std::unique_ptr<gui::Label> l1 = std::make_unique<gui::Label>("Game menu", *AssetManager::Instance()->GetFont("Resources/Fonts/EnchantedLand-jnX9.ttf"), 96, sf::Text::Regular, sf::Color::White, sf::Vector2f(0, -400));
+		std::unique_ptr<gui::Label> l1 = std::make_unique<gui::Label>("Game menu", *AssetManager::Instance()->GetFont("Resources/Fonts/EnchantedLand-jnX9.ttf"), 96, sf::Text::Regular, sf::Color::White, sf::Vector2f(windowSize.x / 2.f, 50));
 
-		std::unique_ptr<gui::Button> b1 = std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(0, -200), "Resume");
+		std::unique_ptr<gui::Button> b1 = std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(windowSize.x / 2.f, 200), "Resume");
 		b1->setMouseButtonReleasedCallback(std::bind(&GameMenuState::toGame, this));
 
-		std::unique_ptr<gui::Button> b2 = std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(0, -100), "Option");
+		std::unique_ptr<gui::Button> b2 = std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(windowSize.x / 2.f, 300), "Option");
 		b2->setMouseButtonReleasedCallback(std::bind(&GameMenuState::toOption, this));
 
-		std::unique_ptr<gui::Button> b3 = std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(0, 0), "Main menu");
+		std::unique_ptr<gui::Button> b3 = std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(windowSize.x / 2.f, 400), "Main menu");
 		b3->setMouseButtonReleasedCallback(std::bind(&GameMenuState::toMainMenu, this));
 
-		std::unique_ptr<gui::Button> b4 = std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(0, 100), "Quit");
+		std::unique_ptr<gui::Button> b4 = std::make_unique<gui::Button>(AssetManager::Instance()->GetTexture("Resources/Textures/ui_temp/blue_button00.png"), sf::Vector2f(windowSize.x / 2.f, 500), "Quit");
 		b4->setMouseButtonReleasedCallback(std::bind(&GameEngine::Quit, &m_gameEngine));
 
 		m_layout.AddWidget(std::move(b1));
@@ -76,16 +77,16 @@ namespace gameEngine
 
 	void GameMenuState::onDraw()
 	{
-		m_gameEngine.Window().clear();
+		m_window.clear();
 
-		m_gameEngine.Window().draw(m_layout);
+		m_window.draw(m_layout);
 
-		m_gameEngine.Window().display();
+		m_window.display();
 	}
 
 	void GameMenuState::toMainMenu()
 	{
-		this->setNext(GameEngine::BuildState<MainMenuState>(m_gameEngine, true));
+		this->setNext(GameEngine::BuildState<MainMenuState>(m_gameEngine, m_window, true));
 	}
 
 	void GameMenuState::toGame()
@@ -95,6 +96,6 @@ namespace gameEngine
 
 	void GameMenuState::toOption()
 	{
-		this->setNext(GameEngine::BuildState<OptionState>(m_gameEngine, false));
+		this->setNext(GameEngine::BuildState<OptionState>(m_gameEngine, m_window, false));
 	}
 }
