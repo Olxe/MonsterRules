@@ -12,8 +12,8 @@ namespace layer
 		Layer();
 		virtual ~Layer();
 
-		virtual void Update(const float& deltaTime) = 0;
-		virtual void Draw(sf::RenderWindow& window) = 0;
+		virtual void onUpdate(const float& deltaTime) = 0;
+		virtual void onDraw(sf::RenderWindow& window) = 0;
 
 	private:
 

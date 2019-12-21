@@ -10,25 +10,38 @@ namespace layer
 	{
 	}
 
-	void EntityLayer::Load(Builder::ObjectGroupBuilder* objGrp, int& idObj)
+	void EntityLayer::onLoad(Builder::ObjectGroupBuilder* objGrp, int& idObj)
 	{
 		for (auto obj : objGrp->getLayout()) {
-			m_entities.push_back(std::make_unique<entities::Entity>(obj, idObj));
-			idObj++;
+			if (Builder::SceneObject* sceneObj = dynamic_cast<Builder::SceneObject*>(obj)) {
+				m_entities.push_back(this->createEntity(sceneObj, idObj));
+				idObj++;
+			}
 		}
 	}
 
-	void EntityLayer::Update(const float& deltaTime)
+	void EntityLayer::onUpdate(const float& deltaTime)
 	{
 		for (auto& entity : m_entities) {
 			entity->onUpdate(deltaTime);
 		}
 	}
 
-	void EntityLayer::Draw(sf::RenderWindow& window)
+	void EntityLayer::onDraw(sf::RenderWindow& window)
 	{
 		for (auto& entity : m_entities) {
 			entity->onDraw(window);
 		}
+	}
+
+	std::unique_ptr<entities::Entity> EntityLayer::createEntity(Builder::SceneObject* sceneObj, int& idObj)
+	{
+		std::string type = sceneObj->GetTile()->GetType();
+
+		if (type == "HERO_ARCHER") {
+			return std::unique_ptr<entities::Archer>(new entities::Archer(sceneObj, idObj));
+		}
+
+		return std::unique_ptr<entities::Entity>(new entities::Entity(sceneObj, idObj));
 	}
 }

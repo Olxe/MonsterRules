@@ -9,7 +9,7 @@ namespace layer
 	TilemapLayer::~TilemapLayer()
 	{
 	}
-	void TilemapLayer::Load(Builder::LayerBuilder* layer)
+	void TilemapLayer::onLoad(Builder::LayerBuilder* layer)
 	{
 		//build tilemap
 		for (auto tile : layer->getLayout()) {
@@ -42,11 +42,11 @@ namespace layer
 		}
 	}
 
-	void TilemapLayer::Update(const float& deltaTime)
+	void TilemapLayer::onUpdate(const float& deltaTime)
 	{
 	}
 
-	void TilemapLayer::Draw(sf::RenderWindow& window)
+	void TilemapLayer::onDraw(sf::RenderWindow& window)
 	{
 		for (auto& it : m_tilemaps) {
 			window.draw(*it);

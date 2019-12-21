@@ -42,13 +42,13 @@ void LevelManager::PreviousLevel()
 void LevelManager::Update(const float& deltaTime)
 {
 	for (auto& it : m_layers) {
-		it->Update(deltaTime);
+		it->onUpdate(deltaTime);
 	}
 }
 
 void LevelManager::Draw(sf::RenderWindow& window)
 {
 	for (auto& it : m_layers) {
-		it->Draw(window);
+		it->onDraw(window);
 	}
 }

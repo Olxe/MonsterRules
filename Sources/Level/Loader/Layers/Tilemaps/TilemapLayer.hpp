@@ -11,9 +11,9 @@ namespace layer
 		TilemapLayer();
 		~TilemapLayer();
 
-		void Load(Builder::LayerBuilder* layer);
-		void Update(const float& deltaTime) override;
-		void Draw(sf::RenderWindow& window) override;
+		void onLoad(Builder::LayerBuilder* layer);
+		void onUpdate(const float& deltaTime) override;
+		void onDraw(sf::RenderWindow& window) override;
 
 	private:
 		std::vector< std::unique_ptr<layer::Tilemap> > m_tilemaps;

@@ -3,7 +3,6 @@
 #include <vector>
 
 #include "../../../Tools/ToolsFunction.h"
-#include "Image.h"
 #include "Customizable.h"
 #include "Object.h"
 
