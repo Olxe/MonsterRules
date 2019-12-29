@@ -1,9 +1,9 @@
 #pragma once
 
 #include "../Layer.hpp"
-#include "Entity.hpp"
 
 #include "Heroes/Archer.h"
+#include "Objects/Object.h"
 
 namespace layer
 {
@@ -13,15 +13,17 @@ namespace layer
 		EntityLayer();
 		~EntityLayer();
 
-		void onLoad(Builder::ObjectGroupBuilder* objGrp, int& idObj);
+		void onLoad(Builder::ObjectGroupBuilder* objGrp);
 		void onUpdate(const float& deltaTime) override;
 		void onDraw(sf::RenderWindow& window) override;
 
-	private:
-		std::unique_ptr<entities::Entity> createEntity(Builder::SceneObject* sceneObj, int& idObj);
+		entities::Entity* getEntity(const std::string& name);
 
 	private:
-		std::vector< std::unique_ptr<entities::Entity> > m_entities;
+		std::unique_ptr<entities::PhysicalEntity> createEntity(Builder::SceneObject* sceneObj);
+
+	private:
+		std::vector< std::unique_ptr<entities::PhysicalEntity> > m_entities;
 
 	};
 }

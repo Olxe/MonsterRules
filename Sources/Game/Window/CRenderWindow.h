@@ -2,6 +2,7 @@
 #define __WINDOW__
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Window/Mouse.hpp>
 
 #include "Settings.h"
 
@@ -19,6 +20,9 @@ namespace Window
 
 		void setDefaultView();
 		void setGameView();
+
+		sf::View& getGameView() { return m_gameView; }
+		sf::Vector2f getMousePosition();
 
 	private:
 		bool m_focusing;

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../Object.h"
+#include "../ObjectTemplate.h"
 #include "Point.h"
 
 namespace Builder
 {
-	class Polygone: public Object
+	class Polygone: public ObjectTemplate
 	{
 	public:
 		Polygone(std::string name, std::string type, float x, float y, float rotation, std::string points);

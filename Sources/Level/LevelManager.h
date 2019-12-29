@@ -1,8 +1,13 @@
 #pragma once
 
+#include "../Game/Window/CRenderWindow.h"
+
 #include "Parser/TiledParser.h"
 #include "Builder/TiledBuilder.h"
 #include "Loader/TiledLoader.hpp"
+
+#include "Loader/Layers/Entities/Physic/MyContactListenner.h"
+#include "Loader/Layers/Entities/Physic/Box2DWorld.h"
 
 enum class Level
 {
@@ -24,13 +29,13 @@ public:
 	void PreviousLevel();
 
 	void Update(const float& deltaTime);
-	void Draw(sf::RenderWindow& window);
+	void Draw(Window::CRenderWindow& window);
 
 private:
 	std::string m_directory;
 	std::map< Level, std::string > m_levels;
 	int m_currentLevel;
 	std::vector< std::unique_ptr<layer::Layer> > m_layers;
-	
+	MyContactListenner m_contactListenner;
 };
 

@@ -8,7 +8,7 @@ World::World()
 		m_levelManager.LoadLevel(Level::LEVEL_1);
 
 		cpt--;
-		std::cout << cpt << std::endl;
+		//std::cout << cpt << std::endl;
 	}
 	
 }
@@ -22,7 +22,7 @@ void World::Update(const float& deltaTime)
 	m_levelManager.Update(deltaTime);
 }
 
-void World::Draw(sf::RenderWindow& window)
+void World::Draw(Window::CRenderWindow& window)
 {
 	m_levelManager.Draw(window);
 }

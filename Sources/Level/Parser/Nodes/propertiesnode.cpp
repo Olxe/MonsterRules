@@ -11,15 +11,15 @@ PropertiesNode::~PropertiesNode()
 {
 }
 
-PropertyNode* PropertiesNode::GetProperty(const std::string& name) const
+PropertyNode PropertiesNode::GetProperty(const std::string& name) const
 {
     for(auto child : this->GetChildNodes()){
 		PropertyNode* property = dynamic_cast<PropertyNode*>(child);
         if(property && property->GetName() == name){
-            return property;
+            return PropertyNode(*property);
         }
     }
-    return nullptr;
+    return PropertyNode(nullptr);
 }
 
 void PropertiesNode::ParseChildTag(const tinyxml2::XMLElement* eChild)

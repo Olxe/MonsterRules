@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../Object.h"
+#include "../ObjectTemplate.h"
 #include "Point.h"
 
 namespace Builder
 {
-	class Polyline: public Object
+	class Polyline: public ObjectTemplate
 	{
 	public:
 		Polyline(std::string name, std::string type, float x, float y, float rotation, std::string points);

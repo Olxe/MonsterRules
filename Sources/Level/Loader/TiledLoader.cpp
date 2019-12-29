@@ -14,7 +14,6 @@ namespace loader
 	{
 		std::vector< std::unique_ptr<layer::Layer> > layers;
 
-		int idObj = 1;
 		for (auto it : layouts) {
 			if (Builder::LayerBuilder* layer = dynamic_cast<Builder::LayerBuilder*>(it)) {
 				
@@ -24,7 +23,7 @@ namespace loader
 			}
 			else if (Builder::ObjectGroupBuilder* objGrp = dynamic_cast<Builder::ObjectGroupBuilder*>(it)) {
 				std::unique_ptr< layer::EntityLayer > obj = std::make_unique< layer::EntityLayer >();
-				obj->onLoad(objGrp, idObj);
+				obj->onLoad(objGrp);
 				layers.push_back(std::move(obj));
 			}
 		}

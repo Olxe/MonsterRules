@@ -13,9 +13,11 @@ namespace Builder
 
 		void SetProperties(Parser::PropertiesNode* propertiesNode);
 		Properties* GetProperties() { return m_properties; }
+		Parser::PropertiesNode* getProperties() { return m_propertiesNode; }
 
 	private:
 		Properties* m_properties;
+		Parser::PropertiesNode* m_propertiesNode;
 
 	};
 }

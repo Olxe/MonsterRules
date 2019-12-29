@@ -48,9 +48,6 @@
     <ClCompile Include="Sources\Level\Builder\Objects\Customizable.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Level\Builder\Objects\Object.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Level\Builder\Objects\Properties.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -198,6 +195,39 @@
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\Heroes\Archer.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Heroes\Hero.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Animation.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\AnimatedEntity.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\Box2DWorld.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\PhysicalEntity.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\PhysicalBody.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\MyContactListenner.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Objects\Object.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Level\Builder\Objects\ObjectTemplate.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\Debug\PhysicDebug.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\Debug\PhysicDebugShape.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Game\Window\CRenderWindow.h">
@@ -231,9 +261,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Level\Builder\Objects\Customizable.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Level\Builder\Objects\Object.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Level\Builder\Objects\Properties.h">
@@ -347,9 +374,6 @@
     <ClInclude Include="Sources\Tools\Singleton.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Tools\Signal.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Gui\GuiLayout.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -396,6 +420,39 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Level\Loader\Layers\Entities\Heroes\Archer.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Heroes\Hero.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Animation.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\AnimatedEntity.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\Box2DWorld.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\PhysicalEntity.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\PhysicalBody.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\MyContactListenner.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Objects\Object.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Builder\Objects\ObjectTemplate.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\Debug\PhysicDebugShape.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\Debug\PhysicDebug.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

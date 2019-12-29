@@ -13,9 +13,7 @@ namespace Window
 		MOVE_DOWN,
 		MOVE_LEFT,
 		MOVE_RIGHT,
-		ATTACK_LEFT,
-		ATTACK_MIDDLE,
-		ATTACK_RIGHT,
+		ATTACK,
 		INTERACT
 	};
 

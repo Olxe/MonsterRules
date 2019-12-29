@@ -9,10 +9,14 @@ LevelManager::LevelManager()
 	m_levels[Level::LEVEL_3] = "level_3.tmx";
 	m_levels[Level::LEVEL_4] = "level_4.tmx";
 	m_levels[Level::LEVEL_5] = "level_5.tmx";
+
+	Box2DWorld::Instance()->getWorld()->SetContactListener(&m_contactListenner);
 }
 
 LevelManager::~LevelManager()
 {
+	//m_layer.clear();
+	//Box2DWorld::Instance()->DeleteInstance();//crash
 }
 
 void LevelManager::LoadLevel(Level level)
@@ -41,13 +45,27 @@ void LevelManager::PreviousLevel()
 
 void LevelManager::Update(const float& deltaTime)
 {
+	Window::WindowManager::Instance()->GetWindow()->setGameView();
+
 	for (auto& it : m_layers) {
 		it->onUpdate(deltaTime);
 	}
+
+	Box2DWorld::Instance()->getWorld()->Step(1 / 60.f, 8, 3);
 }
 
-void LevelManager::Draw(sf::RenderWindow& window)
+void LevelManager::Draw(Window::CRenderWindow& window)
 {
+	for (auto& it : m_layers) {
+		if (layer::EntityLayer* entity = dynamic_cast<layer::EntityLayer*>(it.get())) {
+			if (entities::Entity* mainPlayer = entity->getEntity("MAIN_PLAYER")) {
+				window.getGameView().setCenter(mainPlayer->getPosition());
+			}
+		}
+	}
+
+	window.setGameView();
+
 	for (auto& it : m_layers) {
 		it->onDraw(window);
 	}

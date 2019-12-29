@@ -11,7 +11,7 @@ public:
 	~World();
 
 	void Update(const float& deltaTime);
-	void Draw(sf::RenderWindow& window);
+	void Draw(Window::CRenderWindow& window);
 
 private:
 	LevelManager m_levelManager;

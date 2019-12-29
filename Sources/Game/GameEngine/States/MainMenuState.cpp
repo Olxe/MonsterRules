@@ -29,7 +29,7 @@ namespace gameEngine
 		m_layout.AddWidget(std::move(b3));
 		m_layout.AddWidget(std::move(l1));
 
-		//this->setNext(GameEngine::BuildState<GameState>(m_gameEngine, true));
+		this->setNext(GameEngine::BuildState<GameState>(m_gameEngine, m_window, true));
 	}
 
 	MainMenuState::~MainMenuState()

@@ -1,21 +1,14 @@
 #pragma once
 
-#include "../Entity.hpp"
-#include "../../../../../Game/Window/WindowManager.hpp"
+#include "Hero.h"
 
 namespace entities 
 {
-	class Archer: public Entity
+	class Archer: public Hero
 	{
 	public:
-		Archer(Builder::Object* obj, int id);
+		Archer(Builder::SceneObject* obj);
 		~Archer();
-
-		void onUpdate(const float& deltaTime) override;
-		void onDraw(sf::RenderWindow& window) override;
-
-	private:
-		void input(const float& deltaTime);
 
 	};
 }

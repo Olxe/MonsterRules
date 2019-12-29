@@ -10,12 +10,14 @@ namespace layer
 	{
 	}
 
-	void EntityLayer::onLoad(Builder::ObjectGroupBuilder* objGrp, int& idObj)
+	void EntityLayer::onLoad(Builder::ObjectGroupBuilder* objGrp)
 	{
 		for (auto obj : objGrp->getLayout()) {
 			if (Builder::SceneObject* sceneObj = dynamic_cast<Builder::SceneObject*>(obj)) {
-				m_entities.push_back(this->createEntity(sceneObj, idObj));
-				idObj++;
+				if (sceneObj->GetTile()) {
+					m_entities.push_back(this->createEntity(sceneObj));
+				}
+				else Out("Error : ", "Scene object has not tile");
 			}
 		}
 	}
@@ -34,14 +36,26 @@ namespace layer
 		}
 	}
 
-	std::unique_ptr<entities::Entity> EntityLayer::createEntity(Builder::SceneObject* sceneObj, int& idObj)
+	entities::Entity* EntityLayer::getEntity(const std::string& name)
+	{
+		for (auto& entity : m_entities) {
+			if (entity->getName() == name) {
+				return entity.get();
+			}
+		}
+		return nullptr;
+	}
+
+	std::unique_ptr<entities::PhysicalEntity> EntityLayer::createEntity(Builder::SceneObject* sceneObj)
 	{
 		std::string type = sceneObj->GetTile()->GetType();
 
 		if (type == "HERO_ARCHER") {
-			return std::unique_ptr<entities::Archer>(new entities::Archer(sceneObj, idObj));
+			sceneObj->GetTile()->setSource("Resources/Textures/Characters/Heroes/Hero_2/archer.png");
+			sceneObj->GetTile()->setSize(117, 78);
+			return std::unique_ptr<entities::Archer>(new entities::Archer(sceneObj));
 		}
 
-		return std::unique_ptr<entities::Entity>(new entities::Entity(sceneObj, idObj));
+		return std::unique_ptr<entities::PhysicalEntity>(new entities::Object(sceneObj));
 	}
 }

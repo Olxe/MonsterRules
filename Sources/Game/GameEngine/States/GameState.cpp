@@ -53,6 +53,12 @@ namespace gameEngine
 			}
 			break;
 		}
+		case sf::Event::MouseWheelMoved:
+		{
+			if (event.mouseWheel.delta < 0) m_window.getGameView().zoom(1.1f);
+			else if (event.mouseWheel.delta > 0) m_window.getGameView().zoom(0.9f);
+			break;
+		}
 
 		default:
 			break;
@@ -76,7 +82,6 @@ namespace gameEngine
 	{
 		m_window.clear();
 
-		m_window.setGameView();
 		m_world.Draw(m_window);
 
 		m_window.setDefaultView();

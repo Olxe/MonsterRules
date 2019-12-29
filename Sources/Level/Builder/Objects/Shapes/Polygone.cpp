@@ -3,7 +3,7 @@
 using namespace Builder;
 
 Polygone::Polygone(std::string name, std::string type, float x, float y, float rotation, std::string points)
-	: Object(name, type, x, y, 0.f, 0.f, rotation)
+	: ObjectTemplate(name, type, x, y, 0.f, 0.f, rotation)
 {
 	this->convertPoints(points);
 }

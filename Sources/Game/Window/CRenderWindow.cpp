@@ -26,6 +26,7 @@ namespace Window
 
 		m_gameView.reset(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f((float)this->getSize().x, (float)this->getSize().y)));
 		m_gameView.zoom(1920.f / (float)this->getSize().x);
+		//m_gameView.reset(sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(1920, 1080)));
 	}
 
 	void CRenderWindow::SetWindowFocus(bool value)
@@ -37,12 +38,19 @@ namespace Window
 	{
 		return m_focusing;
 	}
+
 	void CRenderWindow::setDefaultView()
 	{
 		this->setView(this->getDefaultView());
 	}
+
 	void CRenderWindow::setGameView()
 	{
 		this->setView(m_gameView);
+	}
+
+	sf::Vector2f CRenderWindow::getMousePosition()
+	{
+		return this->mapPixelToCoords(sf::Mouse::getPosition(*this));
 	}
 }

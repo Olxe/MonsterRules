@@ -16,3 +16,9 @@ Tile::~Tile()
 {
 	clearVector(m_objects);
 }
+
+void Builder::Tile::setSize(float w, float h)
+{
+	m_width = w;
+	m_height = h;
+}

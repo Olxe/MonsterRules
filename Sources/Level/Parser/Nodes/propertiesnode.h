@@ -12,7 +12,7 @@ namespace Parser
 		PropertiesNode(Node* parent = nullptr);
 		~PropertiesNode();
 
-		PropertyNode* GetProperty(const std::string& name) const;
+		PropertyNode GetProperty(const std::string& name) const;
 
 	protected:
 		void ParseAttribute(const tinyxml2::XMLElement* eAttribute) override {}

@@ -18,9 +18,7 @@ namespace Window
 		InputManager::bindKey(InputAction::MOVE_RIGHT, sf::Keyboard::D);
 		InputManager::bindKey(InputAction::INTERACT, sf::Keyboard::E);
 
-		InputManager::bindButton(InputAction::ATTACK_LEFT, sf::Mouse::Left);
-		InputManager::bindButton(InputAction::ATTACK_MIDDLE, sf::Mouse::Middle);
-		InputManager::bindButton(InputAction::ATTACK_RIGHT, sf::Mouse::Right);
+		InputManager::bindButton(InputAction::ATTACK, sf::Mouse::Left);
 	}
 
 	bool InputManager::bindKey(InputAction action, sf::Keyboard::Key key)
