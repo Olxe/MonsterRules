@@ -18,15 +18,14 @@ namespace entities
 		PhysicalEntity::onUpdate(deltaTime);
 
 		this->inputReading(deltaTime);
+
 		m_animations.Update(deltaTime);
-		
 	}
 
 	void Hero::onMove(const sf::Vector2i& velocity, const float& deltaTime)
 	{
-		//b2Vec2 vel = b2Vec2(m_b2Body->GetLinearVelocity().x * deltaTime, m_b2Body->GetLinearVelocity().y * deltaTime);
-
 		if (velocity.x == 0 || velocity.y == 0) m_lastVelocity = sf::Vector2i(0, 0);
+
 		if (m_lastVelocity.y > velocity.y) m_currentDirection = Direction::UP;
 		if (m_lastVelocity.y < velocity.y) m_currentDirection = Direction::DOWN;
 		if (m_lastVelocity.x > velocity.x) m_currentDirection = Direction::LEFT;
@@ -34,17 +33,22 @@ namespace entities
 
 		m_lastVelocity = velocity;
 
-		if (velocity == sf::Vector2i(0, 0)) {
-			if (m_currentDirection == Direction::UP) m_animations.Start("IDLE_BACK");
-			if (m_currentDirection == Direction::DOWN) m_animations.Start("IDLE_FRONT");
-			if (m_currentDirection == Direction::LEFT) m_animations.Start("IDLE_LEFT");
-			if (m_currentDirection == Direction::RIGHT) m_animations.Start("IDLE_RIGHT");
-		}
-		else {
-			if (m_currentDirection == Direction::UP) m_animations.Start("WALK_BACK");
-			if (m_currentDirection == Direction::DOWN) m_animations.Start("WALK_FRONT");
-			if (m_currentDirection == Direction::LEFT) m_animations.Start("WALK_LEFT");
-			if (m_currentDirection == Direction::RIGHT) m_animations.Start("WALK_RIGHT");
+		if (!m_animations.Actived() || m_animations.getType() != "ATTACK")
+		{
+			if (abs(velocity.x) == 1 || abs(velocity.y) == 1)
+			{
+				if (m_currentDirection == Direction::UP) m_animations.Start("WALK_BACK");
+				if (m_currentDirection == Direction::DOWN) m_animations.Start("WALK_FRONT");
+				if (m_currentDirection == Direction::LEFT) m_animations.Start("WALK_LEFT");
+				if (m_currentDirection == Direction::RIGHT) m_animations.Start("WALK_RIGHT");
+			}
+			else if (velocity == sf::Vector2i(0, 0))
+			{
+				if (m_currentDirection == Direction::UP) m_animations.Start("IDLE_BACK");
+				if (m_currentDirection == Direction::DOWN) m_animations.Start("IDLE_FRONT");
+				if (m_currentDirection == Direction::LEFT) m_animations.Start("IDLE_LEFT");
+				if (m_currentDirection == Direction::RIGHT) m_animations.Start("IDLE_RIGHT");
+			}
 		}
 		
 		float speed = m_speed;
@@ -61,16 +65,20 @@ namespace entities
 		else if (angle > 360.0f) angle -= 360.0f;
 
 		if (angle >= 225.f && angle <= 315.f) {
-			if (m_animations.Start("ATTACK_BACK")) m_currentDirection = Direction::UP;
+			m_currentDirection = Direction::UP;
+			m_animations.Start("ATTACK_BACK", "ATTACK", true, false);
 		}
 		else if (angle >= 45.f && angle <= 135.f) {
-			if (m_animations.Start("ATTACK_FRONT")) m_currentDirection = Direction::DOWN;
+			m_currentDirection = Direction::DOWN;
+			m_animations.Start("ATTACK_FRONT", "ATTACK", true, false);
 		}
 		else if (angle > 135.f && angle < 225.f) {
-			if (m_animations.Start("ATTACK_LEFT")) m_currentDirection = Direction::LEFT;
+			m_currentDirection = Direction::LEFT;
+			m_animations.Start("ATTACK_LEFT", "ATTACK", true, false);
 		}
 		else if ((angle > 315.f && angle <= 360.f) || (angle >= 0.f && angle < 45.f)) {
-			if (m_animations.Start("ATTACK_RIGHT")) m_currentDirection = Direction::RIGHT;
+			m_currentDirection = Direction::RIGHT;
+			m_animations.Start("ATTACK_RIGHT", "ATTACK", true, false);
 		}
 	}
 
@@ -82,13 +90,23 @@ namespace entities
 	void Hero::inputReading(const float& deltaTime)
 	{
 		Window::InputManager* input = Window::WindowManager::Instance()->GetInputs();
-		
+		sf::Vector2i velocity = sf::Vector2i(0, 0);
+
 		if (input->Action(Window::InputAction::ATTACK)) {
+			if (m_animations.getType() != "ATTACK")
+			{
+				m_animations.Stop();
+			}
+
 			sf::Vector2f mousePosition = Window::WindowManager::Instance()->GetWindow()->getMousePosition();
 			this->onAttack(mousePosition);
 		}
 		else {
-			sf::Vector2i velocity = sf::Vector2i(0, 0);
+			if (m_animations.Actived() && m_animations.getType() == "ATTACK")
+			{
+				m_animations.Stop();
+			}
+
 			if (input->Action(Window::InputAction::MOVE_UP)) {
 				velocity.y += -1;
 			}
@@ -101,7 +119,8 @@ namespace entities
 			if (input->Action(Window::InputAction::MOVE_RIGHT)) {
 				velocity.x += 1;
 			}
-			this->onMove(velocity, deltaTime);
 		}
+
+		this->onMove(velocity, deltaTime);
 	}
 }

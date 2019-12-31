@@ -41,6 +41,7 @@ namespace entities
 	private:
 		float m_speed = 500;
 		Direction m_currentDirection;
+
 		sf::Vector2i m_lastVelocity;
 
 	};

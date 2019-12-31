@@ -33,7 +33,7 @@ namespace entities
 		m_animations.Add("DEAD_LEFT", this->getTexture(), frameSize, 0.1f, std::vector<sf::Vector2i>{ sf::Vector2i(2, 1), sf::Vector2i(3, 1), sf::Vector2i(0, 2) });
 		m_animations.Add("DEAD_RIGHT", this->getTexture(), frameSize, 0.1f, std::vector<sf::Vector2i>{sf::Vector2i(1, 2), sf::Vector2i(2, 2), sf::Vector2i(3, 2) });
 
-		m_animations.Start("IDLE_FRONT", true);
+		m_animations.Start("IDLE_FRONT");
 	}
 
 	Archer::~Archer()

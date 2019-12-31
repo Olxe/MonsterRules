@@ -8,6 +8,7 @@ namespace entities
 		, m_currentTime(0.f)
 		, m_currentFrame(0)
 		, isLooped(false)
+		, isActived(false)
 	{
 	}
 
@@ -20,13 +21,12 @@ namespace entities
 		m_sprite = sprite;
 	}
 
-	bool AnimatedEntity::Add(std::string name, const sf::Texture* texture, sf::Vector2i frameSize, float frameTime, std::vector<sf::Vector2i> framePos)
+	void AnimatedEntity::Add(std::string name, const sf::Texture* texture, sf::Vector2i frameSize, float frameTime, std::vector<sf::Vector2i> framePos)
 	{
 		m_animations.push_back(std::make_unique<Animation>(name, texture, framePos, frameSize, frameTime));
-		return false;
 	}
 
-	bool AnimatedEntity::Start(const std::string& name, bool looped, const std::string& type)
+	bool AnimatedEntity::Start(const std::string& name, const std::string& type, bool looped, bool reseted)
 	{
 		for (auto& animation : m_animations) {
 			if (animation->Name() == name) {
@@ -36,11 +36,16 @@ namespace entities
 					if (m_sprite && m_currentAnimation && m_currentAnimation->Size() > 0) {
 						isLooped = looped;
 						m_type = type;
-						m_currentFrame = 0;
-						m_currentTime = 0;
 						m_sprite->setTexture(*m_currentAnimation->Texture());
-						m_sprite->setTextureRect(m_currentAnimation->Frame(m_currentFrame));
-						m_currentFrame++;
+
+						if (reseted) {
+							this->Stop();
+						}
+						m_sprite->setTextureRect(m_currentAnimation->Frame(m_currentFrame - 1));
+					
+						this->Start();
+
+						return true;
 					}
 				}
 			}
@@ -49,12 +54,12 @@ namespace entities
 		return false;
 	}
 
-	bool AnimatedEntity::Update(const float& deltaTime)
+	void AnimatedEntity::Update(const float& deltaTime)
 	{
-		if (m_currentAnimation) {
+		if (m_currentAnimation && isActived) {
 			m_currentTime += deltaTime;
 
-			if (m_currentTime >= m_currentAnimation->FrameDuration()) {
+			while (m_currentTime >= m_currentAnimation->FrameDuration()) {
 				m_currentTime -= m_currentAnimation->FrameDuration();
 
 				if (m_currentFrame >= m_currentAnimation->Size()) {
@@ -63,19 +68,27 @@ namespace entities
 						m_currentFrame = 0;
 					}
 					else {
-						return false;
+						isActived = false;
 					}
 				}
 
-				if (m_sprite) {
-					m_sprite->setTextureRect(m_currentAnimation->Frame(m_currentFrame));
+				if (isActived && m_sprite) {
 					m_currentFrame++;
+					m_sprite->setTextureRect(m_currentAnimation->Frame(m_currentFrame - 1));
 				}
-
-				return true;
 			}
 		}
+	}
 
-		return false;
+	void AnimatedEntity::Stop()
+	{
+		m_currentFrame = 1;
+		m_currentTime = 0;
+		isActived = false;
+	}
+
+	void AnimatedEntity::Start()
+	{
+		isActived = true;
 	}
 }

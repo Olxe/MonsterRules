@@ -97,12 +97,12 @@ void Builder::TilesetBuilder::createObject(Parser::ObjectNode* objectNode, Tile*
 			objectNode->GetY(), objectNode->GetWidth(), objectNode->GetHeight(), objectNode->GetRotation());
 	}
 	else if (Parser::PolylineNode* polyline = dynamic_cast<Parser::PolylineNode*>(objectNode->GetFirstSpecificChild(Parser::NodeType::POLYLINE))) {
-		obj = new Polyline(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(),
-			objectNode->GetY(), objectNode->GetRotation(), polyline->GetPoints());
+		obj = new Polygone(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(),
+			objectNode->GetY(), objectNode->GetRotation(), polyline->GetPoints(), PolygoneType::POLYLINE);
 	}
 	else if (Parser::PolygoneNode* polygone = dynamic_cast<Parser::PolygoneNode*>(objectNode->GetFirstSpecificChild(Parser::NodeType::POLYGONE))) {
 		obj = new Polygone(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(),
-			objectNode->GetY(), objectNode->GetRotation(), polygone->GetPoints());
+			objectNode->GetY(), objectNode->GetRotation(), polygone->GetPoints(), PolygoneType::POLYGONE);
 	}
 	else if (Parser::PointNode* point = dynamic_cast<Parser::PointNode*>(objectNode->GetFirstSpecificChild(Parser::NodeType::POINT))) {
 		obj = new Point(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(), objectNode->GetY());
@@ -112,56 +112,8 @@ void Builder::TilesetBuilder::createObject(Parser::ObjectNode* objectNode, Tile*
 			objectNode->GetY(), objectNode->GetWidth(), objectNode->GetHeight(), objectNode->GetRotation());
 	}
 
-	if (obj) {
-		if (Parser::PropertiesNode* properties = dynamic_cast<Parser::PropertiesNode*>(objectNode->GetFirstSpecificChild(Parser::NodeType::PROPERTIES))) {
-			obj->SetProperties(properties);
-		}
-		tile->AddObject(obj);
+	if (Parser::PropertiesNode* properties = dynamic_cast<Parser::PropertiesNode*>(objectNode->GetFirstSpecificChild(Parser::NodeType::PROPERTIES))) {
+		obj->SetProperties(properties);
 	}
-
-	//if (objectNode->GetChildNodes().size() == 0) {
-//	ObjectTemplate* obj = new ObjectTemplate(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(),
-//		objectNode->GetY(), objectNode->GetWidth(), objectNode->GetHeight(), objectNode->GetRotation());
-
-//	if (Parser::PropertiesNode* properties = dynamic_cast<Parser::PropertiesNode*>(objectNode->GetFirstSpecificChild(Parser::NodeType::PROPERTIES))) {
-//		obj->SetProperties(properties);
-//	}
-
-//	tile->AddObject(obj);
-//}
-
-
-	//for (auto object_child_node : objectNode->GetChildNodes()) {
-	//	
-	//	if (Parser::EllipseNode* ellipseNode = dynamic_cast<Parser::EllipseNode*>(object_child_node))
-	//	{
-	//		obj = new Ellipse(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(),
-	//		objectNode->GetY(), objectNode->GetWidth(), objectNode->GetHeight(), objectNode->GetRotation());
-	//	}
-	//	else if (Parser::PolylineNode* polylineNode = dynamic_cast<Parser::PolylineNode*>(object_child_node))
-	//	{
-	//		obj = new Polyline(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(),
-	//		objectNode->GetY(), objectNode->GetRotation(), polylineNode->GetPoints());
-	//	}
-	//	else if (Parser::PolygoneNode* polygoneNode = dynamic_cast<Parser::PolygoneNode*>(object_child_node)) {
-	//		obj = new Polygone(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(),
-	//		objectNode->GetY(), objectNode->GetRotation(), polygoneNode->GetPoints());
-	//	}
-	//	else if (Parser::PointNode* pointNode = dynamic_cast<Parser::PointNode*>(object_child_node)) {
-	//		obj = new Point(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(), objectNode->GetY());
-	//	}
-	//	else {
-	//		obj = new ObjectTemplate(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(),
-	//		objectNode->GetY(), objectNode->GetWidth(), objectNode->GetHeight(), objectNode->GetRotation());
-	//	}
-
-	//	if (obj) {
-	//		
-	//		if (Parser::PropertiesNode* properties = dynamic_cast<Parser::PropertiesNode*>(objectNode->GetFirstSpecificChild(Parser::NodeType::PROPERTIES))) {
-	//			obj->SetProperties(properties);
-	//		}
-	//		
-	//		tile->AddObject(obj);
-	//	}
-	//}
+	tile->AddObject(obj);
 }

@@ -19,6 +19,9 @@ namespace layer
 				}
 				else Out("Error : ", "Scene object has not tile");
 			}
+			else {
+				Out("test");
+			}
 		}
 	}
 

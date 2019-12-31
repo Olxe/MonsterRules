@@ -23,9 +23,9 @@ public:
 	void Create(sf::Vector2f position, float rotation, b2BodyType bodyType, bool rotationFixed, void* userData);
 	
 	bool AddFixtureRectangle(sf::Vector2f offset, sf::Vector2f size, float rotation, float density = 1.f, bool isSensor = false);
-	bool AddFixtureEdge(sf::Vector2f p1, sf::Vector2f p2, float density = 1.f, bool isSensor = false);//no offset ?
-	//bool AddFixturePolygon(sf::Vector2f offset, const std::vector< Point >& points, float density = 1.f, bool isSensor = false);
+	bool AddFixtureEdge(sf::Vector2f offset, sf::Vector2f p1, sf::Vector2f p2, float density = 1.f, bool isSensor = false);//no offset ?
 	bool AddFixtureCircle(sf::Vector2f offset, float radius, float density = 1.f, bool isSensor = false);
+	bool AddFixturePolygon(sf::Vector2f offset, std::vector<sf::Vector2f> points, float density = 1.f, bool isSensor = false);
 
 	void clearBody();
 	sf::Vector2f getPosition() const;

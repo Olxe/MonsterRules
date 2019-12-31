@@ -18,6 +18,7 @@ std::vector< Layout* > Builder::TiledBuilder::Build(Parser::MapNode* map)
 		clearVector(m_layouts);
 		clearVector(m_tiles);
 
+		int unique_id = 1;
 		for (auto map_child_node : map->GetChildNodes()) {
 			if (Parser::TilesetNode* tilesetNode = dynamic_cast<Parser::TilesetNode*>(map_child_node)) {
 				TilesetBuilder tilesetBuilder;
@@ -28,7 +29,7 @@ std::vector< Layout* > Builder::TiledBuilder::Build(Parser::MapNode* map)
 				m_layouts.push_back(new LayerBuilder(layerNode, m_tiles, map->GetTilewidth(), map->GetTileheight()));
 			}
 			if (Parser::ObjectGroupNode* objectGroup = dynamic_cast<Parser::ObjectGroupNode*>(map_child_node)) {
-				m_layouts.push_back(new ObjectGroupBuilder(objectGroup, m_tiles));
+				m_layouts.push_back(new ObjectGroupBuilder(objectGroup, m_tiles, unique_id));
 			}
 		}
 	}

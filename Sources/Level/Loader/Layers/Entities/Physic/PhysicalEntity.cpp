@@ -6,37 +6,41 @@ namespace entities
 		: Entity(obj)
 		, m_physicalBody(nullptr)
 	{
+		/////BODY CREATION/////
 		b2BodyType type = b2BodyType::b2_staticBody;
-		if (obj->GetTile()->getProperties()->GetProperty("physic").ToString() == "dynamic") type = b2BodyType::b2_dynamicBody;
-		if (obj->GetTile()->getProperties()->GetProperty("physic").ToString() == "kinematic") type = b2BodyType::b2_kinematicBody;
-		bool isRotationFixed = obj->GetTile()->getProperties()->GetProperty("fixedRotation").ToBool(true);
-
+		bool isRotationFixed = true;
+		if (const Parser::PropertiesNode* tile_properties = dynamic_cast<const Parser::PropertiesNode*>(obj->GetTile()->getProperties())) {
+			type = (b2BodyType)obj->GetTile()->getProperties()->GetProperty("physic").ToInt(0);
+			isRotationFixed = obj->GetTile()->getProperties()->GetProperty("fixedRotation").ToBool(true);
+		}
 		m_physicalBody = std::unique_ptr<PhysicalBody>(new PhysicalBody(this->getPosition(), this->getRotation(), type, isRotationFixed, this));
+		/////BODY CREATION/////
 
-		for (auto it : obj->GetTile()->GetObjects()) {
-			if (Builder::Polygone* o = dynamic_cast<Builder::Polygone*>(it)) {
-
+		/////FIXTURES CREATION/////
+		for (auto tile_obj : obj->GetTile()->GetObjects()) {
+			float density = 1.f;
+			bool isSensor = false;
+			if (const Parser::PropertiesNode* properties = dynamic_cast<const Parser::PropertiesNode*>(tile_obj->getProperties())) {
+				density = tile_obj->getProperties()->GetProperty("density").ToFloat(1.f);
+				isSensor = tile_obj->getProperties()->GetProperty("isSensor").ToBool(false);
 			}
-			else if (Builder::Ellipse* e = dynamic_cast<Builder::Ellipse*>(it)) {
-				sf::Vector2f offset = sf::Vector2f(e->GetX() + e->GetWidth() / 2.f - obj->GetTile()->GetWidth() / 2.f,
-					e->GetY() + e->GetHeight() / 2.f - obj->GetTile()->GetHeight() / 2.f);
-
-				float density = it->getProperties()->GetProperty("density").ToFloat(1.f);
-				bool isSensor = it->getProperties()->GetProperty("isSensor").ToBool(false);
-
-				m_physicalBody->AddFixtureCircle(offset, e->GetWidth() / 2.f , density, isSensor);
+			
+			if (Builder::Polygone* polygone = dynamic_cast<Builder::Polygone*>(tile_obj)) {
+				if (polygone->getCategory() == Builder::PolygoneType::POLYGONE) {
+					this->addPolygone(polygone, density, isSensor);
+				}
+				else {
+					this->addPolyline(polygone, density, isSensor);
+				}	
+			}
+			else if (Builder::Ellipse* ellipse = dynamic_cast<Builder::Ellipse*>(tile_obj)) {
+				this->addCircle(ellipse, density, isSensor);
 			}
 			else{
-				sf::Vector2f offset = sf::Vector2f(it->GetX() + it->GetWidth() / 2.f - obj->GetTile()->GetWidth() / 2.f,
-					it->GetY() + it->GetHeight() / 2.f - obj->GetTile()->GetHeight() / 2.f);
-
-				float density = it->getProperties()->GetProperty("density").ToFloat(1.f);
-				bool isSensor = it->getProperties()->GetProperty("isSensor").ToBool(false);
-
-				m_physicalBody->AddFixtureRectangle(offset,
-					sf::Vector2f(it->GetWidth(), it->GetHeight()), it->GetRotation(), density, isSensor);
+				this->addRectangle(tile_obj, density, isSensor);
 			}
 		}
+		/////FIXTURES CREATION/////
 	}
 
 	PhysicalEntity::~PhysicalEntity()
@@ -50,10 +54,48 @@ namespace entities
 		
 		if (isDebug) m_physicalBody->onUpdate();
 	}
+
 	void PhysicalEntity::onDraw(sf::RenderWindow& window) const
 	{
 		Entity::onDraw(window);
 
 		if (isDebug) m_physicalBody->onDraw(window);
+	}
+
+	void PhysicalEntity::addPolygone(Builder::Polygone* polygone, float density, bool isSensor)
+	{
+		sf::Vector2f offset = sf::Vector2f(polygone->GetX(), polygone->GetY()) - this->getOrigin();
+		std::vector<sf::Vector2f> points;
+		for (auto& point : polygone->getPoints()) {
+			points.push_back(sf::Vector2f(point.GetX(), point.GetY()));
+		}
+
+		m_physicalBody->AddFixturePolygon(offset, points, density, isSensor);
+	}
+
+	void PhysicalEntity::addPolyline(Builder::Polygone* polyline, float density, bool isSensor)
+	{
+		sf::Vector2f offset = sf::Vector2f(polyline->GetX(), polyline->GetY()) - this->getOrigin();
+
+		for (unsigned int i = 1; i < polyline->getPoints().size(); ++i) {
+			sf::Vector2f p1 = sf::Vector2f(polyline->getPoints()[i - 1].GetX(), polyline->getPoints()[i - 1].GetY());
+			sf::Vector2f p2 = sf::Vector2f(polyline->getPoints()[i].GetX(), polyline->getPoints()[i].GetY());
+
+			m_physicalBody->AddFixtureEdge(offset, p1, p2, density, isSensor);
+		}
+	}
+
+	void PhysicalEntity::addCircle(Builder::Ellipse* ellipse, float density, bool isSensor)
+	{
+		sf::Vector2f offset = sf::Vector2f(ellipse->GetX() + ellipse->GetWidth() / 2.f, ellipse->GetY() + ellipse->GetHeight() / 2.f) - this->getOrigin();
+
+		m_physicalBody->AddFixtureCircle(offset, ellipse->GetWidth() / 2.f, density, isSensor);
+	}
+
+	void PhysicalEntity::addRectangle(Builder::ObjectTemplate* rect, float density, bool isSensor)
+	{
+		sf::Vector2f offset = sf::Vector2f(rect->GetX() + rect->GetWidth() / 2.f, rect->GetY() + rect->GetHeight() / 2.f) - this->getOrigin();
+
+		m_physicalBody->AddFixtureRectangle(offset, sf::Vector2f(rect->GetWidth(), rect->GetHeight()), rect->GetRotation(), density, isSensor);
 	}
 }

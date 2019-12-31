@@ -2,8 +2,9 @@
 
 using namespace Builder;
 
-Polygone::Polygone(std::string name, std::string type, float x, float y, float rotation, std::string points)
+Polygone::Polygone(std::string name, std::string type, float x, float y, float rotation, std::string points, PolygoneType category)
 	: ObjectTemplate(name, type, x, y, 0.f, 0.f, rotation)
+	, m_category(category)
 {
 	this->convertPoints(points);
 }

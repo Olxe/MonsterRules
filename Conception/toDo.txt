@@ -1,0 +1,10 @@
+<--------------------------------------------------------------------------------------------------------->
+- Builder -> recycler des objects de parser
+- Gestion erreur Parser/Builder/loader
+- Parser/builder -> utilisation de std::unique_ptr
+- Parser/Builder -> utilisation de sf::vector2
+- tilesetBuilder/ObjectGroupBuilder -> doublon de code création object
+<--------------------------------------------------------------------------------------------------------->
+- Physiques formes non graphique entityLayer 
+<--------------------------------------------------------------------------------------------------------->
+

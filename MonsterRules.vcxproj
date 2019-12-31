@@ -172,7 +172,6 @@
     <ClCompile Include="Sources\Level\Builder\Objects\Shapes\Ellipse.cpp" />
     <ClCompile Include="Sources\Level\Builder\Objects\Shapes\Point.cpp" />
     <ClCompile Include="Sources\Level\Builder\Objects\Shapes\Polygone.cpp" />
-    <ClCompile Include="Sources\Level\Builder\Objects\Shapes\Polyline.cpp" />
     <ClCompile Include="Sources\Level\Builder\Objects\Tile.cpp" />
     <ClCompile Include="Sources\Level\Builder\Objects\TilesetTile.cpp" />
     <ClCompile Include="Sources\Level\Builder\TiledBuilder.cpp" />
@@ -256,7 +255,6 @@
     <ClInclude Include="Sources\Level\Builder\Objects\Shapes\Ellipse.h" />
     <ClInclude Include="Sources\Level\Builder\Objects\Shapes\Point.h" />
     <ClInclude Include="Sources\Level\Builder\Objects\Shapes\Polygone.h" />
-    <ClInclude Include="Sources\Level\Builder\Objects\Shapes\Polyline.h" />
     <ClInclude Include="Sources\Level\Builder\Objects\Tile.h" />
     <ClInclude Include="Sources\Level\Builder\Objects\TilesetTile.h" />
     <ClInclude Include="Sources\Level\Builder\TiledBuilder.h" />

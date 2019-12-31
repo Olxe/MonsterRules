@@ -11,21 +11,18 @@
   <properties>
    <property name="fixedRotation" type="bool" value="true"/>
    <property name="life" type="int" value="100"/>
-   <property name="physic" value="static"/>
+   <property name="physic" type="int" value="0"/>
   </properties>
   <image width="58" height="74" source="../../Textures/Barrel (3).png"/>
-  <objectgroup draworder="index" id="2">
-   <object id="3" x="4.57576" y="9.90909" width="50" height="50">
-    <properties>
-     <property name="isSensor" type="bool" value="false"/>
-    </properties>
-    <ellipse/>
+  <objectgroup draworder="index" id="4">
+   <object id="14" x="2" y="46.6667">
+    <polygon points="0,0 10,16 43.3333,16 54,-0.666667"/>
    </object>
   </objectgroup>
  </tile>
  <tile id="3" type="HERO_ARCHER">
   <properties>
-   <property name="physic" value="dynamic"/>
+   <property name="physic" type="int" value="2"/>
   </properties>
   <image width="117" height="78" source="../../Textures/Characters/Heroes/Hero_2/tiledHero2.png"/>
   <objectgroup draworder="index" id="2">

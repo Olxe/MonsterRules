@@ -59,9 +59,36 @@ bool PhysicalBody::AddFixtureRectangle(sf::Vector2f offset, sf::Vector2f size, f
 	return true;
 }
 
-bool PhysicalBody::AddFixtureEdge(sf::Vector2f p1, sf::Vector2f p2, float density, bool isSensor)
+bool PhysicalBody::AddFixtureEdge(sf::Vector2f offset, sf::Vector2f p1, sf::Vector2f p2, float density, bool isSensor)
 {
-	return false;
+	if (!m_b2Body) return false;
+
+	b2EdgeShape shape;
+	shape.Set(b2Vec2((p1.x + offset.x) / SCALE, (p1.y + offset.y) / SCALE), b2Vec2((p2.x + offset.x) / SCALE, (p2.y + offset.y) / SCALE));
+
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape = &shape;
+	fixtureDef.density = density;
+	fixtureDef.isSensor = isSensor;
+
+	m_b2Body->CreateFixture(&fixtureDef);
+
+	std::unique_ptr<sf::ConvexShape> debugShape(new sf::ConvexShape());
+	debugShape->setPointCount(3);
+	debugShape->setPoint(0, p1);
+	debugShape->setPoint(1, p2);
+	debugShape->setPoint(2, p1);
+	debugShape->setPosition(sf::Vector2f(m_b2Body->GetPosition().x * SCALE + offset.x, m_b2Body->GetPosition().y * SCALE + offset.y));
+	debugShape->setFillColor(sf::Color(sf::Color::Transparent));
+	if (!isSensor)
+		debugShape->setOutlineColor(sf::Color::Red);
+	else
+		debugShape->setOutlineColor(sf::Color::Blue);
+	debugShape->setOutlineThickness(1);
+
+	this->addRect(std::move(debugShape), offset);
+
+	return true;
 }
 
 /*bool PhysicalBody::AddFixturePolygon(sf::Vector2f offset, const std::vector<Point>& points, float density, bool isSensor)
@@ -96,6 +123,43 @@ bool PhysicalBody::AddFixtureCircle(sf::Vector2f offset, float radius, float den
 	rect->setOutlineThickness(1);
 
 	this->addRect(std::move(rect), offset);
+
+	return true;
+}
+
+bool PhysicalBody::AddFixturePolygon(sf::Vector2f offset, std::vector<sf::Vector2f> points, float density, bool isSensor)
+{
+	if (!m_b2Body) return false;
+
+	b2Vec2* vertices = new b2Vec2[points.size()];//delete ?
+	for (size_t i = 0; i < points.size(); i++) {
+		vertices[i].Set((points[i].x + offset.x) / SCALE, (points[i].y + offset.y) / SCALE);
+	}
+
+	b2PolygonShape shape;
+	shape.Set(vertices, (int32)points.size());
+
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape = &shape;
+	fixtureDef.density = density;
+	fixtureDef.isSensor = isSensor;
+
+	m_b2Body->CreateFixture(&fixtureDef);
+
+	std::unique_ptr<sf::ConvexShape> debugShape(new sf::ConvexShape());
+	debugShape->setPointCount(points.size());
+	for (size_t i = 0; i < points.size(); i++) {
+		debugShape->setPoint(i, points[i]);
+	}
+	debugShape->setPosition(sf::Vector2f(m_b2Body->GetPosition().x * SCALE + offset.x, m_b2Body->GetPosition().y * SCALE + offset.y));
+	debugShape->setFillColor(sf::Color(sf::Color::Transparent));
+	if (!isSensor)
+		debugShape->setOutlineColor(sf::Color::Red);
+	else
+		debugShape->setOutlineColor(sf::Color::Blue);
+	debugShape->setOutlineThickness(1);
+
+	this->addRect(std::move(debugShape), offset);
 
 	return true;
 }

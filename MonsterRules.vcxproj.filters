@@ -42,9 +42,6 @@
     <ClCompile Include="Sources\Level\Builder\Objects\Shapes\Polygone.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Level\Builder\Objects\Shapes\Polyline.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Level\Builder\Objects\Customizable.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -255,9 +252,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Level\Builder\Objects\Shapes\Polygone.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Level\Builder\Objects\Shapes\Polyline.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Level\Builder\Objects\Customizable.h">
