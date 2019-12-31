@@ -6,7 +6,6 @@
 #include "Objects/Shapes/Ellipse.h"
 #include "Objects/Shapes/Point.h"
 #include "Objects/Shapes/Polygone.h"
-#include "Objects/Shapes/Polyline.h"
 
 namespace Builder
 {

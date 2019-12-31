@@ -6,7 +6,6 @@
 #include "Customizable.h"
 
 #include "Shapes/Polygone.h"
-#include "Shapes/Polyline.h"
 #include "Shapes/Ellipse.h"
 #include "Shapes/Point.h"
 

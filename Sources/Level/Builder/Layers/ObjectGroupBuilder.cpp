@@ -48,7 +48,6 @@ ObjectGroupBuilder::ObjectGroupBuilder(Parser::ObjectGroupNode* objectGroup, std
 
 				m_layout.push_back(object);
 			}
-			Out(unique_id);
 			unique_id++;
 		}
 	}
