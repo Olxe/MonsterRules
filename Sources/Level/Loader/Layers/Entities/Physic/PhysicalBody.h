@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Box2DWorld.h"
-#include "Debug/PhysicDebug.h"
+#include "DrawingShapes/PhysicDebug.h"
 
 //#include "../../../Builder/Objects/SceneObject.h"
 
