@@ -11,6 +11,7 @@ namespace entities
 	{
 	public:
 		Entity(Builder::SceneObject* obj);
+		Entity(Builder::ObjectTemplate* obj);
 		virtual ~Entity();
 
 		virtual void onUpdate(const float& deltaTime) {}

@@ -24,6 +24,7 @@ namespace layer
 
 	private:
 		std::vector< std::unique_ptr<entities::PhysicalEntity> > m_entities;
+		std::vector< std::unique_ptr<entities::PhysicalEntity> > m_wallAreas;
 
 	};
 }

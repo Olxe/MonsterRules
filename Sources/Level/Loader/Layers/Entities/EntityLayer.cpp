@@ -20,7 +20,7 @@ namespace layer
 				else Out("Error : ", "Scene object has not tile");
 			}
 			else {
-				//toDo
+				m_wallAreas.push_back(std::unique_ptr<entities::PhysicalEntity>(new entities::PhysicalEntity(obj)));
 			}
 		}
 	}
@@ -30,11 +30,19 @@ namespace layer
 		for (auto& entity : m_entities) {
 			entity->onUpdate(deltaTime);
 		}
+
+		for (auto& entity : m_wallAreas) {
+			entity->onUpdate(deltaTime);
+		}
 	}
 
 	void EntityLayer::onDraw(sf::RenderWindow& window)
 	{
 		for (auto& entity : m_entities) {
+			entity->onDraw(window);
+		}
+
+		for (auto& entity : m_wallAreas) {
 			entity->onDraw(window);
 		}
 	}

@@ -9,6 +9,7 @@ namespace entities
 	{
 	public:
 		PhysicalEntity(Builder::SceneObject* obj);
+		PhysicalEntity(Builder::ObjectTemplate* obj);
 		virtual ~PhysicalEntity();
 
 		void onUpdate(const float& deltaTime) override;
@@ -18,6 +19,9 @@ namespace entities
 		virtual void CheckSensorCollision(PhysicalEntity* pOther) {}
 		virtual void CheckEndContact(PhysicalEntity* pOther) {}
 		virtual void CheckEndSensorContact(PhysicalEntity* pOther) {}
+
+	protected:
+		void addShapes(Builder::ObjectTemplate* obj);
 
 	private:
 		void addPolygone(Builder::Polygone* polygone, float density, bool isSensor);

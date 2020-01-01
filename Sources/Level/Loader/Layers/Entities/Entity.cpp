@@ -17,6 +17,14 @@ namespace entities
 		m_name = obj->GetName();
 	}
 
+	Entity::Entity(Builder::ObjectTemplate* obj)
+	{
+		this->setPosition(sf::Vector2f(obj->GetX(), obj->GetY()));
+		this->setRotation(obj->GetRotation());
+		//m_id = obj->getUniqueId();
+		m_name = obj->GetName();
+	}
+
 	Entity::~Entity()
 	{
 	}

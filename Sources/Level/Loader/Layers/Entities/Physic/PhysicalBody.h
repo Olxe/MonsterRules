@@ -5,7 +5,9 @@
 #include "Box2DWorld.h"
 #include "Debug/PhysicDebug.h"
 
-enum Hitbox
+//#include "../../../Builder/Objects/SceneObject.h"
+
+enum class Hitbox
 {
 	ANY = 0x0000,
 	PLAYER_SENSOR = 0x0001,
@@ -21,7 +23,6 @@ public:
 	~PhysicalBody();
 
 	void Create(sf::Vector2f position, float rotation, b2BodyType bodyType, bool rotationFixed, void* userData);
-	
 	bool AddFixtureRectangle(sf::Vector2f offset, sf::Vector2f size, float rotation, float density = 1.f, bool isSensor = false);
 	bool AddFixtureEdge(sf::Vector2f offset, sf::Vector2f p1, sf::Vector2f p2, float density = 1.f, bool isSensor = false);//no offset ?
 	bool AddFixtureCircle(sf::Vector2f offset, float radius, float density = 1.f, bool isSensor = false);
@@ -30,7 +31,6 @@ public:
 	void clearBody();
 	sf::Vector2f getPosition() const;
 	float getRotation() const;
-
 	b2Body* getBody() { return m_b2Body; }
 
 private:

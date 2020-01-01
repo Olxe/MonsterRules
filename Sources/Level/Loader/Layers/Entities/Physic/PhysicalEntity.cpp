@@ -18,28 +18,27 @@ namespace entities
 
 		/////FIXTURES CREATION/////
 		for (auto tile_obj : obj->GetTile()->GetObjects()) {
-			float density = 1.f;
-			bool isSensor = false;
-			if (const Parser::PropertiesNode* properties = dynamic_cast<const Parser::PropertiesNode*>(tile_obj->getProperties())) {
-				density = tile_obj->getProperties()->GetProperty("density").ToFloat(1.f);
-				isSensor = tile_obj->getProperties()->GetProperty("isSensor").ToBool(false);
-			}
-			
-			if (Builder::Polygone* polygone = dynamic_cast<Builder::Polygone*>(tile_obj)) {
-				if (polygone->getCategory() == Builder::PolygoneType::POLYGONE) {
-					this->addPolygone(polygone, density, isSensor);
-				}
-				else {
-					this->addPolyline(polygone, density, isSensor);
-				}	
-			}
-			else if (Builder::Ellipse* ellipse = dynamic_cast<Builder::Ellipse*>(tile_obj)) {
-				this->addCircle(ellipse, density, isSensor);
-			}
-			else{
-				this->addRectangle(tile_obj, density, isSensor);
-			}
+			this->addShapes(tile_obj);
 		}
+		/////FIXTURES CREATION/////
+	}
+
+	PhysicalEntity::PhysicalEntity(Builder::ObjectTemplate* obj)
+		: Entity(obj)
+		, m_physicalBody(nullptr)
+	{
+		/////BODY CREATION/////
+		b2BodyType type = b2BodyType::b2_staticBody;
+		bool isRotationFixed = true;
+		if (const Parser::PropertiesNode* tile_properties = dynamic_cast<const Parser::PropertiesNode*>(obj->getProperties())) {
+			type = (b2BodyType)obj->getProperties()->GetProperty("physic").ToInt(0);
+			isRotationFixed = obj->getProperties()->GetProperty("fixedRotation").ToBool(true);
+		}
+		m_physicalBody = std::unique_ptr<PhysicalBody>(new PhysicalBody(sf::Vector2f(obj->GetX(), obj->GetY()), obj->GetRotation(), type, isRotationFixed, this));
+		/////BODY CREATION/////
+		obj->SetPosition(0, 0);
+		/////FIXTURES CREATION/////
+		this->addShapes(obj);
 		/////FIXTURES CREATION/////
 	}
 
@@ -62,6 +61,31 @@ namespace entities
 		if (isDebug) m_physicalBody->onDraw(window);
 	}
 
+	void PhysicalEntity::addShapes(Builder::ObjectTemplate* obj)
+	{
+		float density = 1.f;
+		bool isSensor = false;
+		if (const Parser::PropertiesNode* properties = dynamic_cast<const Parser::PropertiesNode*>(obj->getProperties())) {
+			density = properties->GetProperty("density").ToFloat(1.f);
+			isSensor = properties->GetProperty("isSensor").ToBool(false);
+		}
+
+		if (Builder::Polygone* polygone = dynamic_cast<Builder::Polygone*>(obj)) {
+			if (polygone->getCategory() == Builder::PolygoneType::POLYGONE) {
+				this->addPolygone(polygone, density, isSensor);
+			}
+			else {
+				this->addPolyline(polygone, density, isSensor);
+			}
+		}
+		else if (Builder::Ellipse* ellipse = dynamic_cast<Builder::Ellipse*>(obj)) {
+			this->addCircle(ellipse, density, isSensor);
+		}
+		else {
+			this->addRectangle(obj, density, isSensor);
+		}
+	}
+
 	void PhysicalEntity::addPolygone(Builder::Polygone* polygone, float density, bool isSensor)
 	{
 		sf::Vector2f offset = sf::Vector2f(polygone->GetX(), polygone->GetY()) - this->getOrigin();
@@ -76,7 +100,7 @@ namespace entities
 	void PhysicalEntity::addPolyline(Builder::Polygone* polyline, float density, bool isSensor)
 	{
 		sf::Vector2f offset = sf::Vector2f(polyline->GetX(), polyline->GetY()) - this->getOrigin();
-
+		Out(offset.x, offset.y);
 		for (unsigned int i = 1; i < polyline->getPoints().size(); ++i) {
 			sf::Vector2f p1 = sf::Vector2f(polyline->getPoints()[i - 1].GetX(), polyline->getPoints()[i - 1].GetY());
 			sf::Vector2f p2 = sf::Vector2f(polyline->getPoints()[i].GetX(), polyline->getPoints()[i].GetY());

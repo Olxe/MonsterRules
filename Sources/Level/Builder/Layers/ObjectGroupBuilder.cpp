@@ -5,48 +5,46 @@ using namespace Builder;
 ObjectGroupBuilder::ObjectGroupBuilder(Parser::ObjectGroupNode* objectGroup, std::vector< Tile* >& tiles, int& unique_id)
 {
 	for (auto it : objectGroup->GetSpecificListOfChild(Parser::NodeType::OBJECT)) {
-		if (Parser::ObjectNode* objNode = dynamic_cast<Parser::ObjectNode*>(it)) {
+		if (Parser::ObjectNode* objectNode = dynamic_cast<Parser::ObjectNode*>(it)) {
 
-			if (objNode->GetGid() > 0) {
-				Tile* tile = this->getTileWithGid(objNode->GetGid(), tiles);
-				SceneObject* sceneObject = new SceneObject(unique_id, objNode->GetName(), objNode->GetType(), objNode->GetX(), objNode->GetY(),
-					objNode->GetWidth(), objNode->GetHeight(), objNode->GetRotation(), tile);
+			if (objectNode->GetGid() > 0) {
+				Tile* tile = this->getTileWithGid(objectNode->GetGid(), tiles);
+				SceneObject* sceneObject = new SceneObject(unique_id, objectNode->GetName(), objectNode->GetType(), objectNode->GetX(), objectNode->GetY(),
+					objectNode->GetWidth(), objectNode->GetHeight(), objectNode->GetRotation(), tile);
 
-				if (Parser::PropertiesNode* propertiesNode = dynamic_cast<Parser::PropertiesNode*>(objNode->GetFirstSpecificChild(Parser::NodeType::PROPERTIES))){
+				if (Parser::PropertiesNode* propertiesNode = dynamic_cast<Parser::PropertiesNode*>(objectNode->GetFirstSpecificChild(Parser::NodeType::PROPERTIES))){
 					sceneObject->SetProperties(propertiesNode);
 				}
 				
 				m_layout.push_back(sceneObject);
 			}
 			else {
-				ObjectTemplate* object;
-				if (Parser::EllipseNode* ellipseNode = dynamic_cast<Parser::EllipseNode*>(objNode))
-				{
-					object = new Ellipse(objNode->GetName(), objNode->GetType(), objNode->GetX(),
-						objNode->GetY(), objNode->GetWidth(), objNode->GetHeight(), objNode->GetRotation());
+				ObjectTemplate* obj = nullptr;
+				if (Parser::EllipseNode* ellipse = dynamic_cast<Parser::EllipseNode*>(objectNode->GetFirstSpecificChild(Parser::NodeType::ELLIPSE))) {
+					obj = new Ellipse(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(),
+						objectNode->GetY(), objectNode->GetWidth(), objectNode->GetHeight(), objectNode->GetRotation());
 				}
-				else if (Parser::PolylineNode* polylineNode = dynamic_cast<Parser::PolylineNode*>(objNode))
-				{
-					object = new Polygone(objNode->GetName(), objNode->GetType(), objNode->GetX(),
-						objNode->GetY(), objNode->GetRotation(), polylineNode->GetPoints(), PolygoneType::POLYLINE);
+				else if (Parser::PolylineNode* polyline = dynamic_cast<Parser::PolylineNode*>(objectNode->GetFirstSpecificChild(Parser::NodeType::POLYLINE))) {
+					obj = new Polygone(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(),
+						objectNode->GetY(), objectNode->GetRotation(), polyline->GetPoints(), PolygoneType::POLYLINE);
 				}
-				else if (Parser::PolygoneNode* polygoneNode = dynamic_cast<Parser::PolygoneNode*>(objNode)) {
-					object = new Polygone(objNode->GetName(), objNode->GetType(), objNode->GetX(),
-						objNode->GetY(), objNode->GetRotation(), polygoneNode->GetPoints(), PolygoneType::POLYGONE);
+				else if (Parser::PolygoneNode* polygone = dynamic_cast<Parser::PolygoneNode*>(objectNode->GetFirstSpecificChild(Parser::NodeType::POLYGONE))) {
+					obj = new Polygone(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(),
+						objectNode->GetY(), objectNode->GetRotation(), polygone->GetPoints(), PolygoneType::POLYGONE);
 				}
-				else if (Parser::PointNode* pointNode = dynamic_cast<Parser::PointNode*>(objNode)) {
-					object = new Point(objNode->GetName(), objNode->GetType(), objNode->GetX(), objNode->GetY());
+				else if (Parser::PointNode* point = dynamic_cast<Parser::PointNode*>(objectNode->GetFirstSpecificChild(Parser::NodeType::POINT))) {
+					obj = new Point(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(), objectNode->GetY());
 				}
 				else {
-					object = new ObjectTemplate(objNode->GetName(), objNode->GetType(), objNode->GetX(),
-						objNode->GetY(), objNode->GetWidth(), objNode->GetHeight(), objNode->GetRotation());
+					obj = new ObjectTemplate(objectNode->GetName(), objectNode->GetType(), objectNode->GetX(),
+						objectNode->GetY(), objectNode->GetWidth(), objectNode->GetHeight(), objectNode->GetRotation());
 				}
 
-				if (Parser::PropertiesNode* propertiesNode = dynamic_cast<Parser::PropertiesNode*>(objNode->GetFirstSpecificChild(Parser::NodeType::PROPERTIES))) {
-					object->SetProperties(propertiesNode);
+				if (Parser::PropertiesNode* properties = dynamic_cast<Parser::PropertiesNode*>(objectNode->GetFirstSpecificChild(Parser::NodeType::PROPERTIES))) {
+					obj->SetProperties(properties);
 				}
 
-				m_layout.push_back(object);
+				m_layout.push_back(obj);
 			}
 			unique_id++;
 		}
