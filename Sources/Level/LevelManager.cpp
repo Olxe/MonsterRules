@@ -15,8 +15,8 @@ LevelManager::LevelManager()
 
 LevelManager::~LevelManager()
 {
-	//m_layer.clear();
-	//Box2DWorld::Instance()->DeleteInstance();//crash
+	m_layers.clear();
+	Box2DWorld::Instance()->DeleteInstance();
 }
 
 void LevelManager::LoadLevel(Level level)

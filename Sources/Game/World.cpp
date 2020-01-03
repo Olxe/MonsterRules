@@ -2,13 +2,13 @@
 
 World::World()
 {
-	int cpt = 1;
+	int cpt = 100000;
 	while (cpt > 0) {
 
 		m_levelManager.LoadLevel(Level::LEVEL_1);
 
 		cpt--;
-		//std::cout << cpt << std::endl;
+		std::cout << cpt << std::endl;
 	}
 	
 }

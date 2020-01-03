@@ -33,6 +33,8 @@ bool PhysicalBody::AddFixtureRectangle(sf::Vector2f offset, sf::Vector2f size, f
 {
 	if (!m_b2Body) return false;
 
+	offset += size / 2.f;
+
 	b2PolygonShape shape;
 	shape.SetAsBox(size.x / 2.0f / SCALE, size.y / 2.0f / SCALE, b2Vec2(offset.x / SCALE, offset.y / SCALE), rotation / 180.f * b2_pi);
 	b2FixtureDef fixtureDef;
@@ -54,7 +56,7 @@ bool PhysicalBody::AddFixtureRectangle(sf::Vector2f offset, sf::Vector2f size, f
 		rect->setOutlineColor(sf::Color::Blue);
 	rect->setOutlineThickness(1);
 	
-	this->addRect(std::move(rect), offset);
+	this->addShape(std::move(rect), offset);
 
 	return true;
 }
@@ -73,36 +75,13 @@ bool PhysicalBody::AddFixtureEdge(sf::Vector2f offset, sf::Vector2f p1, sf::Vect
 
 	m_b2Body->CreateFixture(&fixtureDef);
 
-	/*std::unique_ptr<sf::ConvexShape> debugShape(new sf::ConvexShape());
-	debugShape->setPointCount(3);
-	debugShape->setPoint(0, p1);
-	debugShape->setPoint(1, p2);
-	debugShape->setPoint(2, p1);
-	debugShape->setPosition(sf::Vector2f(m_b2Body->GetPosition().x * SCALE + offset.x, m_b2Body->GetPosition().y * SCALE + offset.y));
-	debugShape->setFillColor(sf::Color(sf::Color::Transparent));
-	if (!isSensor)
-		debugShape->setOutlineColor(sf::Color::Red);
-	else
-		debugShape->setOutlineColor(sf::Color::Blue);
-	debugShape->setOutlineThickness(1);
+	std::unique_ptr<sf::VertexArray> line(new sf::VertexArray(sf::Lines, 2));
+	(*line)[0].position = p1 + offset;
+	(*line)[1].position = p2 + offset;
+	(*line)[0].color = sf::Color::Red;
+	(*line)[1].color = sf::Color::Red;
 
-	this->addRect(std::move(debugShape), offset);*/
-
-	std::unique_ptr<sf::RectangleShape> rect(new sf::RectangleShape());
-	rect->setSize(sf::Vector2f(p2.x - p1.x, 0));
-	//rect->setOrigin(rect->getSize() / 2.f);
-	rect->setPosition(sf::Vector2f(m_b2Body->GetPosition().x * SCALE + offset.x, m_b2Body->GetPosition().y * SCALE + offset.y));
-	sf::Vector2f direction = p2 - p1;
-	float rotation = std::atan2f(direction.y, direction.x) * 180.f / b2_pi;
-	rect->setRotation(rotation);
-	rect->setFillColor(sf::Color(sf::Color::Transparent));
-	if (!isSensor)
-		rect->setOutlineColor(sf::Color::Red);
-	else
-		rect->setOutlineColor(sf::Color::Blue);
-	rect->setOutlineThickness(1);
-
-	this->addRect(std::move(rect), offset);
+	this->addShape(std::move(line));
 
 	return true;
 }
@@ -110,6 +89,8 @@ bool PhysicalBody::AddFixtureEdge(sf::Vector2f offset, sf::Vector2f p1, sf::Vect
 bool PhysicalBody::AddFixtureCircle(sf::Vector2f offset, float radius, float density, bool isSensor)
 {
 	if (!m_b2Body) return false;
+
+	offset += sf::Vector2f(radius, radius);
 
 	b2CircleShape shape;
 	shape.m_radius = radius / SCALE;
@@ -133,7 +114,7 @@ bool PhysicalBody::AddFixtureCircle(sf::Vector2f offset, float radius, float den
 		rect->setOutlineColor(sf::Color::Blue);
 	rect->setOutlineThickness(1);
 
-	this->addRect(std::move(rect), offset);
+	this->addShape(std::move(rect), offset);
 
 	return true;
 }
@@ -170,7 +151,7 @@ bool PhysicalBody::AddFixturePolygon(sf::Vector2f offset, std::vector<sf::Vector
 		debugShape->setOutlineColor(sf::Color::Blue);
 	debugShape->setOutlineThickness(1);
 
-	this->addRect(std::move(debugShape), offset);
+	this->addShape(std::move(debugShape), offset);
 
 	return true;
 }

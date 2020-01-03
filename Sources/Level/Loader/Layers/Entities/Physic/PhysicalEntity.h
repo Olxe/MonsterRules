@@ -14,6 +14,9 @@ namespace entities
 
 		void onUpdate(const float& deltaTime) override;
 		void onDraw(sf::RenderWindow& window) const override;
+		
+		const sf::Vector2f& getPosition() const { return m_physicalBody->getPosition(); }
+		float getRotation() const { return m_physicalBody->getRotation(); }
 
 		virtual void CheckCollision(PhysicalEntity* pOther) {}
 		virtual void CheckSensorCollision(PhysicalEntity* pOther) {}
@@ -21,13 +24,11 @@ namespace entities
 		virtual void CheckEndSensorContact(PhysicalEntity* pOther) {}
 
 	protected:
-		void addShapes(Builder::ObjectTemplate* obj);
-
-	private:
-		void addPolygone(Builder::Polygone* polygone, float density, bool isSensor);
-		void addPolyline(Builder::Polygone* polyline, float density, bool isSensor);
-		void addCircle(Builder::Ellipse* ellipse, float density, bool isSensor);
-		void addRectangle(Builder::ObjectTemplate* rect, float density, bool isSensor);
+		void addShapes(Builder::ObjectTemplate* obj, sf::Vector2f offset);
+		void addPolygone(Builder::Polygone* polygone, sf::Vector2f offset, float density, bool isSensor);
+		void addPolyline(Builder::Polygone* polyline, sf::Vector2f offset, float density, bool isSensor);
+		void addCircle(Builder::Ellipse* ellipse, sf::Vector2f offset, float density, bool isSensor);
+		void addRectangle(Builder::ObjectTemplate* rect, sf::Vector2f offset, float density, bool isSensor);
 			
 	protected:
 		std::unique_ptr<PhysicalBody> m_physicalBody;

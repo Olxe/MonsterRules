@@ -219,10 +219,16 @@
     <ClCompile Include="Sources\Level\Builder\Objects\ObjectTemplate.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DrawingShapes\PhysicDebug.cpp">
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\DebugShape.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DrawingShapes\PhysicDebugShape.cpp">
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\Line.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\PhysicDebug.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\Shape.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -443,10 +449,16 @@
     <ClInclude Include="Sources\Level\Builder\Objects\ObjectTemplate.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\DrawingShapes\PhysicDebug.h">
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\DebugShape.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\DrawingShapes\PhysicDebugShape.h">
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\Line.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\PhysicDebug.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\Shape.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

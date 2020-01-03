@@ -15,12 +15,12 @@ namespace layer
 		for (auto obj : objGrp->getLayout()) {
 			if (Builder::SceneObject* sceneObj = dynamic_cast<Builder::SceneObject*>(obj)) {
 				if (sceneObj->GetTile()) {
-					m_entities.push_back(this->createEntity(sceneObj));
+					//m_entities.push_back(this->createEntity(sceneObj));
 				}
 				else Out("Error : ", "Scene object has not tile");
 			}
 			else {
-				m_wallAreas.push_back(std::unique_ptr<entities::PhysicalEntity>(new entities::PhysicalEntity(obj)));
+				//m_wallAreas.push_back(std::unique_ptr<entities::PhysicalEntity>(new entities::PhysicalEntity(obj)));
 			}
 		}
 	}

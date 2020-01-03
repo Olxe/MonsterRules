@@ -1,6 +1,7 @@
 #ifndef __UTILITY__
 #define __UTILITY__
 
+#include <SFML/Graphics.hpp>
 #include <vector>
 #include <iostream>
 
@@ -34,6 +35,11 @@ template<typename First, typename ... Strings>
 inline void Out(First arg, const Strings&... rest) {
 	std::cout << arg << " ";
 	Out(rest...);
+}
+
+template<typename T>
+inline void OutV(const sf::Vector2<T>& v) {
+	std::cout << v.x << " <> " << v.y << std::endl;
 }
 
 template<class T>

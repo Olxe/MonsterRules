@@ -3,9 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Box2DWorld.h"
-#include "DrawingShapes/PhysicDebug.h"
-
-//#include "../../../Builder/Objects/SceneObject.h"
+#include "DebugShapes/PhysicDebug.h"
 
 enum class Hitbox
 {
@@ -16,7 +14,7 @@ enum class Hitbox
 	SENSOR = 0x0008
 };
 
-class PhysicalBody: public PhysicDebug
+class PhysicalBody: public debug::PhysicDebug
 {
 public:
 	PhysicalBody(sf::Vector2f position, float rotation, b2BodyType bodyType, bool rotationFixed, void* userData);
