@@ -10,7 +10,7 @@ namespace debug
 		Line(std::unique_ptr<sf::VertexArray> shape);
 		~Line();
 
-		void setPosition(const sf::Vector2f& position, const float& rotation) override;
+		void setPosition(const sf::Vector2f& position) override;
 
 	private:
 		std::unique_ptr<sf::VertexArray> m_shape;

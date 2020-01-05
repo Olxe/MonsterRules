@@ -7,19 +7,15 @@ namespace entities
 		, m_physicalBody(nullptr)
 	{
 		/////BODY CREATION/////
-		b2BodyType type = b2BodyType::b2_staticBody;
-		bool isRotationFixed = true;
-		if (const Parser::PropertiesNode* tile_properties = dynamic_cast<const Parser::PropertiesNode*>(obj->GetTile()->getProperties())) {
-			type = (b2BodyType)obj->GetTile()->getProperties()->GetProperty("physic").ToInt(0);
-			isRotationFixed = obj->GetTile()->getProperties()->GetProperty("fixedRotation").ToBool(true);
-		}
+		b2BodyType type = (b2BodyType)obj->GetTile()->getProperty("physic").ToInt(0);
+		bool isRotationFixed = obj->GetTile()->getProperty("fixedRotation").ToBool(true);
 		m_physicalBody = std::unique_ptr<PhysicalBody>(new PhysicalBody(Entity::getPosition(), Entity::getRotation(), type, isRotationFixed, this));
 		/////BODY CREATION/////
 
 		/////FIXTURES CREATION/////
-		for (auto tile_obj : obj->GetTile()->GetObjects()) {
-			sf::Vector2f offset = sf::Vector2f(tile_obj->GetX(), tile_obj->GetY()) - this->getOrigin();
-			this->addShapes(tile_obj, offset);
+		for (auto& tile_obj : obj->GetTile()->getObjects()) {
+			sf::Vector2f offset = tile_obj->getPosition() - this->getOrigin();
+			this->addShapes(tile_obj.get(), offset);
 		}
 		/////FIXTURES CREATION/////
 	}
@@ -29,13 +25,9 @@ namespace entities
 		, m_physicalBody(nullptr)
 	{
 		/////BODY CREATION/////
-		b2BodyType type = b2BodyType::b2_staticBody;
-		bool isRotationFixed = true;
-		if (const Parser::PropertiesNode* tile_properties = dynamic_cast<const Parser::PropertiesNode*>(obj->getProperties())) {
-			type = (b2BodyType)obj->getProperties()->GetProperty("physic").ToInt(0);
-			isRotationFixed = obj->getProperties()->GetProperty("fixedRotation").ToBool(true);
-		}
-		m_physicalBody = std::unique_ptr<PhysicalBody>(new PhysicalBody(sf::Vector2f(obj->GetX(), obj->GetY()), obj->GetRotation(), type, isRotationFixed, this));
+		b2BodyType type = (b2BodyType)obj->getProperty("physic").ToInt(0);
+		bool isRotationFixed = obj->getProperty("fixedRotation").ToBool(true);
+		m_physicalBody = std::unique_ptr<PhysicalBody>(new PhysicalBody(obj->getPosition(), obj->getRotation(), type, isRotationFixed, this));
 		/////BODY CREATION/////
 
 		/////FIXTURES CREATION/////
@@ -51,26 +43,37 @@ namespace entities
 	{
 		this->setPosition(this->getPosition());
 		this->setRotation(this->getRotation());
-		
-		if (isDebug) m_physicalBody->onUpdate();
+
+		m_physicalBody->onUpdate();
 	}
 
-	void PhysicalEntity::onDraw(sf::RenderWindow& window) const
+	void PhysicalEntity::onDebugDraw(sf::RenderWindow& window)
 	{
-		Entity::onDraw(window);
+		if (m_physicalBody.get()) {
+			m_physicalBody->onDebugDraw(window);
+		}
+	}
 
-		if (isDebug) m_physicalBody->onDraw(window);
+	const sf::Vector2f& PhysicalEntity::getPosition() const
+	{
+		if (m_physicalBody.get()) {
+			return m_physicalBody->getPosition();
+		}
+		return sf::Vector2f();
+	}
+
+	float PhysicalEntity::getRotation() const
+	{
+		if (m_physicalBody.get()) {
+			return m_physicalBody->getRotation();
+		}
+		return 0.f;
 	}
 
 	void PhysicalEntity::addShapes(Builder::ObjectTemplate* obj, sf::Vector2f offset)
 	{
-		float density = 1.f;
-		bool isSensor = false;
-		if (const Parser::PropertiesNode* properties = dynamic_cast<const Parser::PropertiesNode*>(obj->getProperties())) {
-			density = properties->GetProperty("density").ToFloat(1.f);
-			isSensor = properties->GetProperty("isSensor").ToBool(false);
-		}
-
+		float density = obj->getProperty("density").ToFloat(1.f);
+		bool isSensor = obj->getProperty("isSensor").ToBool(false);
 		if (Builder::Polygone* polygone = dynamic_cast<Builder::Polygone*>(obj)) {
 			if (polygone->getCategory() == Builder::PolygoneType::POLYGONE) {
 				this->addPolygone(polygone, offset, density, isSensor);
@@ -91,7 +94,7 @@ namespace entities
 	{
 		std::vector<sf::Vector2f> points;
 		for (auto& point : polygone->getPoints()) {
-			points.push_back(sf::Vector2f(point.GetX(), point.GetY()));
+			points.push_back(point.getPosition());
 		}
 
 		m_physicalBody->AddFixturePolygon(offset, points, density, isSensor);
@@ -100,8 +103,8 @@ namespace entities
 	void PhysicalEntity::addPolyline(Builder::Polygone* polyline, sf::Vector2f offset, float density, bool isSensor)
 	{
 		for (unsigned int i = 1; i < polyline->getPoints().size(); ++i) {
-			sf::Vector2f p1 = sf::Vector2f(polyline->getPoints()[i - 1].GetX(), polyline->getPoints()[i - 1].GetY());
-			sf::Vector2f p2 = sf::Vector2f(polyline->getPoints()[i].GetX(), polyline->getPoints()[i].GetY());
+			sf::Vector2f p1 = polyline->getPoints()[i - 1].getPosition();
+			sf::Vector2f p2 = polyline->getPoints()[i].getPosition();
 
 			m_physicalBody->AddFixtureEdge(offset, p1, p2, density, isSensor);
 		}
@@ -109,11 +112,11 @@ namespace entities
 
 	void PhysicalEntity::addCircle(Builder::Ellipse* ellipse, sf::Vector2f offset, float density, bool isSensor)
 	{
-		m_physicalBody->AddFixtureCircle(offset, ellipse->GetWidth() / 2.f, density, isSensor);
+		m_physicalBody->AddFixtureCircle(offset, ellipse->getSize().x / 2.f, density, isSensor);
 	}
 
 	void PhysicalEntity::addRectangle(Builder::ObjectTemplate* rect, sf::Vector2f offset, float density, bool isSensor)
 	{
-		m_physicalBody->AddFixtureRectangle(offset, sf::Vector2f(rect->GetWidth(), rect->GetHeight()), rect->GetRotation(), density, isSensor);
+		m_physicalBody->AddFixtureRectangle(offset, rect->getSize(), rect->getRotation(), density, isSensor);
 	}
 }

@@ -11,18 +11,19 @@ namespace Parser
 		ImageNode(Node* parent = nullptr);
 		~ImageNode();
 
-		int GetWidth() const { return m_width; }
-		int GetHeight() const { return m_height; }
-		std::string GetSource() const { return m_source; }
+		float getWidth() const { return m_width; }
+		float getHeight() const { return m_height; }
+		std::string getSource() const { return m_source; }
 
 	protected:
 		void ParseAttribute(const tinyxml2::XMLElement* eAttribute) override;
 		void ParseChildTag(const tinyxml2::XMLElement* eChild) override {}
 
 	private:
-		int m_width;
-		int m_height;
+		float m_width;
+		float m_height;
 		std::string m_source;
+
 	};
 }
 

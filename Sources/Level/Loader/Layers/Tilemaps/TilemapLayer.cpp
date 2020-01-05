@@ -16,12 +16,12 @@ namespace layer
 			if (Builder::TilesetTile* tilesetTile = dynamic_cast<Builder::TilesetTile*>(tile)) {
 				bool tilemapFound = false;
 				for (auto& tilemap : m_tilemaps) {
-					if (tilemap->getSource() == tilesetTile->GetSource()) {
+					if (tilemap->getSource() == tilesetTile->getSource()) {
 						tilemapFound = true;
 					}
 				}
 				if (!tilemapFound) {
-					m_tilemaps.push_back(std::make_unique<layer::Tilemap>(tilesetTile->GetSource()));
+					m_tilemaps.push_back(std::make_unique<layer::Tilemap>(tilesetTile->getSource()));
 				}
 			}
 		}
@@ -38,7 +38,7 @@ namespace layer
 
 		//load tilemap
 		for (auto& tilemap : m_tilemaps) {
-			tilemap->Load(sf::Vector2i(layer->getLayerWidth(), layer->getLayerHeight()), sf::Vector2f(layer->getTileWidth(), layer->getTileHeight()));
+			tilemap->Load(layer->getLayerSize(), layer->getTileSize());
 		}
 	}
 
@@ -51,5 +51,9 @@ namespace layer
 		for (auto& it : m_tilemaps) {
 			window.draw(*it);
 		}
+	}
+
+	void TilemapLayer::onDebugDraw(sf::RenderWindow& window)
+	{
 	}
 }

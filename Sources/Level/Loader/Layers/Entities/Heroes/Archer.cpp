@@ -5,7 +5,7 @@ namespace entities
 	Archer::Archer(Builder::SceneObject* obj)
 		: Hero(obj)
 	{		
-		sf::Vector2i frameSize = sf::Vector2i((int)obj->GetTile()->GetWidth(), (int)obj->GetTile()->GetHeight());
+		sf::Vector2i frameSize = sf::Vector2i((int)obj->GetTile()->getSize().x, (int)obj->GetTile()->getSize().y);
 		m_animations.setSprite(this);
 
 		m_animations.Add("WALK_BACK", this->getTexture(), frameSize, 0.15f, std::vector<sf::Vector2i>{ sf::Vector2i(0, 12), sf::Vector2i(1, 12), sf::Vector2i(2, 12), sf::Vector2i(3, 12) });

@@ -2,8 +2,8 @@
 
 using namespace Builder;
 
-Polygone::Polygone(std::string name, std::string type, float x, float y, float rotation, std::string points, PolygoneType category)
-	: ObjectTemplate(name, type, x, y, 0.f, 0.f, rotation)
+Polygone::Polygone(Parser::ObjectNode* object, std::string points, PolygoneType category)
+	: ObjectTemplate(object)
 	, m_category(category)
 {
 	this->convertPoints(points);
@@ -27,7 +27,7 @@ void Builder::Polygone::convertPoints(std::string points)
 		float y;
 		sscanf_s(token, "%f,%f", &x, &y);
 		
-		m_points.push_back(Point("", "", x, y));
+		m_points.push_back(Point(sf::Vector2f(x, y)));
 		token = strtok_s(NULL, " ", &next_token);
 	}
 

@@ -37,5 +37,6 @@ private:
 	int m_currentLevel;
 	std::vector< std::unique_ptr<layer::Layer> > m_layers;
 	MyContactListenner m_contactListenner;
+	bool isDebugActivate;
 };
 

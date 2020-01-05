@@ -3,6 +3,7 @@
 LevelManager::LevelManager()
 	: m_directory("Resources/Maps/")
 	, m_currentLevel(-1)
+	, isDebugActivate(true)
 {
 	m_levels[Level::LEVEL_1] = "level_1.tmx";
 	m_levels[Level::LEVEL_2] = "level_2.tmx";
@@ -25,7 +26,7 @@ void LevelManager::LoadLevel(Level level)
 	Parser::MapNode* map = t_parser.ParseTMX(m_directory, m_levels[level]);
 
 	Builder::TiledBuilder t_builder;
-	std::vector< Builder::Layout* > layouts = t_builder.Build(map);
+	std::vector<std::unique_ptr<Builder::Layout>> layouts = t_builder.Build(map);
 
 	loader::TiledLoader t_loader;
 	m_layers = t_loader.Load(layouts);
@@ -68,5 +69,11 @@ void LevelManager::Draw(Window::CRenderWindow& window)
 
 	for (auto& it : m_layers) {
 		it->onDraw(window);
+	}
+
+	if (isDebugActivate) {
+		for (auto& it : m_layers) {
+			it->onDebugDraw(window);
+		}
 	}
 }

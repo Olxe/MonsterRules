@@ -12,15 +12,15 @@ namespace layer
 
 	void EntityLayer::onLoad(Builder::ObjectGroupBuilder* objGrp)
 	{
-		for (auto obj : objGrp->getLayout()) {
-			if (Builder::SceneObject* sceneObj = dynamic_cast<Builder::SceneObject*>(obj)) {
+		for (auto& obj : objGrp->getLayout()) {
+			if (Builder::SceneObject* sceneObj = dynamic_cast<Builder::SceneObject*>(obj.get())) {
 				if (sceneObj->GetTile()) {
-					//m_entities.push_back(this->createEntity(sceneObj));
+					m_entities.push_back(this->createEntity(sceneObj));
 				}
 				else Out("Error : ", "Scene object has not tile");
 			}
 			else {
-				//m_wallAreas.push_back(std::unique_ptr<entities::PhysicalEntity>(new entities::PhysicalEntity(obj)));
+				m_entities.push_back(std::unique_ptr<entities::PhysicalEntity>(new entities::PhysicalEntity(obj.get())));
 			}
 		}
 	}
@@ -30,10 +30,6 @@ namespace layer
 		for (auto& entity : m_entities) {
 			entity->onUpdate(deltaTime);
 		}
-
-		for (auto& entity : m_wallAreas) {
-			entity->onUpdate(deltaTime);
-		}
 	}
 
 	void EntityLayer::onDraw(sf::RenderWindow& window)
@@ -41,9 +37,12 @@ namespace layer
 		for (auto& entity : m_entities) {
 			entity->onDraw(window);
 		}
+	}
 
-		for (auto& entity : m_wallAreas) {
-			entity->onDraw(window);
+	void EntityLayer::onDebugDraw(sf::RenderWindow& window)
+	{
+		for (auto& entity : m_entities) {
+			entity->onDebugDraw(window);
 		}
 	}
 
@@ -59,11 +58,11 @@ namespace layer
 
 	std::unique_ptr<entities::PhysicalEntity> EntityLayer::createEntity(Builder::SceneObject* sceneObj)
 	{
-		std::string type = sceneObj->GetTile()->GetType();
+		std::string type = sceneObj->GetTile()->getType();
 
 		if (type == "HERO_ARCHER") {
-			sceneObj->GetTile()->setSource("Resources/Textures/Characters/Heroes/Hero_2/archer.png");
-			sceneObj->GetTile()->setSize(117, 78);
+			sceneObj->GetTile()->setSource("../../Textures/Characters/Heroes/Hero_2/archer.png");
+			sceneObj->GetTile()->setSize(sf::Vector2f(117, 78));
 			return std::unique_ptr<entities::Archer>(new entities::Archer(sceneObj));
 		}
 

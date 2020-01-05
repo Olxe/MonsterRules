@@ -15,8 +15,8 @@ ImageNode::~ImageNode()
 
 void Parser::ImageNode::ParseAttribute(const tinyxml2::XMLElement* eAttribute)
 {
-	m_width = eAttribute->IntAttribute("width");
-	m_height = eAttribute->IntAttribute("height");
-	const char* source = eAttribute->Attribute("source");
-	if (source) m_source = source;
+	m_width = eAttribute->FloatAttribute("width");
+	m_height = eAttribute->FloatAttribute("height");
+	const char* source_ = eAttribute->Attribute("source");
+	if (source_) m_source = source_;
 }

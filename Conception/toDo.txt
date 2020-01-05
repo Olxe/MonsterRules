@@ -1,12 +1,7 @@
 <--------------------------------------------------------------------------------------------------------->
 - Gestion erreur Parser/Builder/loader
 - Texture de rechange si texture not found
-- draw debug after all (as children)
 <--------------------------------------------------------------------------------------------------------->
-- Builder fuite de mémoire
-- Parser/builder -> utilisation de std::unique_ptr
-- Parser/Builder -> utilisation de sf::vector2
-- Builder -> recycler des objects de parser
-- tilesetBuilder/ObjectGroupBuilder -> doublon de code création object
+
 <--------------------------------------------------------------------------------------------------------->
 

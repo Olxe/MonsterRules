@@ -15,12 +15,12 @@ namespace Builder
 		TilesetBuilder();
 		~TilesetBuilder();
 
-		std::vector< Tile* > Build(Parser::TilesetNode* tileset, std::string directory);
+		std::vector< Tile* > Build(const Parser::TilesetNode* tileset, std::string directory);
 
 	private:
-		void createTiles(Parser::TilesetNode* tileset, std::string directory, Parser::ImageNode* imageNode, std::vector< Tile* >& tiles);
+		void createTiles(const Parser::TilesetNode* tileset, std::string templateDirectory, Parser::ImageNode* imageNode, std::vector< Tile* >& tiles);
 		void updateTiles(Parser::TileNode* tileNode, std::vector< Tile* >& tiles);
-		void createObject(Parser::ObjectNode* objectNode, Tile* tile);
+		//void createObject(const Parser::ObjectNode* objectNode, Tile* tile);
 	};
 }
 

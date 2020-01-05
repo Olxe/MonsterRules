@@ -2,37 +2,26 @@
 
 #include <string>
 
-#include "Customizable.h"
+#include "../../Parser/Nodes/objectnode.h"
 
 namespace Builder
 {
-	class ObjectTemplate: public Customizable
+	class ObjectTemplate
 	{
 	public:
-		ObjectTemplate(std::string name, std::string type, float x, float y, float width, float height, float rotation);
+		ObjectTemplate(Parser::ObjectNode* object);
 		virtual ~ObjectTemplate();
 
-		void SetName(std::string name);
-		void SetPosition(float x, float y);
-		void SetSize(float width, float height);
-		void SetRotation(float rotation);
+		Parser::PropertyNode getProperty(std::string name) const;
+		std::string getName() const;
+		std::string getType() const;
+		virtual sf::Vector2f getPosition() const;
+		sf::Vector2f getSize() const;
+		float getRotation() const;
 
-		std::string GetName() const { return m_name; }
-		std::string GetType() const { return m_type; }
-		float GetX() const { return m_x; }
-		float GetY() const { return m_y; }
-		float GetWidth() const { return m_width; }
-		float GetHeight() const { return m_height; }
-		float GetRotation() const { return m_rotation; }
+	protected:
+		Parser::ObjectNode* m_object;
 
-	private:
-		std::string m_name;
-		std::string m_type;
-		float m_x;
-		float m_y;
-		float m_width;
-		float m_height;
-		float m_rotation;
 	};
 }
 

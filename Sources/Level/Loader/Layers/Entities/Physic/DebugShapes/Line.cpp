@@ -15,7 +15,7 @@ namespace debug
 	{
 	}
 
-	void Line::setPosition(const sf::Vector2f& position, const float& rotation)
+	void Line::setPosition(const sf::Vector2f& position)
 	{
 		for (unsigned int i = 0; i < m_shape->getVertexCount(); ++i) {
 			(*m_shape)[i].position = m_points[i] + position;

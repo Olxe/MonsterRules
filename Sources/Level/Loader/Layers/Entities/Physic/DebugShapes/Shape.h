@@ -10,7 +10,7 @@ namespace debug
 		Shape(std::unique_ptr<sf::Shape> shape, const sf::Vector2f& offset);
 		~Shape();
 
-		void setPosition(const sf::Vector2f& position, const float& rotation) override;
+		void setPosition(const sf::Vector2f& position) override;
 
 	private:
 		std::unique_ptr<sf::Shape> m_shape;

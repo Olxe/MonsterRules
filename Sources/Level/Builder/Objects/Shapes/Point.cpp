@@ -2,11 +2,27 @@
 
 using namespace Builder;
 
-Point::Point(std::string name, std::string type, float x, float y)
-	: ObjectTemplate(name, type, x, y, 0.f, 0.f, 0.f)
+Point::Point(Parser::ObjectNode* object)
+	: ObjectTemplate(object)
+	, m_position(sf::Vector2f())
+{
+}
+
+Builder::Point::Point(sf::Vector2f position)
+	: ObjectTemplate(nullptr)
+	, m_position(position)
 {
 }
 
 Point::~Point()
 {
+}
+
+sf::Vector2f Builder::Point::getPosition() const
+{
+	if (m_object) {
+		return ObjectTemplate::getPosition();
+	}
+
+	return m_position;
 }

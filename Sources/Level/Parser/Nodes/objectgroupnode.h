@@ -22,7 +22,6 @@ namespace Parser
 	private:
 		int m_id;
 		std::string m_name;
-		std::vector< ObjectNode* > m_objects;
 	};
 }
 

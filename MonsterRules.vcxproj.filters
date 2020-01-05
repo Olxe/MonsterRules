@@ -42,12 +42,6 @@
     <ClCompile Include="Sources\Level\Builder\Objects\Shapes\Polygone.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Level\Builder\Objects\Customizable.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Level\Builder\Objects\Properties.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Level\Builder\Objects\SceneObject.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -231,6 +225,9 @@
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\Shape.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Level\Builder\Objects\ObjectBuilder.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Game\Window\CRenderWindow.h">
@@ -258,12 +255,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Level\Builder\Objects\Shapes\Polygone.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Level\Builder\Objects\Customizable.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Level\Builder\Objects\Properties.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Level\Builder\Objects\SceneObject.h">
@@ -459,6 +450,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\Shape.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Level\Builder\Objects\ObjectBuilder.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

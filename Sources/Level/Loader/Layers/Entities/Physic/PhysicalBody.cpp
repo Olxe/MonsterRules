@@ -3,7 +3,6 @@
 PhysicalBody::PhysicalBody(sf::Vector2f position, float rotation, b2BodyType bodyType, bool rotationFixed, void* userData)
 	: m_b2Body(nullptr)
 	, SCALE(30.f)
-	, PhysicDebug(30.f)
 {
 	this->Create(position, rotation, bodyType, rotationFixed, userData);
 }
@@ -11,6 +10,23 @@ PhysicalBody::PhysicalBody(sf::Vector2f position, float rotation, b2BodyType bod
 PhysicalBody::~PhysicalBody()
 {
 	clearBody();
+}
+
+void PhysicalBody::onUpdate()
+{
+	m_transform = sf::Transform().rotate(this->getRotation(), this->getPosition());
+	for (auto& it : m_shapes) {
+		it->setPosition(this->getPosition());
+	}
+}
+
+void PhysicalBody::onDebugDraw(sf::RenderWindow& window)
+{
+	if (m_b2Body) {
+		for (auto& it : m_shapes) {
+			window.draw(*it, m_transform);
+		}
+	}
 }
 
 void PhysicalBody::Create(sf::Vector2f position, float rotation, b2BodyType bodyType, bool rotationFixed, void* userData)
@@ -25,8 +41,6 @@ void PhysicalBody::Create(sf::Vector2f position, float rotation, b2BodyType body
 	m_b2Body = Box2DWorld::Instance()->getWorld()->CreateBody(&bodyDef);
 	m_b2Body->SetFixedRotation(rotationFixed);
 	m_b2Body->SetUserData(userData);
-
-	this->setBody(m_b2Body);
 }
 
 bool PhysicalBody::AddFixtureRectangle(sf::Vector2f offset, sf::Vector2f size, float rotation, float density, bool isSensor)
@@ -47,7 +61,6 @@ bool PhysicalBody::AddFixtureRectangle(sf::Vector2f offset, sf::Vector2f size, f
 	std::unique_ptr<sf::RectangleShape> rect(new sf::RectangleShape());
 	rect->setSize(size);
 	rect->setOrigin(size / 2.f);
-	rect->setPosition(sf::Vector2f(m_b2Body->GetPosition().x * SCALE + offset.x, m_b2Body->GetPosition().y * SCALE + offset.y));
 	rect->setRotation(rotation);
 	rect->setFillColor(sf::Color(sf::Color::Transparent));
 	if(!isSensor)
@@ -56,7 +69,8 @@ bool PhysicalBody::AddFixtureRectangle(sf::Vector2f offset, sf::Vector2f size, f
 		rect->setOutlineColor(sf::Color::Blue);
 	rect->setOutlineThickness(1);
 	
-	this->addShape(std::move(rect), offset);
+	m_shapes.push_back(std::unique_ptr<debug::Shape>(new debug::Shape(std::move(rect), offset)));
+	m_shapes.back()->setPosition(this->getPosition());
 
 	return true;
 }
@@ -81,7 +95,8 @@ bool PhysicalBody::AddFixtureEdge(sf::Vector2f offset, sf::Vector2f p1, sf::Vect
 	(*line)[0].color = sf::Color::Red;
 	(*line)[1].color = sf::Color::Red;
 
-	this->addShape(std::move(line));
+	m_shapes.push_back(std::unique_ptr<debug::Line>(new debug::Line(std::move(line))));
+	m_shapes.back()->setPosition(this->getPosition());
 
 	return true;
 }
@@ -103,18 +118,18 @@ bool PhysicalBody::AddFixtureCircle(sf::Vector2f offset, float radius, float den
 
 	m_b2Body->CreateFixture(&fixtureDef);
 
-	std::unique_ptr<sf::CircleShape> rect(new sf::CircleShape());
-	rect->setRadius(radius);
-	rect->setOrigin(sf::Vector2f(radius, radius));
-	rect->setPosition(sf::Vector2f(m_b2Body->GetPosition().x * SCALE + offset.x, m_b2Body->GetPosition().y * SCALE + offset.y));
-	rect->setFillColor(sf::Color(sf::Color::Transparent));
+	std::unique_ptr<sf::CircleShape> circle(new sf::CircleShape());
+	circle->setRadius(radius);
+	circle->setOrigin(sf::Vector2f(radius, radius));
+	circle->setFillColor(sf::Color(sf::Color::Transparent));
 	if (!isSensor)
-		rect->setOutlineColor(sf::Color::Red);
+		circle->setOutlineColor(sf::Color::Red);
 	else
-		rect->setOutlineColor(sf::Color::Blue);
-	rect->setOutlineThickness(1);
+		circle->setOutlineColor(sf::Color::Blue);
+	circle->setOutlineThickness(1);
 
-	this->addShape(std::move(rect), offset);
+	m_shapes.push_back(std::unique_ptr<debug::Shape>(new debug::Shape(std::move(circle), offset)));
+	m_shapes.back()->setPosition(this->getPosition());
 
 	return true;
 }
@@ -123,7 +138,7 @@ bool PhysicalBody::AddFixturePolygon(sf::Vector2f offset, std::vector<sf::Vector
 {
 	if (!m_b2Body) return false;
 
-	b2Vec2* vertices = new b2Vec2[points.size()];//delete ?
+	b2Vec2* vertices = new b2Vec2[points.size()];
 	for (size_t i = 0; i < points.size(); i++) {
 		vertices[i].Set((points[i].x + offset.x) / SCALE, (points[i].y + offset.y) / SCALE);
 	}
@@ -138,20 +153,20 @@ bool PhysicalBody::AddFixturePolygon(sf::Vector2f offset, std::vector<sf::Vector
 
 	m_b2Body->CreateFixture(&fixtureDef);
 
-	std::unique_ptr<sf::ConvexShape> debugShape(new sf::ConvexShape());
-	debugShape->setPointCount(points.size());
+	std::unique_ptr<sf::ConvexShape> polygon(new sf::ConvexShape());
+	polygon->setPointCount(points.size());
 	for (size_t i = 0; i < points.size(); i++) {
-		debugShape->setPoint(i, points[i]);
+		polygon->setPoint(i, points[i]);
 	}
-	debugShape->setPosition(sf::Vector2f(m_b2Body->GetPosition().x * SCALE + offset.x, m_b2Body->GetPosition().y * SCALE + offset.y));
-	debugShape->setFillColor(sf::Color(sf::Color::Transparent));
+	polygon->setFillColor(sf::Color(sf::Color::Transparent));
 	if (!isSensor)
-		debugShape->setOutlineColor(sf::Color::Red);
+		polygon->setOutlineColor(sf::Color::Red);
 	else
-		debugShape->setOutlineColor(sf::Color::Blue);
-	debugShape->setOutlineThickness(1);
+		polygon->setOutlineColor(sf::Color::Blue);
+	polygon->setOutlineThickness(1);
 
-	this->addShape(std::move(debugShape), offset);
+	m_shapes.push_back(std::unique_ptr<debug::Shape>(new debug::Shape(std::move(polygon), offset)));
+	m_shapes.back()->setPosition(this->getPosition());
 
 	return true;
 }
@@ -171,7 +186,7 @@ sf::Vector2f PhysicalBody::getPosition() const
 		return sf::Vector2f(m_b2Body->GetPosition().x * SCALE, m_b2Body->GetPosition().y * SCALE);
 	}
 
-	return sf::Vector2f(0.f, 0.f);
+	return sf::Vector2f();
 }
 
 float PhysicalBody::getRotation() const

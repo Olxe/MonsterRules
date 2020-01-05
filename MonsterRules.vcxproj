@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Sources\Level\Builder\Objects\ObjectBuilder.cpp" />
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\DebugShape.cpp" />
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\Line.cpp" />
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\PhysicDebug.cpp" />
@@ -167,9 +168,7 @@
     <ClCompile Include="Sources\Level\Builder\Layers\LayerBuilder.cpp" />
     <ClCompile Include="Sources\Level\Builder\Layers\Layout.cpp" />
     <ClCompile Include="Sources\Level\Builder\Layers\ObjectGroupBuilder.cpp" />
-    <ClCompile Include="Sources\Level\Builder\Objects\Customizable.cpp" />
     <ClCompile Include="Sources\Level\Builder\Objects\ObjectTemplate.cpp" />
-    <ClCompile Include="Sources\Level\Builder\Objects\Properties.cpp" />
     <ClCompile Include="Sources\Level\Builder\Objects\SceneObject.cpp" />
     <ClCompile Include="Sources\Level\Builder\Objects\Shapes\Ellipse.cpp" />
     <ClCompile Include="Sources\Level\Builder\Objects\Shapes\Point.cpp" />
@@ -209,6 +208,7 @@
     <ClCompile Include="Sources\Game\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Level\Builder\Objects\ObjectBuilder.h" />
     <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\DebugShape.h" />
     <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\Line.h" />
     <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\PhysicDebug.h" />
@@ -252,9 +252,7 @@
     <ClInclude Include="Sources\Level\Builder\Layers\LayerBuilder.h" />
     <ClInclude Include="Sources\Level\Builder\Layers\Layout.h" />
     <ClInclude Include="Sources\Level\Builder\Layers\ObjectGroupBuilder.h" />
-    <ClInclude Include="Sources\Level\Builder\Objects\Customizable.h" />
     <ClInclude Include="Sources\Level\Builder\Objects\ObjectTemplate.h" />
-    <ClInclude Include="Sources\Level\Builder\Objects\Properties.h" />
     <ClInclude Include="Sources\Level\Builder\Objects\SceneObject.h" />
     <ClInclude Include="Sources\Level\Builder\Objects\Shapes\Ellipse.h" />
     <ClInclude Include="Sources\Level\Builder\Objects\Shapes\Point.h" />

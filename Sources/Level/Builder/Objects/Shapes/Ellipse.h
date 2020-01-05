@@ -7,7 +7,7 @@ namespace Builder
 	class Ellipse: public ObjectTemplate
 	{
 	public:
-		Ellipse(std::string name, std::string type, float x, float y, float width, float height, float rotation);
+		Ellipse(Parser::ObjectNode* object);
 		~Ellipse();
 
 	private:

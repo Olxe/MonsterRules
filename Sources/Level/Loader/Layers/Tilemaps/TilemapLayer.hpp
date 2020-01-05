@@ -14,6 +14,7 @@ namespace layer
 		void onLoad(Builder::LayerBuilder* layer);
 		void onUpdate(const float& deltaTime) override;
 		void onDraw(sf::RenderWindow& window) override;
+		void onDebugDraw(sf::RenderWindow& window) override;
 
 	private:
 		std::vector< std::unique_ptr<layer::Tilemap> > m_tilemaps;

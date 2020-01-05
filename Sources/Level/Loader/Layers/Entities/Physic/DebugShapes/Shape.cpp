@@ -13,7 +13,7 @@ namespace debug
 	{
 	}
 
-	void Shape::setPosition(const sf::Vector2f& position, const float& rotation)
+	void Shape::setPosition(const sf::Vector2f& position)
 	{
 		m_shape->setPosition(m_offset + position);
 	}

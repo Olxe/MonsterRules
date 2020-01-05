@@ -14,7 +14,7 @@ namespace layer
 
 	void Tilemap::AddTile(Builder::TilesetTile* tile)
 	{
-		if (tile && tile->GetSource() == m_source) {
+		if (tile && tile->getSource() == m_source) {
 			m_tiles.push_back(tile);
 		}
 		else {
@@ -52,8 +52,8 @@ namespace layer
 					float texMargin = 0.0f;
 
 					//Pos in tileset
-					int column = tile->getTilesetPosX();
-					int row = tile->getTilesetPosY();
+					int column = tile->getTilesetPosition().x;
+					int row = tile->getTilesetPosition().y;
 
 					//Tile coordinated in the tileset m_texture
 					quad[0].texCoords = sf::Vector2f(column * tileSize.x + texMargin, row * tileSize.y + texMargin);

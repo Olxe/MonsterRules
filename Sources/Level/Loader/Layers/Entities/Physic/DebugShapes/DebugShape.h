@@ -10,7 +10,7 @@ namespace debug
 		DebugShape(sf::Drawable* drawable);
 		virtual ~DebugShape();
 
-		virtual void setPosition(const sf::Vector2f& position, const float& rotation) = 0;
+		virtual void setPosition(const sf::Vector2f& position) = 0;
 
 	protected:
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

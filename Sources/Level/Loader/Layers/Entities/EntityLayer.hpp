@@ -16,6 +16,7 @@ namespace layer
 		void onLoad(Builder::ObjectGroupBuilder* objGrp);
 		void onUpdate(const float& deltaTime) override;
 		void onDraw(sf::RenderWindow& window) override;
+		void onDebugDraw(sf::RenderWindow& window) override;
 
 		entities::Entity* getEntity(const std::string& name);
 
@@ -24,7 +25,6 @@ namespace layer
 
 	private:
 		std::vector< std::unique_ptr<entities::PhysicalEntity> > m_entities;
-		std::vector< std::unique_ptr<entities::PhysicalEntity> > m_wallAreas;
 
 	};
 }

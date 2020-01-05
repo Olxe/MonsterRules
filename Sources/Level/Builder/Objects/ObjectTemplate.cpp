@@ -1,40 +1,63 @@
 #include "ObjectTemplate.h"
 
-using namespace Builder;
-
-ObjectTemplate::ObjectTemplate(std::string name, std::string type, float x, float y, float width, float height, float rotation)
-	: m_name(name)
-	, m_type(type)
-	, m_x(x)
-	, m_y(y)
-	, m_width(width)
-	, m_height(height)
-	, m_rotation(rotation)
+namespace Builder
 {
-}
+	Builder::ObjectTemplate::ObjectTemplate(Parser::ObjectNode* object)
+		: m_object(object)
+	{
+	}
 
-ObjectTemplate::~ObjectTemplate()
-{
-}
+	ObjectTemplate::~ObjectTemplate()
+	{
+	}
 
-void Builder::ObjectTemplate::SetName(std::string name)
-{
-	m_name = name;
-}
+	Parser::PropertyNode Builder::ObjectTemplate::getProperty(std::string name) const
+	{
+		if (m_object) {
+			if (Parser::PropertiesNode* properties = dynamic_cast<Parser::PropertiesNode*>(m_object->GetFirstSpecificChild(Parser::NodeType::PROPERTIES))) {
+				return properties->GetProperty(name);
+			}
+		}
+		return Parser::PropertyNode();
+	}
 
-void Builder::ObjectTemplate::SetPosition(float x, float y)
-{
-	m_x = x;
-	m_y = y;
-}
+	std::string Builder::ObjectTemplate::getName() const
+	{
+		if (m_object) {
+			return m_object->GetName();
+		}
+		return std::string();
+	}
 
-void Builder::ObjectTemplate::SetSize(float width, float height)
-{
-	m_width = width;
-	m_height = height;
-}
+	std::string Builder::ObjectTemplate::getType() const
+	{
+		if (m_object) {
+			return m_object->GetType();
+		}
+		return std::string();
+	}
 
-void Builder::ObjectTemplate::SetRotation(float rotation)
-{
-	m_rotation = rotation;
+	sf::Vector2f Builder::ObjectTemplate::getPosition() const
+	{
+		if (m_object) {
+			return sf::Vector2f(m_object->GetX(), m_object->GetY());
+		}
+		return sf::Vector2f();
+	}
+
+	sf::Vector2f Builder::ObjectTemplate::getSize() const
+	{
+		if (m_object) {
+			return sf::Vector2f(m_object->GetWidth(), m_object->GetHeight());
+		}
+		return sf::Vector2f();
+	}
+
+	float Builder::ObjectTemplate::getRotation() const
+	{
+		if (m_object) {
+			return m_object->GetRotation();
+		}
+		return 0.0f;
+	}
 }

@@ -17,8 +17,8 @@ namespace Parser
 		int GetFirstgid() const { return m_firstgid; }
 		std::string GetSource() const { return m_source; }
 		std::string GetName() const { return m_name; }
-		int GetTilewidth() const { return m_tilewidth; }
-		int GetTileheight() const { return m_tileheight; }
+		float GetTilewidth() const { return m_tilewidth; }
+		float GetTileheight() const { return m_tileheight; }
 		int GetTilecount() const { return m_tilecount; }
 		int GetColums() const { return m_columns; }
 
@@ -30,8 +30,8 @@ namespace Parser
 		int m_firstgid;
 		std::string m_source;
 		std::string m_name;
-		int m_tilewidth;
-		int m_tileheight;
+		float m_tilewidth;
+		float m_tileheight;
 		int m_tilecount;
 		int m_columns;
 	};

@@ -5,22 +5,20 @@ namespace entities
 	Entity::Entity(Builder::SceneObject* obj)
 		: m_id(0)
 	{	
-		sf::Texture* texture = AssetManager::Instance()->GetTexture(obj->GetTile()->GetSource());
+		sf::Texture* texture = AssetManager::Instance()->GetTexture(obj->GetTile()->getSource());
 		texture->setSmooth(true);
 		this->setTexture(*texture);
-		this->setTextureRect(sf::IntRect(0, 0, (int)obj->GetTile()->GetWidth(), (int)obj->GetTile()->GetHeight()));
+		this->setTextureRect(sf::IntRect(0, 0, (int)obj->GetTile()->getSize().x, (int)obj->GetTile()->getSize().y));
 
-		this->setup(sf::Vector2f(obj->GetX(), obj->GetY()), sf::Vector2f(obj->GetTile()->GetWidth(), obj->GetTile()->GetHeight()), obj->GetRotation());
+		this->setup(obj->getPosition(), obj->GetTile()->getSize(), obj->getRotation());
 
-		m_type = obj->GetTile()->GetType();
-		m_id = obj->getUniqueId();
-		m_name = obj->GetName();
+		m_type = obj->GetTile()->getType();
+		m_name = obj->getName();
 	}
 
 	Entity::Entity(Builder::ObjectTemplate* obj)
 	{
-		//m_id = obj->getUniqueId();
-		m_name = obj->GetName();
+		m_name = obj->getName();
 	}
 
 	Entity::~Entity()

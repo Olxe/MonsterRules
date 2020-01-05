@@ -2,16 +2,11 @@
 
 using namespace Builder;
 
-LayerBuilder::LayerBuilder(Parser::LayerNode* layerNode, std::vector< Tile* >& tiles, float tileWidth, float tileHeight)
-	: m_layerWidth(0)
-	, m_layerHeight(0)
-	, m_tileWidth(tileWidth)
-	, m_tileHeight(tileHeight)
+LayerBuilder::LayerBuilder(Parser::LayerNode* layerNode, std::vector< Tile* >& tiles, sf::Vector2f tileSize)
+	: m_tileSize(tileSize)
+	, m_layer(layerNode)
 {
 	if (layerNode) {
-		m_layerWidth = layerNode->GetWidth();
-		m_layerHeight = layerNode->GetHeight();
-
 		if (Parser::DataNode* dataNode = dynamic_cast<Parser::DataNode*>(layerNode->GetFirstSpecificChild(Parser::NodeType::DATA))) {
 			if (dataNode->GetEncoding() == "csv") {
 				std::string strData = dataNode->GetData();
@@ -31,6 +26,14 @@ LayerBuilder::LayerBuilder(Parser::LayerNode* layerNode, std::vector< Tile* >& t
 
 LayerBuilder::~LayerBuilder()
 {
+}
+
+sf::Vector2i Builder::LayerBuilder::getLayerSize() const
+{
+	if (m_layer) {
+		return sf::Vector2i(m_layer->GetWidth(), m_layer->GetHeight());
+	}
+	return sf::Vector2i();
 }
 
 void LayerBuilder::fillLayoutFromCSV(const char* data, std::vector<Tile*>& tiles)

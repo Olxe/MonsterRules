@@ -2,7 +2,7 @@
 
 World::World()
 {
-	int cpt = 100000;
+	int cpt = 1;
 	while (cpt > 0) {
 
 		m_levelManager.LoadLevel(Level::LEVEL_1);

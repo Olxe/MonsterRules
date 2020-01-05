@@ -13,13 +13,13 @@ namespace Builder
 	class ObjectGroupBuilder: public Layout
 	{
 	public:
-		ObjectGroupBuilder(Parser::ObjectGroupNode* objectGroup, std::vector< Tile* >& tiles, int& unique_id);
+		ObjectGroupBuilder(Parser::ObjectGroupNode* objectGroup, std::vector< Tile* >& tiles);
 		~ObjectGroupBuilder();
 
-		std::vector< ObjectTemplate* > getLayout() const { return m_layout; }
+		const std::vector<std::unique_ptr<ObjectTemplate>>& getLayout() const { return m_layout; }
 
 	private:
-		std::vector< ObjectTemplate* > m_layout;
+		std::vector<std::unique_ptr<ObjectTemplate>> m_layout;
 
 	};
 }

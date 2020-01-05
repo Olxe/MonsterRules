@@ -12,11 +12,11 @@ namespace entities
 		PhysicalEntity(Builder::ObjectTemplate* obj);
 		virtual ~PhysicalEntity();
 
-		void onUpdate(const float& deltaTime) override;
-		void onDraw(sf::RenderWindow& window) const override;
+		virtual void onUpdate(const float& deltaTime);
+		virtual void onDebugDraw(sf::RenderWindow& window)
 		
-		const sf::Vector2f& getPosition() const { return m_physicalBody->getPosition(); }
-		float getRotation() const { return m_physicalBody->getRotation(); }
+		const sf::Vector2f& getPosition() const;
+		float getRotation() const;
 
 		virtual void CheckCollision(PhysicalEntity* pOther) {}
 		virtual void CheckSensorCollision(PhysicalEntity* pOther) {}
@@ -32,9 +32,6 @@ namespace entities
 			
 	protected:
 		std::unique_ptr<PhysicalBody> m_physicalBody;
-
-	private:
-		bool isDebug = true;
 
 	};
 }

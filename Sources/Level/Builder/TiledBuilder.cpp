@@ -1,41 +1,42 @@
 #include "TiledBuilder.h"
 
-using namespace Builder;
-
-TiledBuilder::TiledBuilder()
+namespace Builder
 {
-}
+	TiledBuilder::TiledBuilder()
+	{
+	}
 
-TiledBuilder::~TiledBuilder()
-{
-	clearVector(m_layouts);
-	clearVector(m_tiles);
-}
-
-std::vector< Layout* > Builder::TiledBuilder::Build(Parser::MapNode* map)
-{
-	if (map) {
-		clearVector(m_layouts);
+	TiledBuilder::~TiledBuilder()
+	{
 		clearVector(m_tiles);
+	}
 
-		int unique_id = 1;
-		for (auto map_child_node : map->GetChildNodes()) {
-			if (Parser::TilesetNode* tilesetNode = dynamic_cast<Parser::TilesetNode*>(map_child_node)) {
-				TilesetBuilder tilesetBuilder;
-				std::vector< Tile* > tiles = tilesetBuilder.Build(tilesetNode, map->GetDirectory());
-				m_tiles.insert(m_tiles.end(), tiles.begin(), tiles.end());
+	std::vector<std::unique_ptr<Layout>> Builder::TiledBuilder::Build(Parser::MapNode* map)
+	{
+		if (map) {
+			std::vector<std::unique_ptr<Layout>> layouts;
+			clearVector(m_tiles);
+
+			for (auto map_child_node : map->GetChildNodes()) {
+				if (const Parser::TilesetNode* tilesetNode = dynamic_cast<const Parser::TilesetNode*>(map_child_node)) {
+					TilesetBuilder tilesetBuilder;
+					std::vector< Tile* > tiles = tilesetBuilder.Build(tilesetNode, map->GetDirectory());
+					m_tiles.insert(m_tiles.end(), tiles.begin(), tiles.end());
+				}
+				else if (Parser::LayerNode* layerNode = dynamic_cast<Parser::LayerNode*>(map_child_node)) {
+					layouts.push_back(std::unique_ptr<Layout>(new LayerBuilder(layerNode, m_tiles, sf::Vector2f(map->GetTilewidth(), map->GetTileheight()))));
+				}
+				if (Parser::ObjectGroupNode* objectGroup = dynamic_cast<Parser::ObjectGroupNode*>(map_child_node)) {
+					layouts.push_back(std::unique_ptr<Layout>(new ObjectGroupBuilder(objectGroup, m_tiles)));
+				}
 			}
-			else if (Parser::LayerNode* layerNode = dynamic_cast<Parser::LayerNode*>(map_child_node)) {
-				m_layouts.push_back(new LayerBuilder(layerNode, m_tiles, map->GetTilewidth(), map->GetTileheight()));
-			}
-			if (Parser::ObjectGroupNode* objectGroup = dynamic_cast<Parser::ObjectGroupNode*>(map_child_node)) {
-				m_layouts.push_back(new ObjectGroupBuilder(objectGroup, m_tiles, unique_id));
-			}
+
+			return layouts;
 		}
-	}
-	else {
-		Out("Error : ", "No map");
-	}
+		else {
+			Out("Error : ", "No map");
+		}
 
-	return m_layouts;
+		return std::vector<std::unique_ptr<Layout>>();
+	}
 }

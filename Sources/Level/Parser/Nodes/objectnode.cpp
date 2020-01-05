@@ -55,8 +55,4 @@ void Parser::ObjectNode::ParseChildTag(const tinyxml2::XMLElement* eChild)
 	else if (tagName == "polyline") {
 		this->AddChildNode(new PolylineNode(this), eChild);
 	}
-	//else {
-	//	this->AddChildNode(new ObjectNode(this), eChild);
-	//	
-	//}
 }
