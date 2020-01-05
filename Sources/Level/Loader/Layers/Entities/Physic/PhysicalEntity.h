@@ -13,9 +13,9 @@ namespace entities
 		virtual ~PhysicalEntity();
 
 		virtual void onUpdate(const float& deltaTime);
-		virtual void onDebugDraw(sf::RenderWindow& window)
+		virtual void onDebugDraw(sf::RenderWindow& window);
 		
-		const sf::Vector2f& getPosition() const;
+		sf::Vector2f getPosition() const;
 		float getRotation() const;
 
 		virtual void CheckCollision(PhysicalEntity* pOther) {}

@@ -54,7 +54,7 @@ namespace entities
 		}
 	}
 
-	const sf::Vector2f& PhysicalEntity::getPosition() const
+	sf::Vector2f PhysicalEntity::getPosition() const
 	{
 		if (m_physicalBody.get()) {
 			return m_physicalBody->getPosition();

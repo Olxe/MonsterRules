@@ -14,7 +14,6 @@ namespace entities
 		Entity(Builder::ObjectTemplate* obj);
 		virtual ~Entity();
 
-		virtual void onUpdate(const float& deltaTime) {}
 		virtual void onDraw(sf::RenderWindow& window) const;
 		
 		int getId() const { return m_id; }
