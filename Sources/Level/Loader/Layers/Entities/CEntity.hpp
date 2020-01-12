@@ -7,12 +7,12 @@
 
 namespace entities
 {
-	class Entity: public sf::Sprite
+	class CEntity: public sf::Sprite
 	{
 	public:
-		Entity(Builder::SceneObject* obj);
-		Entity(Builder::ObjectTemplate* obj);
-		virtual ~Entity();
+		CEntity(Builder::SceneObject* obj);
+		CEntity(Builder::ObjectTemplate* obj);
+		virtual ~CEntity();
 
 		virtual void onDraw(sf::RenderWindow& window) const;
 		

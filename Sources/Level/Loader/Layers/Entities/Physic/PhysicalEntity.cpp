@@ -3,13 +3,13 @@
 namespace entities
 {
 	PhysicalEntity::PhysicalEntity(Builder::SceneObject* obj)
-		: Entity(obj)
+		: CEntity(obj)
 		, m_physicalBody(nullptr)
 	{
 		/////BODY CREATION/////
 		b2BodyType type = (b2BodyType)obj->GetTile()->getProperty("physic").ToInt(0);
 		bool isRotationFixed = obj->GetTile()->getProperty("fixedRotation").ToBool(true);
-		m_physicalBody = std::unique_ptr<PhysicalBody>(new PhysicalBody(Entity::getPosition(), Entity::getRotation(), type, isRotationFixed, this));
+		m_physicalBody = std::unique_ptr<PhysicalBody>(new PhysicalBody(CEntity::getPosition(), CEntity::getRotation(), type, isRotationFixed, this));
 		/////BODY CREATION/////
 
 		/////FIXTURES CREATION/////
@@ -21,7 +21,7 @@ namespace entities
 	}
 
 	PhysicalEntity::PhysicalEntity(Builder::ObjectTemplate* obj)
-		: Entity(obj)
+		: CEntity(obj)
 		, m_physicalBody(nullptr)
 	{
 		/////BODY CREATION/////

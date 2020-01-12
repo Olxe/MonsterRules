@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../Entity.hpp"
+#include "../CEntity.hpp"
 #include "PhysicalBody.h"
 
 namespace entities
 {
-	class PhysicalEntity: public Entity
+	class PhysicalEntity: public CEntity
 	{
 	public:
 		PhysicalEntity(Builder::SceneObject* obj);

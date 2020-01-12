@@ -59,7 +59,7 @@ void LevelManager::Draw(Window::CRenderWindow& window)
 {
 	for (auto& it : m_layers) {
 		if (layer::EntityLayer* entity = dynamic_cast<layer::EntityLayer*>(it.get())) {
-			if (entities::Entity* mainPlayer = entity->getEntity("MAIN_PLAYER")) {
+			if (entities::CEntity* mainPlayer = entity->getEntity("MAIN_PLAYER")) {
 				window.getGameView().setCenter(mainPlayer->getPosition());
 			}
 		}

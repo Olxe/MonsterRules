@@ -46,7 +46,7 @@ namespace layer
 		}
 	}
 
-	entities::Entity* EntityLayer::getEntity(const std::string& name)
+	entities::CEntity* EntityLayer::getEntity(const std::string& name)
 	{
 		for (auto& entity : m_entities) {
 			if (entity->getName() == name) {

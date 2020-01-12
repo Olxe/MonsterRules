@@ -18,7 +18,7 @@ namespace layer
 		void onDraw(sf::RenderWindow& window) override;
 		void onDebugDraw(sf::RenderWindow& window) override;
 
-		entities::Entity* getEntity(const std::string& name);
+		entities::CEntity* getEntity(const std::string& name);
 
 	private:
 		std::unique_ptr<entities::PhysicalEntity> createEntity(Builder::SceneObject* sceneObj);

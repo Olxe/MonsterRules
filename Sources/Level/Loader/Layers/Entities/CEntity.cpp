@@ -1,8 +1,8 @@
-#include "Entity.hpp"
+#include "CEntity.hpp"
 
 namespace entities
 {
-	Entity::Entity(Builder::SceneObject* obj)
+	CEntity::CEntity(Builder::SceneObject* obj)
 		: m_id(0)
 	{	
 		sf::Texture* texture = AssetManager::Instance()->GetTexture(obj->GetTile()->getSource());
@@ -16,21 +16,21 @@ namespace entities
 		m_name = obj->getName();
 	}
 
-	Entity::Entity(Builder::ObjectTemplate* obj)
+	CEntity::CEntity(Builder::ObjectTemplate* obj)
 	{
 		m_name = obj->getName();
 	}
 
-	Entity::~Entity()
+	CEntity::~CEntity()
 	{
 	}
 
-	void Entity::onDraw(sf::RenderWindow& window) const
+	void CEntity::onDraw(sf::RenderWindow& window) const
 	{
 		window.draw(*this);
 	}
 
-	void Entity::setup(sf::Vector2f position, sf::Vector2f size, float rotation)
+	void CEntity::setup(sf::Vector2f position, sf::Vector2f size, float rotation)
 	{
 		this->setOrigin(size / 2.f);
 		this->setPosition(position);
@@ -40,7 +40,7 @@ namespace entities
 		this->setPosition(std::floor(this->getPosition().x), std::floor(this->getPosition().y));
 	}
 
-	sf::Vector2f Entity::transformOffsetPoint(sf::Vector2f offset, float rotation)
+	sf::Vector2f CEntity::transformOffsetPoint(sf::Vector2f offset, float rotation)
 	{
 		sf::Transform transform;
 		transform.rotate(rotation);
