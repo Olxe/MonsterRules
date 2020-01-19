@@ -228,28 +228,16 @@
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\CEntity.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Core\Application.cpp">
+    <ClCompile Include="Sources\ECS\Entities.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ECS\EntitySystems\Entity.cpp">
+    <ClCompile Include="Sources\ECS\Entity.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ECS\EntitySystems\EntityComponent.cpp">
+    <ClCompile Include="Sources\ECS\EntityManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\ECS\EntitySystems\EntityManager.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ECS\Components\Cmp_render.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ECS\Components\Cmp_transform.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ECS\EntitySystems\BaseComponentSystem.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\ECS\ComponentSystems\RenderSystem.cpp">
+    <ClCompile Include="Sources\ECS\Component.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -479,34 +467,19 @@
     <ClInclude Include="Sources\Level\Loader\Layers\Entities\CEntity.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Core\Application.h">
+    <ClInclude Include="Sources\ECS\SystemTypes.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ECS\EntitySystems\Entity.h">
+    <ClInclude Include="Sources\ECS\Entities.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ECS\EntitySystems\EntityComponent.h">
+    <ClInclude Include="Sources\ECS\Entity.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ECS\EntitySystems\EntityComponentSystem.h">
+    <ClInclude Include="Sources\ECS\EntityManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\ECS\EntitySystems\EntityManager.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ECS\EntitySystems\EntitySystemTypes.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ECS\Components\Cmp_transform.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ECS\Components\Cmp_render.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ECS\EntitySystems\BaseComponentSystem.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\ECS\ComponentSystems\RenderSystem.h">
+    <ClInclude Include="Sources\ECS\Component.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

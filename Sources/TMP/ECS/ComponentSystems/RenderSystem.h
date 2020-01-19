@@ -1,6 +1,7 @@
 #pragma once
 
-#include "../EntitySystems/EntityComponentSystem.h"
+#include "../EntitySystems/ComponentSystem.h"
+
 #include "../Components/Cmp_render.h"
 #include "../Components/Cmp_transform.h"
 

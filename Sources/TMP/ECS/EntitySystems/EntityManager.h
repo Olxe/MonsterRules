@@ -13,8 +13,6 @@ class EntityManager
 {
 public:
 	EntityManager() {}
-	EntityManager(const EntityManager&) = delete;
-	EntityManager(const EntityManager&&) = delete;
 	~EntityManager() {}
 
 	bool onInit();

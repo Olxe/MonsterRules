@@ -135,14 +135,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\ECS\ComponentSystems\RenderSystem.cpp" />
-    <ClCompile Include="Sources\ECS\EntitySystems\BaseComponentSystem.cpp" />
-    <ClCompile Include="Sources\ECS\Components\Cmp_render.cpp" />
-    <ClCompile Include="Sources\ECS\Components\Cmp_transform.cpp" />
-    <ClCompile Include="Sources\Core\Application.cpp" />
-    <ClCompile Include="Sources\ECS\EntitySystems\Entity.cpp" />
-    <ClCompile Include="Sources\ECS\EntitySystems\EntityComponent.cpp" />
-    <ClCompile Include="Sources\ECS\EntitySystems\EntityManager.cpp" />
+    <ClCompile Include="Sources\ECS\Component.cpp" />
+    <ClCompile Include="Sources\ECS\Entities.cpp" />
+    <ClCompile Include="Sources\ECS\Entity.cpp" />
+    <ClCompile Include="Sources\ECS\EntityManager.cpp" />
     <ClCompile Include="Sources\Level\Builder\Objects\ObjectBuilder.cpp" />
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\DebugShape.cpp" />
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\Line.cpp" />
@@ -216,16 +212,11 @@
     <ClCompile Include="Sources\Game\World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\ECS\ComponentSystems\RenderSystem.h" />
-    <ClInclude Include="Sources\ECS\EntitySystems\BaseComponentSystem.h" />
-    <ClInclude Include="Sources\ECS\Components\Cmp_render.h" />
-    <ClInclude Include="Sources\ECS\Components\Cmp_transform.h" />
-    <ClInclude Include="Sources\Core\Application.h" />
-    <ClInclude Include="Sources\ECS\EntitySystems\Entity.h" />
-    <ClInclude Include="Sources\ECS\EntitySystems\EntityComponent.h" />
-    <ClInclude Include="Sources\ECS\EntitySystems\EntityComponentSystem.h" />
-    <ClInclude Include="Sources\ECS\EntitySystems\EntityManager.h" />
-    <ClInclude Include="Sources\ECS\EntitySystems\EntitySystemTypes.h" />
+    <ClInclude Include="Sources\ECS\Component.h" />
+    <ClInclude Include="Sources\ECS\Entities.h" />
+    <ClInclude Include="Sources\ECS\Entity.h" />
+    <ClInclude Include="Sources\ECS\EntityManager.h" />
+    <ClInclude Include="Sources\ECS\SystemTypes.h" />
     <ClInclude Include="Sources\Level\Builder\Objects\ObjectBuilder.h" />
     <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\DebugShape.h" />
     <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\Line.h" />

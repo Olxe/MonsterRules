@@ -1,3 +1,4 @@
+#include "..\..\..\ECS\Entity.h"
 #pragma once
 
 #include <map>
@@ -25,7 +26,8 @@ public:
 
 private:
 	EntityId m_id;
-	std::map<EntityComponentId, EntityComponent*> m_components;
+	//std::map<EntityComponentId, EntityComponent*> m_components;
+	std::map<int, EntityComponent*> m_components;
 
 };
 
