@@ -138,7 +138,6 @@
     <ClCompile Include="Sources\ECS\Component.cpp" />
     <ClCompile Include="Sources\ECS\Entities.cpp" />
     <ClCompile Include="Sources\ECS\Entity.cpp" />
-    <ClCompile Include="Sources\ECS\EntityManager.cpp" />
     <ClCompile Include="Sources\Level\Builder\Objects\ObjectBuilder.cpp" />
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\DebugShape.cpp" />
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\Line.cpp" />
@@ -215,7 +214,6 @@
     <ClInclude Include="Sources\ECS\Component.h" />
     <ClInclude Include="Sources\ECS\Entities.h" />
     <ClInclude Include="Sources\ECS\Entity.h" />
-    <ClInclude Include="Sources\ECS\EntityManager.h" />
     <ClInclude Include="Sources\ECS\SystemTypes.h" />
     <ClInclude Include="Sources\Level\Builder\Objects\ObjectBuilder.h" />
     <ClInclude Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\DebugShape.h" />

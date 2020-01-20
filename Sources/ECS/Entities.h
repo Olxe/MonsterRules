@@ -2,37 +2,26 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "SystemTypes.h"
+
+class Entity;
+
 class Entities
 {
 public:
-	Entities() {}
-	~Entities() {}
+	Entities();
+	~Entities() = default;
 
-	void onUpdate(const float& deltaTime)
-	{
-		for (auto& e : m_entities) e->onUpdate(deltaTime);
-	}
-	void onDraw(sf::RenderWindow& window)
-	{
-		for (auto& e : m_entities) e->onDraw(window);
-	}
+	void onUpdate(const float& deltaTime);
 
-	void refresh()
-	{
-		for (auto it = m_entities.begin(); it != m_entities.end();) {
-			if (!(*it)->isActive()) {
-				it = m_entities.erase(it);
-			}
-		}
-	}
+	void onDraw(sf::RenderWindow& window);
 
-	Entity& Create()
-	{
-		m_entities.push_back(std::make_unique<Entity>(new Entity()));
-		return *m_entities.back().get();
-	}
+	void onRefresh();
+
+	Entity& Create();
 
 private:
 	std::vector<std::unique_ptr<Entity>> m_entities;
+	EntityID m_lastEntityID;
 };
 

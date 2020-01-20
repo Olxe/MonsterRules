@@ -7,7 +7,7 @@ class Component;
 class Entity
 {
 public:
-	explicit Entity(EntityID id);
+	Entity(EntityID id);
 	~Entity() = default;
 
 	EntityID getID() const { return m_id; }
@@ -23,20 +23,20 @@ public:
 	bool HasComponent() const;
 
 	template <typename T, typename... TArgs>
-	T* AddComponent(TArgs&&... args);
+	T& AddComponent(TArgs&&... args);
 
 private:
 	EntityID m_id;
 	bool m_active;
-	std::map<ComponentID, std::unique_ptr<Component>> m_components;
-	//std::vector<std::unique_ptr<Component>> m_components;//?
+	std::vector<std::unique_ptr<Component>> m_components;
+	ComponentID m_lastCompID;
 };
 
 template<typename T>
 inline T* Entity::getComponent() const
 {
-	for (auto c = m_components.begin(); c != m_components.end(); ++c) {
-		if (T* c_return = dynamic_cast<T*>(c->second.get())) {
+	for (auto& c : m_components) {
+		if (T* c_return = dynamic_cast<T*>(c.get())) {
 			return c_return;
 		}
 	}
@@ -46,19 +46,19 @@ inline T* Entity::getComponent() const
 template<typename T>
 inline bool Entity::HasComponent() const
 {
-	if (getComponent<T>()) {
+	if (this->getComponent<T>()) {
 		return true;
 	}
 	return false;
 }
 
 template<typename T, typename ...TArgs>
-inline T* Entity::AddComponent(TArgs&& ...args)
+inline T& Entity::AddComponent(TArgs&& ...args)
 {
-	T* c = new T(std::forward<TArgs>(args)...);
+	T* c = new T(m_lastCompID++, std::forward<TArgs>(args)...);
 	c->setEntity(this);
 	c->Init();
 	m_components.push_back(std::make_unique<Component>(c));
 
-	return c;
+	return *c;
 }

@@ -4,19 +4,16 @@
 Entity::Entity(EntityID id)
 	: m_id(id)
 	, m_active(true)
+	, m_lastCompID(INVALID_COMPONENT_ID)
 {
 }
 
 void Entity::onUpdate(const float& deltaTime)
 {
-	for (auto c = m_components.begin(); c != m_components.end(); ++c) {
-		c->second->onUpdate(deltaTime);
-	}
+	for (auto& c : m_components) c->onUpdate(deltaTime);
 }
 
 void Entity::onDraw(sf::RenderWindow& window)
 {
-	for (auto c = m_components.begin(); c != m_components.end(); ++c) {
-		c->second->onDraw(window);
-	}
+	for (auto& c : m_components) c->onDraw(window);
 }
