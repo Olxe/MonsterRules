@@ -1,12 +1,13 @@
 #pragma once
 
-#include "SystemTypes.h"
 #include "Component.h"
+
+class System;
 
 class Entity
 {
 public:
-	Entity(EntityID id);
+	Entity(EntityID id, System* system = nullptr);
 	~Entity() = default;
 
 	EntityID getID() const { return m_id; }
@@ -29,9 +30,10 @@ private:
 	bool m_active;
 	std::vector<std::unique_ptr<Component>> m_components;
 	ComponentID m_lastCompID;
+	System* m_system;
 };
 
-template<typename T>
+template <typename T>
 inline T* Entity::getComponent() const
 {
 	for (auto& c : m_components) {
@@ -42,7 +44,7 @@ inline T* Entity::getComponent() const
 	return nullptr;
 }
 
-template<typename T>
+template <typename T>
 inline bool Entity::HasComponent() const
 {
 	if (this->getComponent<T>()) {
@@ -51,7 +53,7 @@ inline bool Entity::HasComponent() const
 	return false;
 }
 
-template<typename T, typename ...TArgs>
+template <typename T, typename ...TArgs>
 inline T& Entity::AddComponent(TArgs&& ...args)
 {
 	T* c = new T(m_lastCompID++, std::forward<TArgs>(args)...);

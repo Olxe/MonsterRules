@@ -5,11 +5,11 @@
 
 namespace gameEngine
 {
-	OptionState::OptionState(GameEngine& gameEngine, Window::CRenderWindow& window, bool replace)
-		: State(gameEngine, window, replace)
+	OptionState::OptionState(GameEngine& gameEngine, bool replace)
+		: State(gameEngine, replace)
 	{
 		Out("option created");
-		sf::Vector2f windowSize = (sf::Vector2f)window.getSize();
+		sf::Vector2f windowSize = (sf::Vector2f)m_window.getSize();
 
 		std::unique_ptr<gui::Label> l1 = std::make_unique<gui::Label>("Option menu", *AssetManager::Instance()->GetFont("Resources/Fonts/EnchantedLand-jnX9.ttf"), 96, sf::Text::Regular, sf::Color::White, sf::Vector2f(windowSize.x / 2.f, 50));
 

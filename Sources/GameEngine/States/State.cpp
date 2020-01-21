@@ -3,10 +3,10 @@
 
 namespace gameEngine
 {
-	State::State(GameEngine& gameEngine, Window::CRenderWindow& window, bool replace)
+	State::State(GameEngine& gameEngine, bool replace)
 		: m_gameEngine(gameEngine)
-		, m_window(window)
-		, m_layout(window)
+		, m_window(gameEngine.Window())
+		, m_layout(m_window)
 		, m_replacing(replace)
 	{
 	}

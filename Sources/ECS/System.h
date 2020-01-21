@@ -3,14 +3,13 @@
 #include <SFML/Graphics.hpp>
 
 #include "SystemTypes.h"
+#include "Entity.h"
 
-class Entity;
-
-class Entities
+class System
 {
 public:
-	Entities();
-	~Entities() = default;
+	System();
+	~System() = default;
 
 	void onUpdate(const float& deltaTime);
 

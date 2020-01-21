@@ -1,9 +1,11 @@
 #include "Entity.h"
+#include "System.h"
 
-Entity::Entity(EntityID id)
+Entity::Entity(EntityID id, System* system)
 	: m_id(id)
 	, m_active(true)
 	, m_lastCompID(INVALID_COMPONENT_ID)
+	, m_system(system)
 {
 }
 

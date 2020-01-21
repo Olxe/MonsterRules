@@ -1,9 +1,8 @@
 #include "GameEngine.hpp"
-#include "States/State.hpp"
 
 namespace gameEngine
 {
-	GameEngine::GameEngine(Window::CRenderWindow& window)
+	GameEngine::GameEngine(sf::RenderWindow& window)
 		: m_window(window)
 		, m_resume(false)
 	{
@@ -77,20 +76,13 @@ namespace gameEngine
 			case sf::Event::Closed:
 				this->Quit();
 				break;
-			case sf::Event::GainedFocus:
-				m_window.SetWindowFocus(true);
-				break;
-			case sf::Event::LostFocus:
-				m_window.SetWindowFocus(false);
-				break;
-
 			default:
 				this->m_states.back()->onEvent(event);
 				break;
 			}
 		}
 
-		if (m_window.IsFocus()) {
+		if (m_window.hasFocus()) {
 			this->m_states.back()->onUpdate();
 		}
 	}

@@ -5,11 +5,11 @@
 
 namespace gameEngine
 {
-	MainMenuState::MainMenuState(GameEngine& gameEngine, Window::CRenderWindow& window, bool replace)
-		: State(gameEngine, window, replace)
+	MainMenuState::MainMenuState(GameEngine& gameEngine, bool replace)
+		: State(gameEngine, replace)
 	{
 		Out("menu created");
-		sf::Vector2f windowSize = (sf::Vector2f)window.getSize();
+		sf::Vector2f windowSize = (sf::Vector2f)m_window.getSize();
 
 		m_gameEngine.ClearPreviousState();
 
@@ -29,7 +29,7 @@ namespace gameEngine
 		m_layout.AddWidget(std::move(b3));
 		m_layout.AddWidget(std::move(l1));
 
-		this->setNext(GameEngine::BuildState<GameState>(m_gameEngine, m_window, true));
+		this->setNext(GameEngine::BuildState<GameState>(m_gameEngine, true));
 	}
 
 	MainMenuState::~MainMenuState()
@@ -65,11 +65,11 @@ namespace gameEngine
 
 	void MainMenuState::toOption()
 	{
-		this->setNext(GameEngine::BuildState<OptionState>(m_gameEngine, m_window, false));
+		this->setNext(GameEngine::BuildState<OptionState>(m_gameEngine, false));
 	}
 
 	void MainMenuState::toGame()
 	{
-		this->setNext(GameEngine::BuildState<GameState>(m_gameEngine, m_window, true));
+		this->setNext(GameEngine::BuildState<GameState>(m_gameEngine, true));
 	}
 }

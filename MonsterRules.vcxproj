@@ -136,7 +136,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Sources\ECS\Component.cpp" />
-    <ClCompile Include="Sources\ECS\Entities.cpp" />
+    <ClCompile Include="Sources\ECS\System.cpp" />
     <ClCompile Include="Sources\ECS\Entity.cpp" />
     <ClCompile Include="Sources\Level\Builder\Objects\ObjectBuilder.cpp" />
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\Physic\DebugShapes\DebugShape.cpp" />
@@ -152,15 +152,15 @@
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\Animation.cpp" />
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\Heroes\Hero.cpp" />
     <ClCompile Include="Sources\Level\Loader\Layers\Entities\Heroes\Archer.cpp" />
-    <ClCompile Include="Sources\Game\GameEngine\States\OptionState.cpp" />
-    <ClCompile Include="Sources\Game\GameEngine\GameEngine.cpp" />
-    <ClCompile Include="Sources\Game\GameEngine\States\GameMenuState.cpp" />
-    <ClCompile Include="Sources\Game\GameEngine\States\GameState.cpp" />
-    <ClCompile Include="Sources\Game\GameEngine\States\MainMenuState.cpp" />
-    <ClCompile Include="Sources\Game\GameEngine\States\State.cpp" />
+    <ClCompile Include="Sources\GameEngine\States\OptionState.cpp" />
+    <ClCompile Include="Sources\GameEngine\GameEngine.cpp" />
+    <ClCompile Include="Sources\GameEngine\States\GameMenuState.cpp" />
+    <ClCompile Include="Sources\GameEngine\States\GameState.cpp" />
+    <ClCompile Include="Sources\GameEngine\States\MainMenuState.cpp" />
+    <ClCompile Include="Sources\GameEngine\States\State.cpp" />
     <ClCompile Include="Sources\Game\Window\AssetManager.cpp" />
     <ClCompile Include="Sources\Game\Window\Inputmanager.cpp" />
-    <ClCompile Include="Sources\Game\Game.cpp" />
+    <ClCompile Include="Sources\Core\Game.cpp" />
     <ClCompile Include="Sources\Game\Window\CRenderWindow.cpp" />
     <ClCompile Include="Sources\Game\Window\Settings.cpp" />
     <ClCompile Include="Sources\Game\Window\WindowManager.cpp" />
@@ -212,7 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\ECS\Component.h" />
-    <ClInclude Include="Sources\ECS\Entities.h" />
+    <ClInclude Include="Sources\ECS\System.h" />
     <ClInclude Include="Sources\ECS\Entity.h" />
     <ClInclude Include="Sources\ECS\SystemTypes.h" />
     <ClInclude Include="Sources\Level\Builder\Objects\ObjectBuilder.h" />
@@ -229,12 +229,12 @@
     <ClInclude Include="Sources\Level\Loader\Layers\Entities\Animation.h" />
     <ClInclude Include="Sources\Level\Loader\Layers\Entities\Heroes\Hero.h" />
     <ClInclude Include="Sources\Level\Loader\Layers\Entities\Heroes\Archer.h" />
-    <ClInclude Include="Sources\Game\GameEngine\States\OptionState.hpp" />
-    <ClInclude Include="Sources\Game\GameEngine\GameEngine.hpp" />
-    <ClInclude Include="Sources\Game\GameEngine\States\GameMenuState.hpp" />
-    <ClInclude Include="Sources\Game\GameEngine\States\GameState.hpp" />
-    <ClInclude Include="Sources\Game\GameEngine\States\MainMenuState.hpp" />
-    <ClInclude Include="Sources\Game\GameEngine\States\State.hpp" />
+    <ClInclude Include="Sources\GameEngine\States\OptionState.hpp" />
+    <ClInclude Include="Sources\GameEngine\GameEngine.hpp" />
+    <ClInclude Include="Sources\GameEngine\States\GameMenuState.hpp" />
+    <ClInclude Include="Sources\GameEngine\States\GameState.hpp" />
+    <ClInclude Include="Sources\GameEngine\States\MainMenuState.hpp" />
+    <ClInclude Include="Sources\GameEngine\States\State.hpp" />
     <ClInclude Include="Sources\Game\Window\AssetManager.h" />
     <ClInclude Include="Sources\Game\Window\AssetManager.hpp" />
     <ClInclude Include="Sources\Game\Window\Inputmanager.h" />
@@ -253,7 +253,7 @@
     <ClInclude Include="Sources\Level\Loader\TiledLoader.hpp" />
     <ClInclude Include="Sources\Tools\SettingsParser.h" />
     <ClInclude Include="Sources\Tools\Singleton.h" />
-    <ClInclude Include="Sources\Game\Game.h" />
+    <ClInclude Include="Sources\Core\Game.h" />
     <ClInclude Include="Sources\Game\Window\CRenderWindow.h" />
     <ClInclude Include="Sources\Game\Window\Settings.h" />
     <ClInclude Include="Sources\Level\Builder\Layers\LayerBuilder.h" />

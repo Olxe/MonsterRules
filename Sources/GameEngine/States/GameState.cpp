@@ -4,14 +4,14 @@
 
 namespace gameEngine
 {
-	GameState::GameState(GameEngine& gameEngine, Window::CRenderWindow& window, bool replace)
-		: State(gameEngine, window, replace)
+	GameState::GameState(GameEngine& gameEngine, bool replace)
+		: State(gameEngine, replace)
 		, m_la_fps(nullptr)
 		, m_timeToUpdateGui(1.f)
 	{
 		Out("game created");
 
-		sf::Vector2f windowSize = (sf::Vector2f)window.getSize();
+		sf::Vector2f windowSize = (sf::Vector2f)m_window.getSize();
 		std::unique_ptr<gui::Label> l1 = std::make_unique<gui::Label>("Game", *AssetManager::Instance()->GetFont("Resources/Fonts/EnchantedLand-jnX9.ttf"), 96, sf::Text::Regular, sf::Color::White, sf::Vector2f(windowSize.x / 2.f, 50));
 		std::unique_ptr<gui::Label> la_fps = std::make_unique<gui::Label>("FPS", *AssetManager::Instance()->GetFont("Resources/Fonts/Arial.ttf"), 16, sf::Text::Regular, sf::Color::White, sf::Vector2f(30, 20));
 		m_la_fps = la_fps.get();
@@ -45,7 +45,7 @@ namespace gameEngine
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Escape:
-				this->setNext(GameEngine::BuildState<GameMenuState>(m_gameEngine, m_window, false));
+				this->setNext(GameEngine::BuildState<GameMenuState>(m_gameEngine, false));
 				break;
 
 			default:
@@ -84,7 +84,7 @@ namespace gameEngine
 
 		m_world.Draw(m_window);
 
-		m_window.setDefaultView();
+		//m_window.setDefaultView();
 		m_window.draw(m_layout);
 
 		m_window.display();

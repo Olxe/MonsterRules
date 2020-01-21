@@ -6,11 +6,11 @@
 
 namespace gameEngine
 {
-	GameMenuState::GameMenuState(GameEngine& gameEngine, Window::CRenderWindow& window, bool replace)
-		: State(gameEngine, window, replace)
+	GameMenuState::GameMenuState(GameEngine& gameEngine, bool replace)
+		: State(gameEngine, replace)
 	{
 		Out("game menu created");
-		sf::Vector2f windowSize = (sf::Vector2f)window.getSize();
+		sf::Vector2f windowSize = (sf::Vector2f)m_window.getSize();
 
 		std::unique_ptr<gui::Label> l1 = std::make_unique<gui::Label>("Game menu", *AssetManager::Instance()->GetFont("Resources/Fonts/EnchantedLand-jnX9.ttf"), 96, sf::Text::Regular, sf::Color::White, sf::Vector2f(windowSize.x / 2.f, 50));
 
@@ -86,7 +86,7 @@ namespace gameEngine
 
 	void GameMenuState::toMainMenu()
 	{
-		this->setNext(GameEngine::BuildState<MainMenuState>(m_gameEngine, m_window, true));
+		this->setNext(GameEngine::BuildState<MainMenuState>(m_gameEngine, true));
 	}
 
 	void GameMenuState::toGame()
@@ -96,6 +96,6 @@ namespace gameEngine
 
 	void GameMenuState::toOption()
 	{
-		this->setNext(GameEngine::BuildState<OptionState>(m_gameEngine, m_window, false));
+		this->setNext(GameEngine::BuildState<OptionState>(m_gameEngine, false));
 	}
 }

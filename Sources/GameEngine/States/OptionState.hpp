@@ -4,11 +4,11 @@
 
 namespace gameEngine
 {
-	class MainMenuState: public State
+	class OptionState: public State
 	{
 	public:
-		MainMenuState(GameEngine& gameEngine, Window::CRenderWindow& window, bool replace = true);
-		~MainMenuState();
+		OptionState(GameEngine& gameEngine, bool replace = true);
+		~OptionState();
 
 		void onPause() override;
 		void onResume() override;
@@ -16,8 +16,7 @@ namespace gameEngine
 		void onUpdate() override;
 		void onDraw() override;
 
-		void toOption();
-		void toGame();
-
+		void toReturn();
 	};
 }
+

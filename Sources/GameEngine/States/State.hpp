@@ -3,9 +3,9 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 
-#include "../../../Gui/GuiLayout.hpp"
-#include "../../../Tools/ToolsFunction.h"
-#include "../../Window/WindowManager.hpp"
+#include "../../Tools/ToolsFunction.h"
+#include "../../Gui/GuiLayout.hpp"
+
 
 namespace gameEngine
 {
@@ -14,7 +14,7 @@ namespace gameEngine
 	class State
 	{
 	public:
-		State(GameEngine& gameEngine, Window::CRenderWindow& window, bool replace = true);
+		State(GameEngine& gameEngine, bool replace = true);
 		virtual ~State();
 
 		void setNext(std::unique_ptr<State> state) { m_next = std::move(state); }
@@ -32,7 +32,7 @@ namespace gameEngine
 
 	protected:
 		GameEngine& m_gameEngine;
-		Window::CRenderWindow& m_window;
+		sf::RenderWindow& m_window;
 		gui::GuiLayout m_layout;
 		std::unique_ptr<State> m_next;
 		bool m_replacing;
