@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../Game/Window/CRenderWindow.h"
-
 #include "Parser/TiledParser.h"
 #include "Builder/TiledBuilder.h"
 #include "Loader/TiledLoader.hpp"
@@ -29,7 +27,7 @@ public:
 	void PreviousLevel();
 
 	void Update(const float& deltaTime);
-	void Draw(Window::CRenderWindow& window);
+	void Draw(sf::RenderWindow& window);
 
 private:
 	std::string m_directory;

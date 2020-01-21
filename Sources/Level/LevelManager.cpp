@@ -55,17 +55,17 @@ void LevelManager::Update(const float& deltaTime)
 	Box2DWorld::Instance()->getWorld()->Step(1 / 60.f, 8, 3);
 }
 
-void LevelManager::Draw(Window::CRenderWindow& window)
+void LevelManager::Draw(sf::RenderWindow& window)
 {
 	for (auto& it : m_layers) {
 		if (layer::EntityLayer* entity = dynamic_cast<layer::EntityLayer*>(it.get())) {
 			if (entities::CEntity* mainPlayer = entity->getEntity("MAIN_PLAYER")) {
-				window.getGameView().setCenter(mainPlayer->getPosition());
+				//window.getGameView().setCenter(mainPlayer->getPosition());
 			}
 		}
 	}
 
-	window.setGameView();
+	//window.setGameView();
 
 	for (auto& it : m_layers) {
 		it->onDraw(window);

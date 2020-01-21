@@ -18,6 +18,14 @@ namespace gameEngine
 
 		m_layout.AddWidget(std::move(l1));
 		m_layout.AddWidget(std::move(la_fps));
+
+		int cpt = 1;
+		while (cpt > 0) {
+			m_levelManager.LoadLevel(Level::LEVEL_1);
+
+			cpt--;
+			std::cout << cpt << std::endl;
+		}
 	}
 
 	GameState::~GameState()
@@ -35,7 +43,7 @@ namespace gameEngine
 
 	void GameState::onEvent(sf::Event& event)
 	{
-		m_window.setDefaultView();
+		m_window.setView(m_window.getDefaultView());
 		m_layout.onEvent(event);
 
 		switch (event.type)
@@ -55,8 +63,8 @@ namespace gameEngine
 		}
 		case sf::Event::MouseWheelMoved:
 		{
-			if (event.mouseWheel.delta < 0) m_window.getGameView().zoom(1.1f);
-			else if (event.mouseWheel.delta > 0) m_window.getGameView().zoom(0.9f);
+			//if (event.mouseWheel.delta < 0) m_window.getGameView().zoom(1.1f);
+			//else if (event.mouseWheel.delta > 0) m_window.getGameView().zoom(0.9f);
 			break;
 		}
 
@@ -70,7 +78,7 @@ namespace gameEngine
 		float deltaTime = m_clock.restart().asSeconds();
 		m_timeToUpdateGui += deltaTime;
 
-		m_world.Update(deltaTime);
+		m_levelManager.Update(deltaTime);
 
 		if (m_timeToUpdateGui > 0.5f) {
 			m_la_fps->setText("FPS " + std::to_string(int(1.f / deltaTime)));
@@ -82,9 +90,9 @@ namespace gameEngine
 	{
 		m_window.clear();
 
-		m_world.Draw(m_window);
+		m_levelManager.Draw(m_window);
 
-		//m_window.setDefaultView();
+		m_window.setView(m_window.getDefaultView());
 		m_window.draw(m_layout);
 
 		m_window.display();

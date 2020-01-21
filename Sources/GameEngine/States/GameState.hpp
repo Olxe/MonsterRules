@@ -1,7 +1,7 @@
 #pragma once
 
 #include "State.hpp"
-#include "../../World.hpp"
+#include "../../Level/LevelManager.h"
 
 namespace gameEngine
 {
@@ -18,7 +18,7 @@ namespace gameEngine
 		void onDraw() override;
 
 	private:
-		World m_world;
+		LevelManager m_levelManager;
 		sf::Clock m_clock;
 
 		gui::Label* m_la_fps;
