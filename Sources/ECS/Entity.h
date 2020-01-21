@@ -1,8 +1,7 @@
 #pragma once
 
 #include "SystemTypes.h"
-
-class Component;
+#include "Component.h"
 
 class Entity
 {
@@ -58,7 +57,7 @@ inline T& Entity::AddComponent(TArgs&& ...args)
 	T* c = new T(m_lastCompID++, std::forward<TArgs>(args)...);
 	c->setEntity(this);
 	c->Init();
-	m_components.push_back(std::make_unique<Component>(c));
+	m_components.push_back(std::unique_ptr<Component>(c));
 
 	return *c;
 }

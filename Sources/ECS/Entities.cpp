@@ -26,6 +26,6 @@ void Entities::onRefresh()
 
 Entity& Entities::Create()
 {
-	m_entities.push_back(std::make_unique<Entity>(new Entity(m_lastEntityID++)));
+	m_entities.push_back(std::unique_ptr<Entity>(new Entity(m_lastEntityID++)));
 	return *m_entities.back().get();
 }
